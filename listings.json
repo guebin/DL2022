@@ -2,8 +2,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2022-11-08-10wk-2.html",
-      "/posts/2022-11-10-11wk-1.html",
       "/posts/2022-11-15-11wk-2.html",
       "/posts/2022-11-17-12wk-1.html",
       "/posts/2022-09-15-3wk-1.html",
@@ -23,8 +21,10 @@
       "/posts/2022-10-25-8wk-2.html",
       "/posts/2022-10-26-Assignment3.html",
       "/posts/2022-10-28-9wk-1-midsol.html",
+      "/posts/2022-11-10-11wk-1.html",
       "/posts/2022-11-01-9wk-2.html",
       "/posts/2022-11-03-10wk-1.html",
+      "/posts/2022-11-08-10wk-2.html",
       "/posts/2099-01-01-dr.html"
     ]
   }
