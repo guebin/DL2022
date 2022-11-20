@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DL2022 – wk-2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DL2022</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<section id="주차-10월11일" class="level1">
+<h1>(6주차) 10월11일</h1>
+<blockquote class="blockquote">
+<p>딥러닝의 기초 - 깊은신경망(3)– 신경망의표현, 시벤코정리증명, CPU vs GPU, 확률적경사하강법, 오버피팅</p>
+</blockquote>
+<ul>
+<li>toc:true</li>
+<li>branch: master</li>
+<li>badges: true</li>
+<li>comments: true</li>
+<li>author: 최규빈</li>
+</ul>
+<section id="강의영상" class="level2">
+<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
+<blockquote class="blockquote">
+<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zXzWcQw8KYaSDuBOrEp7AA</p>
+</blockquote>
+</section>
+<section id="imports" class="level2">
+<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<div class="cell" data-execution_count="661">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.data.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="662">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphviz</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gv(s): <span class="cf">return</span> graphviz.Source(<span class="st">'digraph G{ rankdir="LR"'</span><span class="op">+</span>s <span class="op">+</span> <span class="st">'; }'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="663">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>graphviz.set_jupyter_format(<span class="st">'png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="663">
+<pre><code>'png'</code></pre>
+</div>
+</div>
+</section>
+<section id="신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현" class="level2">
+<h2 class="anchored" data-anchor-id="신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현">신경망의 표현 (<span class="math inline">\({\boldsymbol x} \to \hat{\boldsymbol y}\)</span> 로 가는 과정을 그림으로 표현)</h2>
+<section id="예제1-undersetn1bf-x-oversetl_1to-undersetn1boldsymbol-u1-oversetsigto-undersetn1boldsymbol-v1-undersetn1hatboldsymbol-y" class="level3">
+<h3 class="anchored" data-anchor-id="예제1-undersetn1bf-x-oversetl_1to-undersetn1boldsymbol-u1-oversetsigto-undersetn1boldsymbol-v1-undersetn1hatboldsymbol-y">예제1: <span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(1)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(1)}} =\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h3>
+<p><code>-</code> 모든 observation과 가중치를 명시한 버전</p>
+<p><strong>(표현1)</strong></p>
+<div class="cell" data-execution_count="550">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">''' </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">    "1" -&gt; "ŵ₀ + xₙ*ŵ₁,    bias=False"[label="* ŵ₀"]</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">    "xₙ" -&gt; "ŵ₀ + xₙ*ŵ₁,    bias=False"[label="* ŵ₁"]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "ŵ₀ + xₙ*ŵ₁,    bias=False" -&gt; "ŷₙ"[label="sigmoid"]</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "." -&gt; "...................................."[label="* ŵ₀"]</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "...................................."[label="* ŵ₁"]</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">    "...................................." -&gt; "..."[label=" "]</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">    "1 " -&gt; "ŵ₀ + x₂*ŵ₁,    bias=False"[label="* ŵ₀"]</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">    "x₂" -&gt; "ŵ₀ + x₂*ŵ₁,    bias=False"[label="* ŵ₁"]</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "ŵ₀ + x₂*ŵ₁,    bias=False" -&gt; "ŷ₂"[label="sigmoid"]</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">    "1  " -&gt; "ŵ₀ + x₁*ŵ₁,    bias=False"[label="* ŵ₀"]</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "x₁" -&gt; "ŵ₀ + x₁*ŵ₁,    bias=False"[label="* ŵ₁"]</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "ŵ₀ + x₁*ŵ₁,    bias=False" -&gt; "ŷ₁"[label="sigmoid"]</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="550">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>단점: 똑같은 그림의 반복이 너무 많음</li>
+</ul>
+<p><code>-</code> observation 반복을 생략한 버전들</p>
+<p><strong>(표현2)</strong> 모든 <span class="math inline">\(i\)</span>에 대하여 아래의 그림을 반복한다고 하면 (표현1)과 같다.</p>
+<div class="cell" data-execution_count="551">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">''' </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">    "1" -&gt; "ŵ₀ + xᵢ*ŵ₁,    bias=False"[label="* ŵ₀"]</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">    "xᵢ" -&gt; "ŵ₀ + xᵢ*ŵ₁,    bias=False"[label="* ŵ₁"]</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "ŵ₀ + xᵢ*ŵ₁,    bias=False" -&gt; "ŷᵢ"[label="sigmoid"]</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="551">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>(표현3)</strong> 그런데 (표현2)에서 아래와 같이 <span class="math inline">\(x_i\)</span>, <span class="math inline">\(y_i\)</span> 대신에 간단히 <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>로 쓰는 경우도 많음</p>
+<div class="cell" data-execution_count="552">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">''' </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">    "1" -&gt; "ŵ₀ + x*ŵ₁,    bias=False"[label="* ŵ₀"]</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">    "x" -&gt; "ŵ₀ + x*ŵ₁,    bias=False"[label="* ŵ₁"]</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">    "ŵ₀ + x*ŵ₁,    bias=False" -&gt; "ŷ"[label="sigmoid"]</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="552">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 1을 생략한 버전들</p>
+<p><strong>(표현4)</strong> bais=False 대신에 bias=True를 주면 1을 생략할 수 있음</p>
+<div class="cell" data-execution_count="553">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; "x*ŵ₁,    bias=True"[label="*ŵ₁"] ;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">"x*ŵ₁,    bias=True" -&gt; "ŷ"[label="sigmoid"] '''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="553">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>(표현4의 수정)</strong> <span class="math inline">\(\hat{w}_1\)</span>대신에 <span class="math inline">\(\hat{w}\)</span>를 쓰는 것이 더 자연스러움</p>
+<div class="cell" data-execution_count="554">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; "x*ŵ,    bias=True"[label="*ŵ"] ;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">"x*ŵ,    bias=True" -&gt; "ŷ"[label="sigmoid"] '''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="554">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>(표현5)</strong> 선형변환의 결과는 아래와 같이 <span class="math inline">\(u\)</span>로 표현하기도 한다.</p>
+<div class="cell" data-execution_count="557">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; "u";</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">"u" -&gt; "y"[label="sigmoid"] '''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="557">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>다이어그램은 그리는 사람의 취향에 따라 그리는 방법이 조금씩 다릅니다. 즉 교재마다 달라요.</p>
+</blockquote>
+</section>
+<section id="예제2-undersetn1bf-x-oversetl_1to-undersetn2boldsymbol-u1-oversetreluto-undersetn2boldsymbol-v1-oversetl_2to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2-undersetn1hatboldsymbol-y" class="level3">
+<h3 class="anchored" data-anchor-id="예제2-undersetn1bf-x-oversetl_1to-undersetn2boldsymbol-u1-oversetreluto-undersetn2boldsymbol-v1-oversetl_2to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2-undersetn1hatboldsymbol-y">예제2: <span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,2)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,2)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}} =\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h3>
+<p><strong>참고: 코드로 표현</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>torch.nn.Sequential(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Sigmoid()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>-</code> 이해를 위해서 10월4일 강의노트에서 다루었던 아래의 상황을 고려하자.</p>
+<p><img src="data:image/png;base64,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%0A.png" class="img-fluid"></p>
+<p><strong>(강의노트의 표현)</strong></p>
+<div class="cell" data-execution_count="558">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; " -x"[label="*(-1)"];</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; " x"[label="*1"]</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">" x" -&gt; "rlu(x)"[label="relu"] </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">" -x" -&gt; "rlu(-x)"[label="relu"] </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">"rlu(x)" -&gt; "u"[label="*(-4.5)"] </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">"rlu(-x)" -&gt; "u"[label="*(-9.0)"] </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">"u" -&gt; "sig(u)=yhat"[label="sig"] </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="558">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>(좀 더 일반화된 표현)</strong> 10월4일 강의노트 상황을 일반화하면 아래와 같다.</p>
+<div class="cell" data-execution_count="592">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; "u1[:,0]"[label="*(-1)"];</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">"x" -&gt; "u1[:,1]"[label="*1"]</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">"u1[:,0]" -&gt; "v1[:,0]"[label="relu"] </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">"u1[:,1]" -&gt; "v1[:,1]"[label="relu"] </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">"v1[:,0]" -&gt; "u2"[label="*(-9.0)"] </span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">"v1[:,1]" -&gt; "u2"[label="*(-4.5)"] </span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">"u2" -&gt; "v2=yhat"[label="sig"] </span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="592">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>*</code> Layer의 개념: <span class="math inline">\({\bf X}\)</span>에서 <span class="math inline">\(\hat{\boldsymbol y}\)</span>로 가는 과정은 “선형변환+비선형변환”이 반복되는 구조이다. “선형변환+비선형변환”을 하나의 세트로 보면 아래와 같이 표현할 수 있다.</p>
+<p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \left( \underset{(n,2)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,2)}{\boldsymbol v^{(1)}} \right) \overset{l_2}{\to} \left(\underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}\right), \quad \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{net({\bf X})}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
+<p>이것을 다이어그램으로 표현한다면 아래와 같다.</p>
+<p><strong>(선형+비선형을 하나의 Layer로 묶은 표현)</strong></p>
+<div class="cell" data-execution_count="560">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_1{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" </span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 0"</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_2{</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" -&gt; "u1[:,0]"</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" -&gt; "u1[:,1]"</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">    "u1[:,0]" -&gt; "v1[:,0]"[label="relu"]</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="st">    "u1[:,1]" -&gt; "v1[:,1]"[label="relu"]</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 1"</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_3{</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="st">    "v1[:,0]" -&gt; "u2"</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="st">    "v1[:,1]" -&gt; "u2"</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="st">    "u2" -&gt; "v2=yhat"[label="sigmoid"]</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 2"</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="560">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong><em>Layer를 세는 방법</em></strong> - 정석: 학습가능한 파라메터가 몇층으로 있는지… - 일부 교재 설명: 입력층은 계산하지 않음, activation layer는 계산하지 않음. - 위의 예제의 경우 <code>number of layer = 2</code> 이다.</p>
+<blockquote class="blockquote">
+<p>사실 input layer, activation layer 등의 표현을 자주 사용해서 layer를 세는 방법이 처음에는 헷갈립니다..</p>
+</blockquote>
+<p><strong><em>Hidden Layer의 수를 세는 방법</em></strong> - <code>Layer의 수 = Hidden Layer의 수 + 출력층의 수 = Hidden Layer의 수 + 1</code> - 위의 예제의 경우 <code>number of hidden layer = 1</code> 이다.</p>
+<p><code>*</code> node의 개념: <span class="math inline">\(u\to v\)</span>로 가는 쌍을 간단히 노드라는 개념을 이용하여 나타낼 수 있음.</p>
+<p><strong>(노드의 개념이 포함된 그림)</strong></p>
+<div class="cell" data-tags="[]" data-execution_count="561">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_1{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 0"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_2{</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" -&gt; "node1"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" -&gt; "node2"</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 1:relu"</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_3{</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "yhat "</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "yhat "</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 2:sigmoid"</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="561">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>여기에서 <code>node의 숫자 = feature의 숫자</code>와 같이 이해할 수 있다. 즉 아래와 같이 이해할 수 있다.</p>
+<p><strong>(“number of nodes = number of features”로 이해한 그림)</strong></p>
+<div class="cell" data-execution_count="562">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_1{</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 0"</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_2{</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" -&gt; "feature1"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="st">    "X" -&gt; "feature2"</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 1:relu"</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_3{</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="st">    "feature1" -&gt; "yhat "</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "feature2" -&gt; "yhat "</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 2:sigmoid"</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="562">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>다이어그램의 표현방식은 교재마다 달라서 모든 예시를 달달 외울 필요는 없습니다. 다만 임의의 다이어그램을 보고 대응하는 네트워크를 pytorch로 구현하는 능력은 매우 중요합니다.</p>
+</blockquote>
+</section>
+<section id="예제3-undersetn784bf-x-oversetl_1to-undersetn32boldsymbol-u1-oversetreluto-undersetn32boldsymbol-v1-oversetl_1to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2undersetn1hatboldsymbol-y" class="level3">
+<h3 class="anchored" data-anchor-id="예제3-undersetn784bf-x-oversetl_1to-undersetn32boldsymbol-u1-oversetreluto-undersetn32boldsymbol-v1-oversetl_1to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2undersetn1hatboldsymbol-y">예제3: <span class="math inline">\(\underset{(n,784)}{\bf X} \overset{l_1}{\to} \underset{(n,32)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,32)}{\boldsymbol v^{(1)}} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h3>
+<p><strong>(다이어그램표현)</strong></p>
+<div class="cell" data-execution_count="563">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">splines=line</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_1{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="st">    ".."</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Input Layer"</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_2{</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node1"</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node1"</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node1"</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node1"</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node2"</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node2"</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node2"</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node2"</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "..."</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "..."</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "..."</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "..."</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node32"</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node32"</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node32"</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node32"</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Hidden Layer: relu"</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_3{</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "yhat"</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "yhat"</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "yhat"</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="st">    "node32" -&gt; "yhat"</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Outplut Layer: sigmoid"</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="563">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>Layer0,1,2 대신에 Input Layer, Hidden Layer, Output Layer로 표현함</li>
+</ul>
+<p><code>-</code> 위의 다이어그램에 대응하는 코드</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">28</span><span class="op">*</span><span class="dv">28</span><span class="op">*</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">32</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">32</span>,out_features<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Sigmoid() </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="시벤코정리가-성립하는-이유-엄밀한-증명-x" class="level2">
+<h2 class="anchored" data-anchor-id="시벤코정리가-성립하는-이유-엄밀한-증명-x">시벤코정리가 성립하는 이유? (엄밀한 증명 X)</h2>
+<section id="그림으로-보는-증명과정" class="level3">
+<h3 class="anchored" data-anchor-id="그림으로-보는-증명과정">그림으로 보는 증명과정</h3>
+<p><code>-</code> 데이터</p>
+<div class="cell" data-execution_count="572">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 아래와 같은 네트워크를 고려하자.</p>
+<div class="cell" data-execution_count="573">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> torch.nn.Sigmoid()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 직관1: <span class="math inline">\(l_1\)</span>,<span class="math inline">\(l_2\)</span>의 가중치를 잘 결합하다보면 우연히 아래와 같이 만들 수 있다.</p>
+<div class="cell" data-execution_count="574">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="op">+</span><span class="fl">10.00</span>,<span class="op">+</span><span class="fl">10.00</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="575">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.00</span>,<span class="fl">1.00</span>]])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>l2.bias.data <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.00</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="576">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">9</span>,<span class="dv">3</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x,l1(x).data)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$l_1(x)$'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x,a1(l1(x)).data)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$(a_1 \circ l_1)(x)$'</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(x,l2(a1(l1(x))).data,color<span class="op">=</span><span class="st">'C2'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$(l_2 \circ a_1 \circ \l_1)(x)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="576">
+<pre><code>Text(0.5, 1.0, '$(l_2 \\circ a_1 \\circ \\l_1)(x)$')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 직관2: 아래들도 가능할듯?</p>
+<div class="cell" data-tags="[]" data-execution_count="577">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="op">+</span><span class="fl">0.00</span>,<span class="op">+</span><span class="fl">20.00</span>])</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.00</span>,<span class="fl">1.00</span>]])</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>l2.bias.data <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.00</span>])</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">9</span>,<span class="dv">3</span>))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x,l1(x).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C0'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$l_1(x)$'</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x,a1(l1(x)).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C0'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$(a_1 \circ l_1)(x)$'</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(x,l2(a1(l1(x))).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C0'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$(l_2 \circ a_1 \circ \l_1)(x)$'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="578">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="op">+</span><span class="fl">20.00</span>,<span class="op">+</span><span class="fl">0.00</span>])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">2.50</span>,<span class="fl">2.50</span>]])</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>l2.bias.data <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">2.50</span>])</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x,l1(x).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C1'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$l_1(x)$'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x,a1(l1(x)).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C1'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$(a_1 \circ l_1)(x)$'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(x,l2(a1(l1(x))).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C1'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$(l_2 \circ a_1 \circ \l_1)(x)$'</span>)<span class="op">;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="578">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> <code>은닉층의노드수=4</code>로 하고 적당한 가중치를 조정하면 <span class="math inline">\((l_2\circ a_1 \circ l_1)(x)\)</span>의 결과로 주황색선 + 파란색선도 가능할 것 같다. <span class="math inline">\(\to\)</span> 실제로 가능함</p>
+<div class="cell" data-execution_count="579">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> torch.nn.Sigmoid()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">4</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="580">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>],[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="fl">0.00</span>, <span class="fl">20.00</span>, <span class="fl">20.00</span>, <span class="dv">0</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.00</span>,  <span class="fl">1.00</span>, <span class="fl">2.50</span>,  <span class="fl">2.50</span>]])</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>l2.bias.data <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.0</span><span class="op">-</span><span class="fl">2.5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="581">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.plot(l2(a1(l1(x))).data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 2개의 시그모이드를 우연히 잘 결합하면 아래와 같은 함수 <span class="math inline">\(h\)</span>를 만들 수 있다.</p>
+<div class="cell" data-execution_count="582">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: torch.sigmoid(<span class="dv">200</span><span class="op">*</span>(x<span class="op">+</span><span class="fl">0.5</span>))<span class="op">+</span>torch.sigmoid(<span class="op">-</span><span class="dv">200</span><span class="op">*</span>(x<span class="op">-</span><span class="fl">0.5</span>))<span class="op">-</span><span class="fl">1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="583">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,h(x))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"$h(x)$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="583">
+<pre><code>Text(0.5, 1.0, '$h(x)$')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 위와 같은 함수 <span class="math inline">\(h\)</span>를 활성화함수로 하고 <span class="math inline">\(m\)</span>개의 노드를 가지는 은닉층을 생각해보자. 이러한 은닉층을 사용한다면 전체 네트워크를 아래와 같이 표현할 수 있다.</p>
+<p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{h}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
+<p>그리고 위의 네트워크와 동일한 효과를 주는 아래의 네트워크가 항상 존재함.</p>
+<p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,2m)}{\boldsymbol u^{(1)}} \overset{sig}{\to} \underset{(n,2m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
+<p><code>-</code> <span class="math inline">\(h(x)\)</span>를 활성화함수로 가지는 네트워크를 설계하여 보자.</p>
+<div class="cell" data-execution_count="584">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyActivation(torch.nn.Module): <span class="co">## 사용자정의 활성화함수를 선언하는 방법</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>() </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="bu">input</span>):</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h(<span class="bu">input</span>) <span class="co"># activation 의 출력 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="585">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a1<span class="op">=</span>MyActivation()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a1 = torch.nn.Sigmoid(), a1 = torch.nn.ReLU() 대신에 a1 = MyActivation()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="586">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,a1(x)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>히든레이어가 1개의 노드를 가지는 경우</strong></p>
+<div class="cell" data-execution_count="587">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>            MyActivation(),</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>        ax[i,j].plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>히든레이어가 2개의 노드를 가지는 경우</strong></p>
+<div class="cell" data-execution_count="588">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>            MyActivation(),</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>        ax[i,j].plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>히든레이어가 3개의 노드를 가지는 경우</strong></p>
+<div class="cell" data-execution_count="589">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>        net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1</span>,<span class="dv">3</span>),</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>            MyActivation(),</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">3</span>,<span class="dv">1</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        ax[i,j].plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>히든레이어가 1024개의 노드를 가지는 경우</strong></p>
+<div class="cell" data-execution_count="590">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1024</span>),</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>            MyActivation(),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1024</span>,<span class="dv">1</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        ax[i,j].plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="하나의-은닉층에-많은-노드수가-있는-신경망" class="level3">
+<h3 class="anchored" data-anchor-id="하나의-은닉층에-많은-노드수가-있는-신경망">하나의 은닉층에 많은 노드수가 있는 신경망</h3>
+<p><code>-</code> 아래와 같이 하나의 은닉층을 가지고 있더라도 많은 노드수만 보장되면 매우 충분한 표현력을 가짐</p>
+<p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{h}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
+<p>(예시1)</p>
+<div class="cell" data-execution_count="444">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>underlying <span class="op">=</span> torch.sin(<span class="dv">2</span><span class="op">*</span>x) <span class="op">+</span> torch.sin(<span class="fl">0.5</span><span class="op">*</span>x) <span class="op">+</span> torch.exp(<span class="op">-</span><span class="fl">0.2</span><span class="op">*</span>x)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> torch.randn(<span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.1</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> underlying <span class="op">+</span> eps </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x,underlying,lw<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="445">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: torch.sigmoid(<span class="dv">200</span><span class="op">*</span>(x<span class="op">+</span><span class="fl">0.5</span>))<span class="op">+</span>torch.sigmoid(<span class="op">-</span><span class="dv">200</span><span class="op">*</span>(x<span class="op">-</span><span class="fl">0.5</span>))<span class="op">-</span><span class="fl">1.0</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyActivation(torch.nn.Module): <span class="co">## 사용자정의 활성화함수를 선언하는 방법</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>() </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="bu">input</span>):</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h(<span class="bu">input</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="446">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>net<span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">2048</span>),</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    MyActivation(),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">2048</span>,<span class="dv">1</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="447">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">200</span>):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="448">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,underlying,lw<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-40-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>(예시2)</p>
+<div class="cell" data-execution_count="449">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-10-04-dnnex0.csv'</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="449">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>x</th>
+      <th>underlying</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.000000</td>
+      <td>0.000045</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.998999</td>
+      <td>0.000046</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.997999</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.996998</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.995998</td>
+      <td>0.000048</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>0.995998</td>
+      <td>0.505002</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>0.996998</td>
+      <td>0.503752</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>0.997999</td>
+      <td>0.502501</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>0.998999</td>
+      <td>0.501251</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>1.000000</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2000 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="450">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(df.x).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>).<span class="bu">float</span>()</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(df.y).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>).<span class="bu">float</span>()</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>plt.plot(df.x,df.underlying,lw<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-42-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="451">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: torch.sigmoid(<span class="dv">200</span><span class="op">*</span>(x<span class="op">+</span><span class="fl">0.5</span>))<span class="op">+</span>torch.sigmoid(<span class="op">-</span><span class="dv">200</span><span class="op">*</span>(x<span class="op">-</span><span class="fl">0.5</span>))<span class="op">-</span><span class="fl">1.0</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyActivation(torch.nn.Module): <span class="co">## 사용자정의 활성화함수를 선언하는 방법</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>() </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="bu">input</span>):</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h(<span class="bu">input</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="452">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>net<span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">2048</span>),</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    MyActivation(),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">2048</span>,<span class="dv">1</span>),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Sigmoid()</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.BCELoss()</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="453">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="454">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.plot(df.x,df.underlying,lw<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="cpu-vs-gpu" class="level2">
+<h2 class="anchored" data-anchor-id="cpu-vs-gpu">CPU vs GPU</h2>
+<p><code>-</code> 파이토치에서 GPU를 쓰는 방법을 알아보자. (사실 지금까지 우리는 CPU만 쓰고 있었음)</p>
+<section id="gpu-사용방법" class="level3">
+<h3 class="anchored" data-anchor-id="gpu-사용방법">GPU 사용방법</h3>
+<p><code>-</code> cpu 연산이 가능한 메모리에 데이터 저장</p>
+<div class="cell" data-execution_count="629">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>x_cpu <span class="op">=</span> torch.tensor([<span class="fl">0.0</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>) </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>y_cpu <span class="op">=</span> torch.tensor([<span class="fl">0.0</span>,<span class="fl">0.2</span>,<span class="fl">0.4</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>) </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>net_cpu <span class="op">=</span> torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> gpu 연산이 가능한 메모리에 데이터 저장</p>
+<div class="cell" data-execution_count="631">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>x_gpu <span class="op">=</span> x_cpu.to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>y_gpu <span class="op">=</span> y_cpu.to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>net_gpu <span class="op">=</span> torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>).to(<span class="st">"cuda:0"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> cpu 혹은 gpu 연산이 가능한 메모리에 저장된 값들을 확인</p>
+<div class="cell" data-execution_count="632">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>x_cpu, y_cpu, net_cpu.weight, net_cpu.bias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="632">
+<pre><code>(tensor([[0.0000],
+         [0.1000],
+         [0.2000]]),
+ tensor([[0.0000],
+         [0.2000],
+         [0.4000]]),
+ Parameter containing:
+ tensor([[-0.3467]], requires_grad=True),
+ Parameter containing:
+ tensor([-0.8470], requires_grad=True))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="633">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>x_gpu, y_gpu, net_gpu.weight, net_gpu.bias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="633">
+<pre><code>(tensor([[0.0000],
+         [0.1000],
+         [0.2000]], device='cuda:0'),
+ tensor([[0.0000],
+         [0.2000],
+         [0.4000]], device='cuda:0'),
+ Parameter containing:
+ tensor([[-0.3467]], device='cuda:0', requires_grad=True),
+ Parameter containing:
+ tensor([-0.8470], device='cuda:0', requires_grad=True))</code></pre>
+</div>
+</div>
+<p><code>-</code> gpu는 gpu끼리 연산가능하고 cpu는 cpu끼리 연산가능함</p>
+<p>(예시1)</p>
+<div class="cell" data-execution_count="634">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>net_cpu(x_cpu) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="634">
+<pre><code>tensor([[-0.8470],
+        [-0.8817],
+        [-0.9164]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>(예시2)</p>
+<div class="cell" data-execution_count="635">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>net_gpu(x_gpu) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="635">
+<pre><code>tensor([[-0.8470],
+        [-0.8817],
+        [-0.9164]], device='cuda:0', grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>(예시3)</p>
+<div class="cell" data-execution_count="636">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>net_cpu(x_gpu) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument mat1 in method wrapper_addmm)</code></pre>
+</div>
+</div>
+<p>(예시4)</p>
+<div class="cell" data-execution_count="637">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>net_gpu(x_cpu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat1 in method wrapper_addmm)</code></pre>
+</div>
+</div>
+<p>(예시5)</p>
+<div class="cell" data-execution_count="638">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>torch.mean((y_cpu<span class="op">-</span>net_cpu(x_cpu))<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="638">
+<pre><code>tensor(1.2068, grad_fn=&lt;MeanBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>(예시6)</p>
+<div class="cell" data-execution_count="639">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>torch.mean((y_gpu<span class="op">-</span>net_gpu(x_gpu))<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="639">
+<pre><code>tensor(1.2068, device='cuda:0', grad_fn=&lt;MeanBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>(예시7)</p>
+<div class="cell" data-execution_count="640">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>torch.mean((y_gpu<span class="op">-</span>net_cpu(x_cpu))<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!</code></pre>
+</div>
+</div>
+<p>(예시8)</p>
+<div class="cell" data-execution_count="641">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>torch.mean((y_cpu<span class="op">-</span>net_gpu(x_gpu))<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!</code></pre>
+</div>
+</div>
+</section>
+<section id="시간측정-예비학습" class="level3">
+<h3 class="anchored" data-anchor-id="시간측정-예비학습">시간측정 (예비학습)</h3>
+<div class="cell" data-execution_count="645">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="646">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.time()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="647">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="648">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="648">
+<pre><code>4.9920783042907715</code></pre>
+</div>
+</div>
+</section>
+<section id="cpu-512" class="level3">
+<h3 class="anchored" data-anchor-id="cpu-512">CPU (512)</h3>
+<p><code>-</code> 데이터준비</p>
+<div class="cell" data-execution_count="485">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> for문 준비</p>
+<div class="cell" data-execution_count="649">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">512</span>),</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">512</span>,<span class="dv">1</span>)</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> for문 + 학습시간측정</p>
+<div class="cell" data-execution_count="650">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span> time.time()</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="650">
+<pre><code>0.28586554527282715</code></pre>
+</div>
+</div>
+</section>
+<section id="gpu-512" class="level3">
+<h3 class="anchored" data-anchor-id="gpu-512">GPU (512)</h3>
+<p><code>-</code> 데이터준비</p>
+<div class="cell" data-execution_count="652">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>(torch.randn(<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span>).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> for문돌릴준비</p>
+<div class="cell" data-execution_count="653">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">512</span>),</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">512</span>,<span class="dv">1</span>)</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> for문 + 학습시간측정</p>
+<div class="cell" data-execution_count="654">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span> time.time()</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="654">
+<pre><code>0.5355696678161621</code></pre>
+</div>
+</div>
+<ul>
+<li>!! CPU가 더 빠르다?</li>
+</ul>
+</section>
+<section id="cpu-vs-gpu-20480" class="level3">
+<h3 class="anchored" data-anchor-id="cpu-vs-gpu-20480">CPU vs GPU (20480)</h3>
+<p><code>-</code> CPU (20480)</p>
+<div class="cell" data-execution_count="655">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">20480</span>),</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">20480</span>,<span class="dv">1</span>)</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span> time.time()</span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="655">
+<pre><code>2.380666494369507</code></pre>
+</div>
+</div>
+<p><code>-</code> GPU (20480)</p>
+<div class="cell" data-execution_count="656">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>(torch.randn(<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">20480</span>),</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">20480</span>,<span class="dv">1</span>)</span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span> time.time()</span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb88-16"><a href="#cb88-16" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb88-17"><a href="#cb88-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb88-18"><a href="#cb88-18" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb88-19"><a href="#cb88-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb88-20"><a href="#cb88-20" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb88-21"><a href="#cb88-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb88-22"><a href="#cb88-22" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb88-23"><a href="#cb88-23" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span>
+<span id="cb88-24"><a href="#cb88-24" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb88-25"><a href="#cb88-25" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="656">
+<pre><code>0.5442469120025635</code></pre>
+</div>
+</div>
+<p><code>-</code> 왜 이런 차이가 나는가? 연산을 하는 주체는 코어인데 CPU는 수는 적지만 일을 잘하는 코어들을 가지고 있고 GPU는 일은 못하지만 다수의 코어를 가지고 있기 때문</p>
+</section>
+<section id="cpu-vs-gpu-204800" class="level3">
+<h3 class="anchored" data-anchor-id="cpu-vs-gpu-204800">CPU vs GPU (204800)</h3>
+<p><code>-</code> CPU (204800)</p>
+<div class="cell" data-execution_count="493">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">204800</span>),</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">204800</span>,<span class="dv">1</span>)</span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb90-12"><a href="#cb90-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-13"><a href="#cb90-13" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span> time.time()</span>
+<span id="cb90-14"><a href="#cb90-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb90-15"><a href="#cb90-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb90-16"><a href="#cb90-16" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb90-17"><a href="#cb90-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb90-18"><a href="#cb90-18" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb90-19"><a href="#cb90-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb90-20"><a href="#cb90-20" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb90-21"><a href="#cb90-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb90-22"><a href="#cb90-22" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb90-23"><a href="#cb90-23" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span>
+<span id="cb90-24"><a href="#cb90-24" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb90-25"><a href="#cb90-25" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="493">
+<pre><code>51.95550894737244</code></pre>
+</div>
+</div>
+<p><code>-</code> GPU (204800)</p>
+<div class="cell" data-execution_count="494">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>(torch.randn(<span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">1</span>,<span class="dv">204800</span>),</span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">204800</span>,<span class="dv">1</span>)</span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>).to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span> time.time()</span>
+<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb92-20"><a href="#cb92-20" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb92-21"><a href="#cb92-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb92-22"><a href="#cb92-22" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb92-23"><a href="#cb92-23" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span>
+<span id="cb92-24"><a href="#cb92-24" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb92-25"><a href="#cb92-25" aria-hidden="true" tabindex="-1"></a>t2<span class="op">-</span>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="494">
+<pre><code>1.3824031352996826</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="확률적경사하강법-배치-에폭" class="level2">
+<h2 class="anchored" data-anchor-id="확률적경사하강법-배치-에폭">확률적경사하강법, 배치, 에폭</h2>
+<section id="좀-이상하지-않아요" class="level3">
+<h3 class="anchored" data-anchor-id="좀-이상하지-않아요">좀 이상하지 않아요?</h3>
+<p><code>-</code> 우리가 쓰는 GPU: <a href="http://shop.danawa.com/virtualestimate/?controller=estimateMain&amp;methods=index&amp;marketPlaceSeq=16">다나와 PC견적</a> - GPU 메모리 끽해봐야 24GB</p>
+<p><code>-</code> 우리가 분석하는 데이터: 빅데이터..?</p>
+<p><code>-</code> 데이터의 크기가 커지는순간 <code>X.to("cuda:0")</code>, <code>y.to("cuda:0")</code> 쓰면 난리나겠는걸?</p>
+<div class="cell" data-execution_count="495">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">100000</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> torch.randn(<span class="dv">100000</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x<span class="op">*</span><span class="dv">2</span> <span class="op">+</span> eps </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="496">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,<span class="dv">2</span><span class="op">*</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-75-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 데이터를 100개중에 1개만 꼴로만 쓰면 어떨까?</p>
+<div class="cell" data-execution_count="497">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x[::<span class="dv">100</span>],y[::<span class="dv">100</span>],<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,<span class="dv">2</span><span class="op">*</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-76-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>대충 이거만 가지고 적합해도 충분히 정확할것 같은데</li>
+</ul>
+</section>
+<section id="xy-데이터를-굳이-모두-gpu에-넘겨야-하는가" class="level3">
+<h3 class="anchored" data-anchor-id="xy-데이터를-굳이-모두-gpu에-넘겨야-하는가">X,y 데이터를 굳이 모두 GPU에 넘겨야 하는가?</h3>
+<p><code>-</code> 데이터셋을 짝홀로 나누어서 번갈아가면서 GPU에 올렸다 내렸다하면 안되나?</p>
+<p><code>-</code> 아래의 알고리즘을 생각해보자. 1. 데이터를 반으로 나눈다. 2. 짝수obs의 x,y 그리고 net의 모든 파라메터를 GPU에 올린다. 3. yhat, loss, grad, update 수행 4. 짝수obs의 x,y를 GPU메모리에서 내린다. 그리고 홀수obs의 x,y를 GPU메모리에 올린다. 5. yhat, loss, grad, update 수행 6. 홀수obs의 x,y를 GPU메모리에서 내린다. 그리고 짝수obs의 x,y를 GPU메모리에 올린다. 7. 반복</p>
+</section>
+<section id="경사하강법-확률적경사하강법-미니배치-경사하강법" class="level3">
+<h3 class="anchored" data-anchor-id="경사하강법-확률적경사하강법-미니배치-경사하강법">경사하강법, 확률적경사하강법, 미니배치 경사하강법</h3>
+<p>10개의 샘플이 있다고 가정. <span class="math inline">\(\{(x_i,y_i)\}_{i=1}^{10}\)</span></p>
+<p><code>-</code> ver1: 모든 샘플을 이용하여 slope 계산</p>
+<p>(epoch1) <span class="math inline">\(loss=\sum_{i=1}^{10}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span></p>
+<p>(epoch2) <span class="math inline">\(loss=\sum_{i=1}^{10}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span></p>
+<p>…</p>
+<p><code>-</code> ver2: 하나의 샘플만을 이용하여 slope 계산</p>
+<p>(epoch1) - <span class="math inline">\(loss=(y_1-\beta_0-\beta_1x_1)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=(y_2-\beta_0-\beta_1x_2)^2 \to slope \to update\)</span> - … - <span class="math inline">\(loss=(y_{10}-\beta_0-\beta_1x_{10})^2 \to slope \to update\)</span></p>
+<p>(epoch2) - <span class="math inline">\(loss=(y_1-\beta_0-\beta_1x_1)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=(y_2-\beta_0-\beta_1x_2)^2 \to slope \to update\)</span> - … - <span class="math inline">\(loss=(y_{10}-\beta_0-\beta_1x_{10})^2 \to slope \to update\)</span></p>
+<p>…</p>
+<p><code>-</code> ver3: <span class="math inline">\(m (\leq n)\)</span> 개의 샘플을 이용하여 slope 계산</p>
+<p><span class="math inline">\(m=3\)</span>이라고 하자.</p>
+<p>(epoch1) - <span class="math inline">\(loss=\sum_{i=1}^{3}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=\sum_{i=4}^{6}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=\sum_{i=7}^{9}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=(y_{10}-\beta_0-\beta_1x_{10})^2 \to slope \to update\)</span></p>
+<p>(epoch2) - <span class="math inline">\(loss=\sum_{i=1}^{3}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=\sum_{i=4}^{6}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=\sum_{i=7}^{9}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=(y_{10}-\beta_0-\beta_1x_{10})^2 \to slope \to update\)</span></p>
+<p>…</p>
+</section>
+<section id="용어의-정리" class="level3">
+<h3 class="anchored" data-anchor-id="용어의-정리">용어의 정리</h3>
+<p><strong>옛날</strong></p>
+<p><code>-</code> ver1: gradient descent, batch gradient descent</p>
+<p><code>-</code> ver2: stochastic gradient descent</p>
+<p><code>-</code> ver3: mini-batch gradient descent, mini-batch stochastic gradient descent</p>
+<p><strong>요즘</strong></p>
+<p><code>-</code> ver1: gradient descent</p>
+<p><code>-</code> ver2: stochastic gradient descent with batch size = 1</p>
+<p><code>-</code> <strong>ver3: stochastic gradient descent</strong> - https://www.deeplearningbook.org/contents/optimization.html, 알고리즘 8-1 참고.</p>
+</section>
+<section id="ds-dl" class="level3">
+<h3 class="anchored" data-anchor-id="ds-dl">ds, dl</h3>
+<p><code>-</code> ds</p>
+<div class="cell" data-execution_count="498">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.tensor(<span class="bu">range</span>(<span class="dv">10</span>)).<span class="bu">float</span>()<span class="co">#.reshape(-1,1)</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.tensor([<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">5</span><span class="op">+</span>[<span class="fl">0.0</span>]<span class="op">*</span><span class="dv">5</span>)<span class="co">#.reshape(-1,1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="499">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>ds<span class="op">=</span>torch.utils.data.TensorDataset(x,y)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="499">
+<pre><code>&lt;torch.utils.data.dataset.TensorDataset at 0x7f62db294710&gt;</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="500">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>ds.tensors <span class="co"># 그냥 (x,y)의 튜플</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="500">
+<pre><code>(tensor([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.]),
+ tensor([1., 1., 1., 1., 1., 0., 0., 0., 0., 0.]))</code></pre>
+</div>
+</div>
+<p><code>-</code> dl</p>
+<div class="cell" data-execution_count="501">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>dl<span class="op">=</span>torch.utils.data.DataLoader(ds,batch_size<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="co">#set(dir(dl)) &amp; {'__iter__'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="502">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xx,yy <span class="kw">in</span> dl:</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(xx,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([0., 1., 2.]) tensor([1., 1., 1.])
+tensor([3., 4., 5.]) tensor([1., 1., 0.])
+tensor([6., 7., 8.]) tensor([0., 0., 0.])
+tensor([9.]) tensor([0.])</code></pre>
+</div>
+</div>
+</section>
+<section id="ds-dl을-이용한-mnist-구현" class="level3">
+<h3 class="anchored" data-anchor-id="ds-dl을-이용한-mnist-구현">ds, dl을 이용한 MNIST 구현</h3>
+<p><code>-</code> 데이터정리</p>
+<div class="cell" data-execution_count="503">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.MNIST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="504">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>zero_fnames <span class="op">=</span> (path<span class="op">/</span><span class="st">'training/0'</span>).ls()</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>one_fnames <span class="op">=</span> (path<span class="op">/</span><span class="st">'training/1'</span>).ls()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="505">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>X0 <span class="op">=</span> torch.stack([torchvision.io.read_image(<span class="bu">str</span>(zf)) <span class="cf">for</span> zf <span class="kw">in</span> zero_fnames])</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> torch.stack([torchvision.io.read_image(<span class="bu">str</span>(of)) <span class="cf">for</span> of <span class="kw">in</span> one_fnames])</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.concat([X0,X1],axis<span class="op">=</span><span class="dv">0</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)<span class="op">/</span><span class="dv">255</span></span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor([<span class="fl">0.0</span>]<span class="op">*</span><span class="bu">len</span>(X0) <span class="op">+</span> [<span class="fl">1.0</span>]<span class="op">*</span><span class="bu">len</span>(X1)).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="506">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>X.shape,y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="506">
+<pre><code>(torch.Size([12665, 784]), torch.Size([12665, 1]))</code></pre>
+</div>
+</div>
+<p><code>-</code> ds <span class="math inline">\(\to\)</span> dl</p>
+<div class="cell" data-tags="[]" data-execution_count="507">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> torch.utils.data.TensorDataset(X,y)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>dl <span class="op">=</span> torch.utils.data.DataLoader(ds,batch_size<span class="op">=</span><span class="dv">2048</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="508">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="dv">12665</span><span class="op">/</span><span class="dv">2048</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="508">
+<pre><code>6.18408203125</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="509">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span> </span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xx,yy <span class="kw">in</span> dl: <span class="co"># 총 7번 돌아가는 for문 </span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>i<span class="op">+</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+2
+3
+4
+5
+6</code></pre>
+</div>
+</div>
+<p><code>-</code> 미니배치 안쓰는 학습</p>
+<div class="cell" data-execution_count="510">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">784</span>,<span class="dv">32</span>),</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">32</span>,<span class="dv">1</span>),</span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Sigmoid()</span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.BCELoss()</span>
+<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="511">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">70</span>): </span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(X) </span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span> loss_fn(yhat,y) </span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="512">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>torch.<span class="bu">sum</span>((yhat<span class="op">&gt;</span><span class="fl">0.5</span>) <span class="op">==</span> y) <span class="op">/</span> <span class="bu">len</span>(y) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="512">
+<pre><code>tensor(0.9981)</code></pre>
+</div>
+</div>
+<p><code>-</code> 미니배치 쓰는 학습 (GPU 올리고 내리는 과정은 생략)</p>
+<div class="cell" data-execution_count="513">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">784</span>,<span class="dv">32</span>),</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">32</span>,<span class="dv">1</span>),</span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Sigmoid()</span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.BCELoss()</span>
+<span id="cb119-9"><a href="#cb119-9" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="514">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xx,yy <span class="kw">in</span> dl: <span class="co">## 7번</span></span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 1</span></span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">#yhat = net(xx)</span></span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 2 </span></span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(net(xx),yy) </span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 3 </span></span>
+<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a>        loss.backward() </span>
+<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 4 </span></span>
+<span id="cb120-10"><a href="#cb120-10" aria-hidden="true" tabindex="-1"></a>        optimizr.step()</span>
+<span id="cb120-11"><a href="#cb120-11" aria-hidden="true" tabindex="-1"></a>        optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="515">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>torch.mean(((net(X)<span class="op">&gt;</span><span class="fl">0.5</span>) <span class="op">==</span> y)<span class="op">*</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="515">
+<pre><code>tensor(0.9950)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="오버피팅" class="level2">
+<h2 class="anchored" data-anchor-id="오버피팅">오버피팅</h2>
+<p><code>-</code> 오버피팅이란? - 위키: In mathematical modeling, overfitting is “the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit to additional data or predict future observations reliably”. - 제 개념: 데이터를 “데이터 = 언더라잉 + 오차”라고 생각할때 우리가 데이터로부터 적합할 것은 언더라잉인데 오차항을 적합하고 있는 현상.</p>
+<section id="오버피팅-예시" class="level3">
+<h3 class="anchored" data-anchor-id="오버피팅-예시">오버피팅 예시</h3>
+<p><code>-</code> <span class="math inline">\(m\)</span>이 매우 클때 아래의 네트워크 거의 무엇이든 맞출 수 있다고 보면 된다.</p>
+<ul>
+<li><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{h}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></li>
+<li><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{sig}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></li>
+<li><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></li>
+</ul>
+<p><code>-</code> 그런데 종종 맞추지 말아야 할 것들도 맞춘다.</p>
+<p>model: <span class="math inline">\(y_i = (0\times x_i) + \epsilon_i\)</span>, where <span class="math inline">\(\epsilon_i \sim N(0,0.01^2)\)</span></p>
+<div class="cell" data-execution_count="679">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-95-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>y는 그냥 정규분포에서 생성한 오차이므로 <span class="math inline">\(X \to y\)</span> 로 항햐는 규칙따위는 없음</li>
+</ul>
+<div class="cell" data-execution_count="680">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>net<span class="op">=</span>torch.nn.Sequential(</span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>), </span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)) </span>
+<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a>optimizr<span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb124-7"><a href="#cb124-7" aria-hidden="true" tabindex="-1"></a>loss_fn<span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb124-8"><a href="#cb124-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-9"><a href="#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>): </span>
+<span id="cb124-10"><a href="#cb124-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb124-11"><a href="#cb124-11" aria-hidden="true" tabindex="-1"></a>    yhat<span class="op">=</span>net(x) </span>
+<span id="cb124-12"><a href="#cb124-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb124-13"><a href="#cb124-13" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span>loss_fn(yhat,y) </span>
+<span id="cb124-14"><a href="#cb124-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb124-15"><a href="#cb124-15" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb124-16"><a href="#cb124-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb124-17"><a href="#cb124-17" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb124-18"><a href="#cb124-18" aria-hidden="true" tabindex="-1"></a>    net.zero_grad() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="681">
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-97-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>우리는 데이터를 랜덤에서 뽑았는데, 데이터의 추세를 따라간다 <span class="math inline">\(\to\)</span> 오버피팅 (underlying이 아니라 오차항을 따라가고 있음)</li>
+</ul>
+</section>
+<section id="오버피팅이라는-뚜렷한-증거-train-test" class="level3">
+<h3 class="anchored" data-anchor-id="오버피팅이라는-뚜렷한-증거-train-test">오버피팅이라는 뚜렷한 증거! (train / test)</h3>
+<p><code>-</code> 데이터의 분리하여 보자.</p>
+<div class="cell" data-execution_count="682">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>xtr <span class="op">=</span> x[:<span class="dv">80</span>] </span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a>ytr <span class="op">=</span> y[:<span class="dv">80</span>]</span>
+<span id="cb126-6"><a href="#cb126-6" aria-hidden="true" tabindex="-1"></a>xtest <span class="op">=</span> x[<span class="dv">80</span>:]</span>
+<span id="cb126-7"><a href="#cb126-7" aria-hidden="true" tabindex="-1"></a>ytest <span class="op">=</span> y[<span class="dv">80</span>:]</span>
+<span id="cb126-8"><a href="#cb126-8" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,ytr)</span>
+<span id="cb126-9"><a href="#cb126-9" aria-hidden="true" tabindex="-1"></a>plt.plot(xtest,ytest)</span>
+<span id="cb126-10"><a href="#cb126-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'train: blue / test: orange'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-98-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> train만 학습</p>
+<div class="cell" data-execution_count="685">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>net<span class="op">=</span>torch.nn.Sequential(</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>), </span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)) </span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>optimizr<span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a>loss_fn<span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb127-8"><a href="#cb127-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-9"><a href="#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>): </span>
+<span id="cb127-10"><a href="#cb127-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
+<span id="cb127-11"><a href="#cb127-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># net(xtr) </span></span>
+<span id="cb127-12"><a href="#cb127-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb127-13"><a href="#cb127-13" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span>loss_fn(net(xtr),ytr) </span>
+<span id="cb127-14"><a href="#cb127-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb127-15"><a href="#cb127-15" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb127-16"><a href="#cb127-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb127-17"><a href="#cb127-17" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb127-18"><a href="#cb127-18" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> training data로 학습한 net를 training data 에 적용</p>
+<div class="cell" data-execution_count="686">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,net(xtr).data,<span class="st">'--'</span>) <span class="co"># prediction (train) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-100-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>train에서는 잘 맞추는듯이 보인다.</li>
+</ul>
+<p><code>-</code> training data로 학습한 net를 test data 에 적용</p>
+<div class="cell" data-execution_count="688">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,net(xtr).data,<span class="st">'--'</span>) <span class="co"># prediction (train) </span></span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xtest,net(xtest).data,<span class="st">'--'</span>) <span class="co"># prediction with unseen data (test) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-10-11-6wk-2_files/figure-html/cell-101-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>train은 그럭저럭 따라가지만 test에서는 엉망이다. <span class="math inline">\(\to\)</span> overfit</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
