@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DL2022 – wk-1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DL2022</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<section id="주차-9월15일" class="level1">
+<h1>(3주차) 9월15일</h1>
+<blockquote class="blockquote">
+<p>Overview - 이미지분석 추천시스템 텍스트분석의 비교정리, GAN</p>
+</blockquote>
+<ul>
+<li>toc:true</li>
+<li>branch: master</li>
+<li>badges: true</li>
+<li>comments: true</li>
+<li>author: 최규빈</li>
+</ul>
+<section id="강의영상" class="level2">
+<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
+<blockquote class="blockquote">
+<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-wLTADeftdizvmko4y_ATAW</p>
+</blockquote>
+</section>
+<section id="imports" class="level2">
+<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<div class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.gan <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fastai를-이용한-분석-steps" class="level2">
+<h2 class="anchored" data-anchor-id="fastai를-이용한-분석-steps">fastai를 이용한 분석 steps</h2>
+<p><code>-</code> 비교</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">이미지분석(CNN)</th>
+<th style="text-align: center;">추천시스템</th>
+<th style="text-align: center;">텍스트분석</th>
+<th style="text-align: center;">GAN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1단계</td>
+<td style="text-align: center;">ImageDataLoaders</td>
+<td style="text-align: center;">CollabDataLoaders</td>
+<td style="text-align: center;">TextDataLoaders</td>
+<td style="text-align: center;">DataBlock -&gt; dls</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2단계</td>
+<td style="text-align: center;">cnn_learner()</td>
+<td style="text-align: center;">collab_learner()</td>
+<td style="text-align: center;">language_model_learner()</td>
+<td style="text-align: center;">GANLearner.wgan()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3단계</td>
+<td style="text-align: center;">lrnr.fine_tune(1)</td>
+<td style="text-align: center;">lrnr.fit()</td>
+<td style="text-align: center;">lrnr.fit()</td>
+<td style="text-align: center;">lrnr.fit()</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4단계</td>
+<td style="text-align: center;">lrnr.predict(), lrnr.model(X)</td>
+<td style="text-align: center;">lrnr.model(X)</td>
+<td style="text-align: center;">lrnr.predict()</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="이미지분석-추천시스템-텍스트분석의-정리" class="level2">
+<h2 class="anchored" data-anchor-id="이미지분석-추천시스템-텍스트분석의-정리">이미지분석, 추천시스템, 텍스트분석의 정리</h2>
+<p><code>-</code> 데이터는 모두 아래와 같은 느낌이다.</p>
+<ol type="1">
+<li><p>데이터는 <span class="math inline">\((X,y)\)</span>의 형태로 정리되어 있다.</p></li>
+<li><p><span class="math inline">\(y\)</span>는 우리가 관심이 있는 변수이다. 즉 우리는 <span class="math inline">\(y\)</span>를 적절하게 추정하는 것에 관심이 있다.</p></li>
+<li><p><span class="math inline">\(X\)</span>는 <span class="math inline">\(y\)</span>를 추정하기 위해 필요한 정보이다.</p></li>
+</ol>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(X\)</span> = 설명변수 = 독립변수</th>
+<th style="text-align: center;"><span class="math inline">\(y\)</span> = 반응변수 = 종속변수</th>
+<th style="text-align: center;">비고</th>
+<th style="text-align: center;">순서</th>
+<th style="text-align: center;">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">이미지</td>
+<td style="text-align: center;">카테고리</td>
+<td style="text-align: center;">합성곱신경망</td>
+<td style="text-align: center;">상관없음</td>
+<td style="text-align: center;">개/고양이 이미지 구분</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">유저,아이템</td>
+<td style="text-align: center;">평점</td>
+<td style="text-align: center;">추천시스템</td>
+<td style="text-align: center;">상관없음</td>
+<td style="text-align: center;">넷플릭스 영화추천</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">과거~오늘까지의주가</td>
+<td style="text-align: center;">내일주가</td>
+<td style="text-align: center;">순환신경망</td>
+<td style="text-align: center;">순서상관있음</td>
+<td style="text-align: center;">주가예측</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">처음 <span class="math inline">\(m\)</span>개의 단어(혹은 문장)</td>
+<td style="text-align: center;">이후 1개의 단어(혹은 문장)</td>
+<td style="text-align: center;">순환신경망</td>
+<td style="text-align: center;">순서상관있음</td>
+<td style="text-align: center;">챗봇, 텍스트생성</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">처음 <span class="math inline">\(m\)</span>개의 단어(혹은 문장)</td>
+<td style="text-align: center;">카테고리</td>
+<td style="text-align: center;">순환신경망</td>
+<td style="text-align: center;">순서상관있음</td>
+<td style="text-align: center;">영화리뷰 텍스트 감정분류</td>
+</tr>
+</tbody>
+</table>
+<p><code>-</code> 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “규칙” 혹은 “원리”를 찾는 것이다. - 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “맵핑”을 찾는 것이다. - 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “힘수”을 찾는 것이다. 즉 <span class="math inline">\(y\approx f(X)\)</span>가 되도록 만드는 <span class="math inline">\(f\)</span>를 잘 찾는 것이다. (이 경우 함수를 추정한다라고 표현) - 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “모델”을 찾는 것이다. 즉 <span class="math inline">\(y\approx model(X)\)</span>가 되도록 만드는 <span class="math inline">\(model\)</span>을 잘 찾는 것이다. (이 경우 모형을 학습시킨다라고 표현) - <strong>학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “네트워크”을 찾는 것이다. 즉 <span class="math inline">\(y\approx net(X)\)</span>가 되도록 만드는 <span class="math inline">\(net\)</span>을 잘 찾는 것이다. (이 경우 모형을 네트워크를 학습시킨다라고 표현)</strong></p>
+<p><code>-</code> prediction이란 학습과정에서 찾은 “규착” 혹은 “원리”를 <span class="math inline">\(X\)</span>에 적용하여 <span class="math inline">\(\hat{y}\)</span>을 구하는 과정이다. 학습과정에서 찾은 규칙 혹은 원리는 <span class="math inline">\(f\)</span>,<span class="math inline">\(model\)</span>,<span class="math inline">\(net\)</span> 으로 생각가능한데 이에 따르면 아래가 성립한다. - <span class="math inline">\(\hat{y} = f(X)\)</span> - <span class="math inline">\(\hat{y} = model(X)\)</span> - <span class="math inline">\(\hat{y} = net(X)\)</span></p>
+<p><strong><em>자잘한개념</em></strong></p>
+<p><code>-</code> <span class="math inline">\(\hat{y}\)</span>는 <span class="math inline">\(X\)</span>가 주어진 자료에 있는 값인지 아니면 새로운 값 인지에 따라 지칭하는 이름이 미묘하게 다르다.</p>
+<p>(경우1) <span class="math inline">\(X \in data\)</span>: <span class="math inline">\(\hat{y}=net(X)\)</span> 는 predicted value, fitted value 라고 부른다.</p>
+<p>(경우2) <span class="math inline">\(X \notin data\)</span>: <span class="math inline">\(\hat{y}=net(X)\)</span> 는 predicted value, predicted value with new data 라고 부른다.</p>
+<p><code>-</code> 경우1은 “<span class="math inline">\(loss\)</span> = <span class="math inline">\(y\)</span> 와 <span class="math inline">\(\hat{y}\)</span> 의 차이” 를 정의할 수 있으나 경우2는 그렇지 않다.</p>
+</section>
+<section id="gan-intro" class="level2">
+<h2 class="anchored" data-anchor-id="gan-intro">GAN intro</h2>
+<p><code>-</code> 저자: 이안굿펠로우 - 천재임 - 지도교수가 요수아 벤지오</p>
+<p><code>-</code> 논문 NIPS, 저는 이 논문 읽고 소름돋았어요.. - https://arxiv.org/abs/1406.2661 (현재시점, 38751회 인용되었음 <span class="math inline">\(\to\)</span> 48978회 인용..)</p>
+<p><code>-</code> 최근 10년간 머신러닝 분야에서 가장 혁신적인 아이디어이다. (얀르쿤, 2014년 시점..)</p>
+<p><code>-</code> 무슨내용? 생성모형</p>
+<section id="생성모형이란-쉬운-설명" class="level3">
+<h3 class="anchored" data-anchor-id="생성모형이란-쉬운-설명">생성모형이란? (쉬운 설명)</h3>
+<blockquote class="blockquote">
+<p>만들수 없다면 이해하지 못한 것이다, 리처드 파인만 (천재 물리학자)</p>
+</blockquote>
+<p><code>-</code> 사진속에 들어있는 동물이 개인지 고양이인지 맞출수 있는 기계와 개와 고양이를 그릴수 있는 기계중 어떤것이 더 시각적보에 대한 이해가 깊다고 볼수 있는가?</p>
+<p><code>-</code> 진정으로 인공지능이 이미지를 이해했다면, 이미지를 만들수도 있어야 한다. <span class="math inline">\(\to\)</span> 이미지를 생성하는 모형을 만들어보자 <span class="math inline">\(\to\)</span> 성공</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg" class="img-fluid"></p>
+<section id="gan의-응용분야" class="level4">
+<h4 class="anchored" data-anchor-id="gan의-응용분야">GAN의 응용분야</h4>
+<p><code>-</code> 내가 찍은 사진이 피카소의 화풍으로 표현된다면?</p>
+<p><code>-</code> 퀸의 라이브에이드가 4k로 나온다면?</p>
+<p><code>-</code> 1920년대 서울의 모습이 칼라로 복원된다면?</p>
+<p><code>-</code> 딥페이크: 유명인의 가짜 포르노, 가짜뉴스, 협박(거짓기소)</p>
+<p><code>-</code> 게임영상 (파이널판타지)</p>
+<p><code>-</code> 거북이의 커버..</p>
+<p><code>-</code> 너무 많아요…..</p>
+</section>
+</section>
+<section id="생성모형이란-통계학과-버전의-설명" class="level3">
+<h3 class="anchored" data-anchor-id="생성모형이란-통계학과-버전의-설명">생성모형이란? 통계학과 버전의 설명</h3>
+<blockquote class="blockquote">
+<p>제한된 정보만으로 어떤 문제를 풀 때, 그 과정에서 원래의 문제보다 일반적인 문제를 풀지 말고, 가능한 원래의 문제를 직접 풀어야한다. 배프닉 (SVM 창시자)</p>
+</blockquote>
+<p><code>-</code> 이미지 <span class="math inline">\(\boldsymbol{x}\)</span>가 주어졌을 경우 라벨을 <span class="math inline">\(y\)</span>라고 하자.</p>
+<p><code>-</code> 이미지를 생성하는 일은 <span class="math inline">\(p(\boldsymbol{x},y)\)</span>에 관심이 있는것이다. 여기에서 <span class="math inline">\(p(\boldsymbol{x},y)\)</span>는 <span class="math inline">\({\boldsymbol x},y\)</span>의 결합확률밀도함수.</p>
+<p><code>-</code> 이미지를 보고 라벨을 맞추는 일은 <span class="math inline">\(p(y| \boldsymbol{x})\)</span>에 관심이 있다. 여기에서 <span class="math inline">\(p(y|\boldsymbol{x})\)</span>는 조건부 확률밀도 함수</p>
+<p><code>-</code> 데이터의 생성확률 <span class="math inline">\(p(\boldsymbol{x},y)\)</span>을 알면 클래스의 사후확률 <span class="math inline">\(p(y|\boldsymbol{x})\)</span>를 알 수 있음. (아래의 수식 참고) 하지만 역은 불가능</p>
+<p><span class="math display">\[p(y|{\boldsymbol x}) = \frac{p({\boldsymbol x},y)}{p({\boldsymbol x})} = \frac{p({\boldsymbol x},y)}{\sum_{y}p({\boldsymbol x},y)} \]</span></p>
+<ul>
+<li>즉 이미지를 생성하는일은 분류문제보다 더 어려운 일이라 해석가능</li>
+</ul>
+<p><code>-</code> 따라서 배프닉의 원리에 의하면 식별적 분류가 생성적 분류보다 바람직한 접근법이라 할 수 있음.</p>
+<p><code>-</code> 하지만 다양한 현실문제에서 생성모형이 유용할때가 많다.</p>
+</section>
+<section id="gan의-원리" class="level3">
+<h3 class="anchored" data-anchor-id="gan의-원리">GAN의 원리</h3>
+<p><code>-</code> GAN은 생성모형중 하나임</p>
+<p><code>-</code> GAN의 원리는 경찰과 위조지폐범이 서로 선의의(?) 경쟁을 통하여 서로 발전하는 모형으로 설명할 수 있다.</p>
+<blockquote class="blockquote">
+<p>The generative model can be thought of as analogous to a team of counterfeiters, trying to produce fake currency and use it without detection, while the discriminative model is analogous to the police, trying to detect the counterfeit currency. Competition in this game drives both teams to improve their methods until the counterfeits are indistiguishable from the genuine articles.</p>
+</blockquote>
+<p><code>-</code> 서로 적대적인(adversarial) 네트워크(network)를 동시에 학습시켜 가짜이미지를 만든다(generate)</p>
+<p><code>-</code> 무식한 상황극..</p>
+<ul>
+<li>위조범: 가짜돈을 만들어서 부자가 되어야지! (가짜돈을 그림)</li>
+<li>경찰: (위조범이 만든 돈을 보고) 이건 가짜다!</li>
+<li>위조범: 걸렸군.. 더 정교하게 만들어야지..</li>
+<li>경찰: 이건 진짠가?… –&gt; 상사에게 혼남. 그것도 구분못하냐고</li>
+<li>위조범: 더 정교하게 만들자..</li>
+<li>경찰: 더 판별능력을 업그레이드 하자!</li>
+<li>반복..</li>
+</ul>
+<p><code>-</code> 굉장히 우수한 경찰조차도 진짜와 가짜를 구분하지 못할때(=진짜 이미지를 0.5의 확률로만 진짜라고 말할때 = 가짜 이미지를 0.5의 확률로만 가짜라고 말할때) 학습을 멈춘다.</p>
+</section>
+<section id="아키텍처" class="level3">
+<h3 class="anchored" data-anchor-id="아키텍처">아키텍처</h3>
+<p><code>-</code> 아래와 같은 두 모델(네트워크)를 생각하자. - 위조범네트워크: X=노이즈(=아무숫자) <span class="math inline">\(\to\)</span> y=지폐이미지(=가짜지폐) - 경찰네트워크: X={가짜지폐,진짜지폐} <span class="math inline">\(\to\)</span> y={진짜,가짜}</p>
+<p><code>-</code> 전체 알고리즘은 아래와 같은 순서로 돌아간다. (전체 이미지 자료는 <span class="math inline">\(n\)</span>개라고 하자)</p>
+<ol type="1">
+<li><p>적당한 크기의 <span class="math inline">\(n\)</span>개의 노이즈가 위조범네트워크에 입력으로 들어감</p></li>
+<li><p>위조범네트워크는 적당한 크기의 <span class="math inline">\(n\)</span>개의 노이즈를 입력으로 받고 출력으로 <span class="math inline">\(n\)</span>개의 이미지를 뱉어냄.</p></li>
+<li><p>위조범이 뱉어낸 이미지와 진짜이미지를 합쳐 <span class="math inline">\(2n\)</span>개의 자료를 만들고 이를 경창네트워크의 입력으로 넣음.</p></li>
+<li><p>경찰네트워크는 <span class="math inline">\(2n\)</span>개의 자료를 입력으로 받아서 <span class="math inline">\(2n\)</span>개의 예측결과를 제공.</p></li>
+</ol>
+</section>
+</section>
+<section id="gan-실습" class="level2">
+<h2 class="anchored" data-anchor-id="gan-실습">GAN 실습</h2>
+<section id="단계" class="level3">
+<h3 class="anchored" data-anchor-id="단계">1단계</h3>
+<div class="cell" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.MNIST_SAMPLE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="140">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(blocks<span class="op">=</span>(TransformBlock,ImageBlock),</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>          get_x <span class="op">=</span> generate_noise,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>          get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>          item_tfms<span class="op">=</span>Resize(<span class="dv">32</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dblock.dataloaders(path) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="141">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-09-15-3wk-1_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="단계-1" class="level3">
+<h3 class="anchored" data-anchor-id="단계-1">2단계</h3>
+<div class="cell" data-execution_count="142">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>counterfeiter <span class="op">=</span> basic_generator(<span class="dv">32</span>,n_channels<span class="op">=</span><span class="dv">3</span>,n_extra_layers<span class="op">=</span><span class="dv">1</span>) <span class="co"># 32*32의 이미지가 칼라이미지로 출력. </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>police <span class="op">=</span> basic_critic(<span class="dv">32</span>,n_channels<span class="op">=</span><span class="dv">3</span>,n_extra_layers<span class="op">=</span><span class="dv">1</span>) <span class="co"># 32*32의 칼라이미지가 입력으로 들어옴. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="143">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> GANLearner.wgan(dls,counterfeiter,police) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="단계-2" class="level3">
+<h3 class="anchored" data-anchor-id="단계-2">3단계</h3>
+<p><code>-</code> lrnr.fit(10) 진행</p>
+<div class="cell" data-execution_count="144">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lrnr.fit(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>gen_loss</th>
+      <th>crit_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>-0.546135</td>
+      <td>0.362349</td>
+      <td>0.362349</td>
+      <td>-0.757082</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>-0.582954</td>
+      <td>0.300018</td>
+      <td>0.300018</td>
+      <td>-0.770161</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>-0.585224</td>
+      <td>0.277624</td>
+      <td>0.277624</td>
+      <td>-0.769241</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>-0.582842</td>
+      <td>0.385249</td>
+      <td>0.385249</td>
+      <td>-0.764790</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-0.584591</td>
+      <td>0.333895</td>
+      <td>0.333895</td>
+      <td>-0.768902</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>-0.587377</td>
+      <td>0.304535</td>
+      <td>0.304535</td>
+      <td>-0.773640</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>-0.580959</td>
+      <td>0.274871</td>
+      <td>0.274871</td>
+      <td>-0.765747</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>-0.559458</td>
+      <td>0.348925</td>
+      <td>0.348925</td>
+      <td>-0.734318</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>-0.486598</td>
+      <td>0.074547</td>
+      <td>0.074547</td>
+      <td>-0.545082</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>-0.550950</td>
+      <td>0.278006</td>
+      <td>0.278006</td>
+      <td>-0.724520</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lrnr.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-09-15-3wk-1_files/figure-html/cell-9-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> lrnr.fit(10) 추가로 진행 // 총20회</p>
+<div class="cell" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lrnr.fit(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>gen_loss</th>
+      <th>crit_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>-0.534234</td>
+      <td>0.261044</td>
+      <td>0.261044</td>
+      <td>-0.737007</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>-0.515386</td>
+      <td>0.241006</td>
+      <td>0.241006</td>
+      <td>-0.720394</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>-0.561530</td>
+      <td>0.249572</td>
+      <td>0.249572</td>
+      <td>-0.742900</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>-0.544423</td>
+      <td>0.315043</td>
+      <td>0.315043</td>
+      <td>-0.739004</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-0.534188</td>
+      <td>0.235120</td>
+      <td>0.235120</td>
+      <td>-0.686251</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>-0.494047</td>
+      <td>0.284046</td>
+      <td>0.284046</td>
+      <td>-0.633201</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>-0.506470</td>
+      <td>0.214011</td>
+      <td>0.214011</td>
+      <td>-0.687545</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>-0.527870</td>
+      <td>0.262492</td>
+      <td>0.262492</td>
+      <td>-0.731213</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>-0.504433</td>
+      <td>0.192755</td>
+      <td>0.192755</td>
+      <td>-0.674976</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>-0.538148</td>
+      <td>0.204089</td>
+      <td>0.204089</td>
+      <td>-0.728712</td>
+      <td>00:02</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lrnr.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-09-15-3wk-1_files/figure-html/cell-11-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> lrnr.fit(30) 추가로 진행 // 총50회</p>
+<div class="cell" data-execution_count="148">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lrnr.fit(<span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>gen_loss</th>
+      <th>crit_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>-0.509745</td>
+      <td>0.286478</td>
+      <td>0.286478</td>
+      <td>-0.691290</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>-0.502572</td>
+      <td>0.285199</td>
+      <td>0.285199</td>
+      <td>-0.675554</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>-0.473333</td>
+      <td>0.219742</td>
+      <td>0.219742</td>
+      <td>-0.650543</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>-0.419040</td>
+      <td>0.287789</td>
+      <td>0.287789</td>
+      <td>-0.543150</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-0.275088</td>
+      <td>0.264852</td>
+      <td>0.264852</td>
+      <td>-0.105730</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>-0.350050</td>
+      <td>0.330111</td>
+      <td>0.330111</td>
+      <td>-0.529484</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>-0.394095</td>
+      <td>0.228335</td>
+      <td>0.228335</td>
+      <td>-0.616371</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>-0.247936</td>
+      <td>0.177943</td>
+      <td>0.177943</td>
+      <td>-0.286712</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>-0.333396</td>
+      <td>0.207328</td>
+      <td>0.207328</td>
+      <td>-0.585255</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>-0.370004</td>
+      <td>0.356040</td>
+      <td>0.356040</td>
+      <td>-0.641916</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>-0.463898</td>
+      <td>0.195165</td>
+      <td>0.195165</td>
+      <td>-0.215188</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>-0.241843</td>
+      <td>0.110512</td>
+      <td>0.110512</td>
+      <td>-0.411598</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>-0.227809</td>
+      <td>-0.094414</td>
+      <td>-0.094414</td>
+      <td>-0.306309</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>-0.185607</td>
+      <td>-0.063660</td>
+      <td>-0.063660</td>
+      <td>-0.261691</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>-0.219289</td>
+      <td>-0.041734</td>
+      <td>-0.041734</td>
+      <td>-0.424938</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>-0.048843</td>
+      <td>0.063750</td>
+      <td>0.063750</td>
+      <td>-0.088812</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>-0.092374</td>
+      <td>-0.218327</td>
+      <td>-0.218327</td>
+      <td>-0.001817</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>-0.081938</td>
+      <td>-0.068263</td>
+      <td>-0.068263</td>
+      <td>-0.052643</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>-0.031063</td>
+      <td>-0.183604</td>
+      <td>-0.183604</td>
+      <td>-0.013827</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>-0.025211</td>
+      <td>0.041027</td>
+      <td>0.041027</td>
+      <td>-0.061204</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>-0.023948</td>
+      <td>0.244387</td>
+      <td>0.244387</td>
+      <td>-0.001813</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>-0.073112</td>
+      <td>0.275998</td>
+      <td>0.275998</td>
+      <td>-0.150063</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>-0.064780</td>
+      <td>0.112151</td>
+      <td>0.112151</td>
+      <td>-0.123186</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>-0.030959</td>
+      <td>0.002616</td>
+      <td>0.002616</td>
+      <td>-0.134843</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>-0.066342</td>
+      <td>0.604107</td>
+      <td>0.604107</td>
+      <td>-0.118417</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>-0.025819</td>
+      <td>0.066880</td>
+      <td>0.066880</td>
+      <td>-0.087840</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>-0.061908</td>
+      <td>-0.129382</td>
+      <td>-0.129382</td>
+      <td>-0.101803</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>-0.096987</td>
+      <td>-0.213048</td>
+      <td>-0.213048</td>
+      <td>-0.081656</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>-0.114984</td>
+      <td>0.287159</td>
+      <td>0.287159</td>
+      <td>-0.152345</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>-0.062543</td>
+      <td>-0.076906</td>
+      <td>-0.076906</td>
+      <td>-0.078245</td>
+      <td>00:02</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="154">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lrnr.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-09-15-3wk-1_files/figure-html/cell-13-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>그럴싸한 글씨가 몇개 보이긴 함</li>
+</ul>
+</section>
+<section id="단계-없음" class="level3">
+<h3 class="anchored" data-anchor-id="단계-없음">4단계 (없음)</h3>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
