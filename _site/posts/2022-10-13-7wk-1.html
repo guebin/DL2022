@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="최규빈">
+<meta name="dcterms.date" content="2022-10-13">
 
-<title>DL2022 – wk-1</title>
+<title>DL2022 - 07wk-1: 딥러닝의 기초 (8)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -127,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -144,11 +146,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link active" href="../about.html" aria-current="page">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg"><i class="bi bi-youtube" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -157,14 +164,243 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">07wk-1: 딥러닝의 기초 (8)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">07wk-1: 딥러닝의 기초 (8)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">딥러닝의 기초</div>
+              </div>
+                  </div>
+  </div>
     
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>최규빈 </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 13, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">01wk-1: Introduction</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">03wk-2: 딥러닝의 기초 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">04wk-1: 딥러닝의 기초 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">04wk-2: 딥러닝의 기초 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">05wk-1: 딥러닝의 기초 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">05wk-2: 딥러닝의 기초 (5)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">06wk-1: 딥러닝의 기초 (6)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link active">07wk-1: 딥러닝의 기초 (8)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">10/11: [딥러닝의 기초] 깊은신경망(3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">10/18: [이미지자료분석] CNN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">10/20: [이미지자료분석] Minor topics in CNN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">10/25: [이미지자료분석] 전이학습, CAM/XAI</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">10/26: Assignment 2 – 풀이업로드</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">10/26: Assignment 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">10/28: 중간고사 (풀이update)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">11/01: [순환신경망] 순환신경망 intro (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link">11/03: [순환신경망] 순환신경망 intro (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">11/08: [순환신경망] RNN (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">11/10: [순환신경망] RNN (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">11/15: [순환신경망] LSTM (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">11/17: [순환신경망] LSTM (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">I. Overview</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link">01wk-2: Overview (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">Assignment 1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#딥러닝의-기초-깊은신경망4" id="toc-딥러닝의-기초-깊은신경망4" class="nav-link active" data-scroll-target="#딥러닝의-기초-깊은신경망4">10/13: [딥러닝의 기초] 깊은신경망(4)</a>
+  <ul class="collapse">
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
+  <li><a href="#지난시간리뷰" id="toc-지난시간리뷰" class="nav-link" data-scroll-target="#지난시간리뷰">지난시간리뷰</a>
+  <ul class="collapse">
+  <li><a href="#데이터" id="toc-데이터" class="nav-link" data-scroll-target="#데이터">데이터</a></li>
+  <li><a href="#모든-데이터를-사용하여-적합-512-relu-1000-epochs" id="toc-모든-데이터를-사용하여-적합-512-relu-1000-epochs" class="nav-link" data-scroll-target="#모든-데이터를-사용하여-적합-512-relu-1000-epochs">모든 데이터를 사용하여 적합 (512, relu, 1000 epochs)</a></li>
+  <li><a href="#전체데이터를-82로-나누어서-8만을-학습" id="toc-전체데이터를-82로-나누어서-8만을-학습" class="nav-link" data-scroll-target="#전체데이터를-82로-나누어서-8만을-학습">전체데이터를 8:2로 나누어서 8만을 학습</a></li>
+  </ul></li>
+  <li><a href="#드랍아웃" id="toc-드랍아웃" class="nav-link" data-scroll-target="#드랍아웃">드랍아웃</a>
+  <ul class="collapse">
+  <li><a href="#오버피팅의-해결" id="toc-오버피팅의-해결" class="nav-link" data-scroll-target="#오버피팅의-해결">오버피팅의 해결</a></li>
+  <li><a href="#드랍아웃-레이어" id="toc-드랍아웃-레이어" class="nav-link" data-scroll-target="#드랍아웃-레이어">드랍아웃 레이어</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -182,9 +418,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="imports" class="level2">
 <h2 class="anchored" data-anchor-id="imports">imports</h2>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="지난시간리뷰" class="level2">
@@ -193,10 +429,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="데이터">데이터</h3>
 <p><code>-</code> model: <span class="math inline">\(y_i = (0\times x_i) + \epsilon_i\)</span></p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
+<span id="cb2-2"><a href="#cb2-2"></a>x<span class="op">=</span>torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>y<span class="op">=</span>torch.randn(<span class="dv">100</span>).reshape(<span class="dv">100</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>plt.plot(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-10-13-7wk-1_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
 </div>
@@ -205,29 +441,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="모든-데이터를-사용하여-적합-512-relu-1000-epochs" class="level3">
 <h3 class="anchored" data-anchor-id="모든-데이터를-사용하여-적합-512-relu-1000-epochs">모든 데이터를 사용하여 적합 (512, relu, 1000 epochs)</h3>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x) </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y) </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    loss.backward() </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
+<span id="cb3-2"><a href="#cb3-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>),</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    torch.nn.ReLU(),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb3-8"><a href="#cb3-8"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="co">## 1 </span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>    yhat <span class="op">=</span> net(x) </span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="co">## 2 </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>    loss <span class="op">=</span> loss_fn(yhat,y) </span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="co">## 3 </span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>    loss.backward() </span>
+<span id="cb3-17"><a href="#cb3-17"></a>    <span class="co">## 4 </span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>    optimizr.step()</span>
+<span id="cb3-19"><a href="#cb3-19"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data, <span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>plt.plot(x,y)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>plt.plot(x,net(x).data, <span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-10-13-7wk-1_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
@@ -237,56 +473,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="전체데이터를-82로-나누어서-8만을-학습">전체데이터를 8:2로 나누어서 8만을 학습</h3>
 <p><code>-</code> 데이터를 8:2로 나눈다</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xtr <span class="op">=</span> x[:<span class="dv">80</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ytr <span class="op">=</span> y[:<span class="dv">80</span>] </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>xtest <span class="op">=</span> x[<span class="dv">80</span>:] </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ytest <span class="op">=</span> y[<span class="dv">80</span>:] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>xtr <span class="op">=</span> x[:<span class="dv">80</span>]</span>
+<span id="cb5-2"><a href="#cb5-2"></a>ytr <span class="op">=</span> y[:<span class="dv">80</span>] </span>
+<span id="cb5-3"><a href="#cb5-3"></a>xtest <span class="op">=</span> x[<span class="dv">80</span>:] </span>
+<span id="cb5-4"><a href="#cb5-4"></a>ytest <span class="op">=</span> y[<span class="dv">80</span>:] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x.shape, xtr.shape, xtest.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>x.shape, xtr.shape, xtest.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>(torch.Size([100, 1]), torch.Size([80, 1]), torch.Size([20, 1]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y.shape, ytr.shape, ytest.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>y.shape, ytr.shape, ytest.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>(torch.Size([100, 1]), torch.Size([80, 1]), torch.Size([20, 1]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-10-13-7wk-1_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> (xtr,ytr) 만 가지고 net를 학습시킨다.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(net(xtr),ytr) </span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    loss.backward() </span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
+<span id="cb11-2"><a href="#cb11-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>),</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    torch.nn.ReLU(),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb11-8"><a href="#cb11-8"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="co">## 1 </span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>    <span class="co">#</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>    <span class="co">## 2 </span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>    loss <span class="op">=</span> loss_fn(net(xtr),ytr) </span>
+<span id="cb11-15"><a href="#cb11-15"></a>    <span class="co">## 3 </span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>    loss.backward() </span>
+<span id="cb11-17"><a href="#cb11-17"></a>    <span class="co">## 4 </span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>    optimizr.step()</span>
+<span id="cb11-19"><a href="#cb11-19"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data,<span class="st">'--k'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>plt.plot(x,net(x).data,<span class="st">'--k'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-10-13-7wk-1_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -299,32 +535,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="오버피팅의-해결">오버피팅의 해결</h3>
 <p><code>-</code> 오버피팅의 해결책: 드랍아웃</p>
 <div class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.ReLU(),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Dropout(<span class="fl">0.8</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1 </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(net(xtr),ytr) </span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    loss.backward() </span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
+<span id="cb13-2"><a href="#cb13-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">512</span>),</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    torch.nn.ReLU(),</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    torch.nn.Dropout(<span class="fl">0.8</span>),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb13-9"><a href="#cb13-9"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span>
+<span id="cb13-10"><a href="#cb13-10"></a></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb13-12"><a href="#cb13-12"></a>    <span class="co">## 1 </span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>    <span class="co">#</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="co">## 2 </span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>    loss <span class="op">=</span> loss_fn(net(xtr),ytr) </span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="co">## 3 </span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>    loss.backward() </span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="co">## 4 </span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>    optimizr.step()</span>
+<span id="cb13-20"><a href="#cb13-20"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data,<span class="st">'--k'</span>) </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"network is in training mode"</span>,fontsize<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a>plt.plot(x,net(x).data,<span class="st">'--k'</span>) </span>
+<span id="cb14-4"><a href="#cb14-4"></a>plt.title(<span class="vs">r"network is in training mode"</span>,fontsize<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="82">
 <pre><code>Text(0.5, 1.0, 'network is in training mode')</code></pre>
 </div>
@@ -334,23 +570,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><code>-</code> 올바른 사용법</p>
 <div class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>net.training</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>net.training</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>True</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">eval</span>()</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>net.training</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>net.<span class="bu">eval</span>()</span>
+<span id="cb18-2"><a href="#cb18-2"></a>net.training</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>False</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,net(x).data,<span class="st">'--k'</span>) </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"network is in evaluation mode"</span>,fontsize<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>plt.plot(xtr,ytr,<span class="st">'o'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a>plt.plot(xtest,ytest,<span class="st">'o'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3"></a>plt.plot(x,net(x).data,<span class="st">'--k'</span>) </span>
+<span id="cb20-4"><a href="#cb20-4"></a>plt.title(<span class="vs">r"network is in evaluation mode"</span>,fontsize<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>Text(0.5, 1.0, 'network is in evaluation mode')</code></pre>
 </div>
@@ -362,8 +598,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="드랍아웃-레이어" class="level3">
 <h3 class="anchored" data-anchor-id="드랍아웃-레이어">드랍아웃 레이어</h3>
 <div class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>_x <span class="op">=</span> torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">101</span>) </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>_x </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>_x <span class="op">=</span> torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">101</span>) </span>
+<span id="cb22-2"><a href="#cb22-2"></a>_x </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>tensor([0.0000, 0.0100, 0.0200, 0.0300, 0.0400, 0.0500, 0.0600, 0.0700, 0.0800,
         0.0900, 0.1000, 0.1100, 0.1200, 0.1300, 0.1400, 0.1500, 0.1600, 0.1700,
@@ -380,8 +616,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dout <span class="op">=</span> torch.nn.Dropout(<span class="fl">0.9</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>dout(_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>dout <span class="op">=</span> torch.nn.Dropout(<span class="fl">0.9</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a>dout(_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <pre><code>tensor([0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.8000,
         0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 1.4000, 0.0000, 0.0000, 0.0000,

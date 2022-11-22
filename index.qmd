@@ -1,9 +1,9 @@
 ---
-title: "DL2022"
+title: "딥러닝(2022)"
 listing:
   contents: posts
   type: default
-  categories: false
+  categories: true
   sort-ui: false
   filter-ui: false
 page-layout: full
