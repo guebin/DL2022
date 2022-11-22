@@ -6,7 +6,7 @@ about:
   links:
     - icon: youtube
       text: Youtube
-      href: https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg
+      href: https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&sort=dd&shelf_id=3
     - icon: github
       text: Github
       href: https://github.com/guebin/DL2022/tree/main/posts
