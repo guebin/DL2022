@@ -411,9 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-추천시스템-텍스트분석" id="toc-overview-추천시스템-텍스트분석" class="nav-link active" data-scroll-target="#overview-추천시스템-텍스트분석">09/13: [Overview] 추천시스템, 텍스트분석</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#fastai를-이용한-분석-steps" id="toc-fastai를-이용한-분석-steps" class="nav-link" data-scroll-target="#fastai를-이용한-분석-steps">fastai를 이용한 분석 steps</a></li>
   <li><a href="#추천시스템-실습" id="toc-추천시스템-실습" class="nav-link" data-scroll-target="#추천시스템-실습">추천시스템 실습</a>
@@ -430,7 +428,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#단계-6" id="toc-단계-6" class="nav-link" data-scroll-target="#단계-6">3단계</a></li>
   <li><a href="#단계-7" id="toc-단계-7" class="nav-link" data-scroll-target="#단계-7">4단계</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -440,19 +437,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="overview-추천시스템-텍스트분석" class="level1">
-<h1>09/13: [Overview] 추천시스템, 텍스트분석</h1>
 <blockquote class="blockquote">
 <p>fastai를 이용한 분석 steps, 추천시스템 실습, 텍스트분석 실습</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zJbe5FztJPSqicA2ZLwDgh</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-zJbe5FztJPSqicA2ZLwDgh" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-zJbe5FztJPSqicA2ZLwDgh</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<section id="imports" class="level1">
+<h1>imports</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastai.collab <span class="im">import</span> <span class="op">*</span> <span class="co">## 추천시스템</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> <span class="co">## 텍스트분석 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -461,8 +454,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="fastai를-이용한-분석-steps" class="level2">
-<h2 class="anchored" data-anchor-id="fastai를-이용한-분석-steps">fastai를 이용한 분석 steps</h2>
+<section id="fastai를-이용한-분석-steps" class="level1">
+<h1>fastai를 이용한 분석 steps</h1>
 <p><code>-</code> 비교</p>
 <table class="table">
 <colgroup>
@@ -513,10 +506,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </section>
-<section id="추천시스템-실습" class="level2">
-<h2 class="anchored" data-anchor-id="추천시스템-실습">추천시스템 실습</h2>
-<section id="단계" class="level3">
-<h3 class="anchored" data-anchor-id="단계">1단계</h3>
+<section id="추천시스템-실습" class="level1">
+<h1>추천시스템 실습</h1>
+<section id="단계" class="level2">
+<h2 class="anchored" data-anchor-id="단계">1단계</h2>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df_view <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-09-08-rcmd_view.csv'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>df_view</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1028,14 +1021,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>64번 유저가 15번 아이템을 먹었을때 평점을 4.1146 주었음</li>
 </ul>
 </section>
-<section id="단계-1" class="level3">
-<h3 class="anchored" data-anchor-id="단계-1">2단계</h3>
+<section id="단계-1" class="level2">
+<h2 class="anchored" data-anchor-id="단계-1">2단계</h2>
 <div class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>lrnr <span class="op">=</span> collab_learner(dls,y_range<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="co"># y_range는 평점의 범위</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="단계-2" class="level3">
-<h3 class="anchored" data-anchor-id="단계-2">3단계</h3>
+<section id="단계-2" class="level2">
+<h2 class="anchored" data-anchor-id="단계-2">3단계</h2>
 <div class="cell" data-execution_count="92">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>lrnr.fit(<span class="dv">10</span>) <span class="co"># 총 30번 정도 해야 적합이 잘된다. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1133,8 +1126,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="단계-3" class="level3">
-<h3 class="anchored" data-anchor-id="단계-3">4단계</h3>
+<section id="단계-3" class="level2">
+<h2 class="anchored" data-anchor-id="단계-3">4단계</h2>
 <p><code>-</code> 하나의 배치 전체를 예측</p>
 <div class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>yhat<span class="op">=</span>lrnr.model(X.to(<span class="st">"cuda:0"</span>))</span>
@@ -1197,10 +1190,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="텍스트분석-실습" class="level2">
-<h2 class="anchored" data-anchor-id="텍스트분석-실습">텍스트분석 실습</h2>
-<section id="단계-4" class="level3">
-<h3 class="anchored" data-anchor-id="단계-4">1단계</h3>
+<section id="텍스트분석-실습" class="level1">
+<h1>텍스트분석 실습</h1>
+<section id="단계-4" class="level2">
+<h2 class="anchored" data-anchor-id="단계-4">1단계</h2>
 <div class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'text'</span>:[<span class="st">'h e l l o . h e l l o ! h e l l o ? h e l l o !! h e l l o ??'</span>]<span class="op">*</span><span class="dv">20000</span>})</span>
 <span id="cb27-2"><a href="#cb27-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1356,14 +1349,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>is_lm: text의 생성에 관심이 있다면 True로 설정할 것</li>
 </ul>
 </section>
-<section id="단계-5" class="level3">
-<h3 class="anchored" data-anchor-id="단계-5">2단계</h3>
+<section id="단계-5" class="level2">
+<h2 class="anchored" data-anchor-id="단계-5">2단계</h2>
 <div class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>lrnr <span class="op">=</span> language_model_learner(dls, AWD_LSTM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="단계-6" class="level3">
-<h3 class="anchored" data-anchor-id="단계-6">3단계</h3>
+<section id="단계-6" class="level2">
+<h2 class="anchored" data-anchor-id="단계-6">3단계</h2>
 <div class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>lrnr.fit(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1407,8 +1400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="단계-7" class="level3">
-<h3 class="anchored" data-anchor-id="단계-7">4단계</h3>
+<section id="단계-7" class="level2">
+<h2 class="anchored" data-anchor-id="단계-7">4단계</h2>
 <div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>lrnr.predict(<span class="st">'h e'</span>,n_words<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1438,7 +1431,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 
-</section>
 </section>
 </section>
 

@@ -435,24 +435,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>(1)</code> 두 가지 키워드로 크롤링을 수행하여 이미지자료를 모아라. (키워드는 각자 마음에 드는 것으로 설정할 것)</p>
 <p><strong><em>힌트1: <code>hynn</code>, <code>iu</code> 라는 키워드로 크롤링하여 이미지자료를 모으는 코드</em></strong></p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 크롤링에 필요한 준비작업들</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#!pip install -Uqq duckduckgo_search</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="im">from</span> duckduckgo_search <span class="im">import</span> ddg_images</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> fastdownload <span class="im">import</span> download_url</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="im">from</span> fastcore.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">def</span> search_images(term, max_images<span class="op">=</span><span class="dv">200</span>): <span class="cf">return</span> L(ddg_images(term, max_results<span class="op">=</span>max_images)).itemgot(<span class="st">'image'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 크롤링에 필요한 준비작업들</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#!pip install -Uqq duckduckgo_search</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">from</span> duckduckgo_search <span class="im">import</span> ddg_images</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">from</span> fastdownload <span class="im">import</span> download_url</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> fastcore.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">def</span> search_images(term, max_images<span class="op">=</span><span class="dv">200</span>): <span class="cf">return</span> L(ddg_images(term, max_results<span class="op">=</span>max_images)).itemgot(<span class="st">'image'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># </span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># 폴더만드는코드 -- 사실 손으로 만들어도 무방함.. </span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="op">!</span>mkdir images</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="op">!</span>mkdir images<span class="op">/</span>train</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="op">!</span>mkdir images<span class="op">/</span>test </span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="op">!</span>mkdir images<span class="op">/</span>train<span class="op">/</span>iu</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="op">!</span>mkdir images<span class="op">/</span>train<span class="op">/</span>hynn</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="op">!</span>mkdir images<span class="op">/</span>test<span class="op">/</span>iu</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="op">!</span>mkdir images<span class="op">/</span>test<span class="op">/</span>hynn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 폴더만드는코드 -- 사실 손으로 만들어도 무방함.. </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="op">!</span>mkdir images</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="op">!</span>mkdir images<span class="op">/</span>train</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="op">!</span>mkdir images<span class="op">/</span>test </span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="op">!</span>mkdir images<span class="op">/</span>train<span class="op">/</span>iu</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="op">!</span>mkdir images<span class="op">/</span>train<span class="op">/</span>hynn</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="op">!</span>mkdir images<span class="op">/</span>test<span class="op">/</span>iu</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="op">!</span>mkdir images<span class="op">/</span>test<span class="op">/</span>hynn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>download_images(dest<span class="op">=</span><span class="st">'./images/train/iu'</span>,urls<span class="op">=</span>search_images(<span class="st">'iu'</span>,max_images<span class="op">=</span><span class="dv">200</span>)) <span class="co"># iu 라는 키워드로 200개 이미지 크롤링 -&gt; ./images/train/iu 에 저장</span></span>

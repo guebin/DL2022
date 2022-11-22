@@ -409,9 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#순환신경망-순환신경망-intro-2" id="toc-순환신경망-순환신경망-intro-2" class="nav-link active" data-scroll-target="#순환신경망-순환신경망-intro-2">11/03: [순환신경망] 순환신경망 intro (2)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">import</a></li>
   <li><a href="#define-some-funtions" id="toc-define-some-funtions" class="nav-link" data-scroll-target="#define-some-funtions">Define some funtions</a></li>
   <li><a href="#exam2-abc" id="toc-exam2-abc" class="nav-link" data-scroll-target="#exam2-abc">Exam2: abc</a>
@@ -431,7 +429,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#두개의-은닉노드를-이용한-풀이-실패" id="toc-두개의-은닉노드를-이용한-풀이-실패" class="nav-link" data-scroll-target="#두개의-은닉노드를-이용한-풀이-실패">두개의 은닉노드를 이용한 풀이 – 실패</a></li>
   </ul></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -441,37 +438,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="순환신경망-순환신경망-intro-2" class="level1">
-<h1>11/03: [순환신경망] 순환신경망 intro (2)</h1>
 <blockquote class="blockquote">
-<p>abc예제, abdc예제, AbAcAd예제(1)</p>
+<p>순환신경망 intro (2)– abc예제, abdc예제, AbAcAd예제(1)</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-wXdABtimM1pYK5TjPTBA6X</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-wXdABtimM1pYK5TjPTBA6X" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-wXdABtimM1pYK5TjPTBA6X</a></p>
 </section>
-<section id="import" class="level2">
-<h2 class="anchored" data-anchor-id="import">import</h2>
+<section id="import" class="level1">
+<h1>import</h1>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="define-some-funtions" class="level2">
-<h2 class="anchored" data-anchor-id="define-some-funtions">Define some funtions</h2>
+<section id="define-some-funtions" class="level1">
+<h1>Define some funtions</h1>
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> f(txt,mapping):</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="cf">return</span> [mapping[key] <span class="cf">for</span> key <span class="kw">in</span> txt] </span>
 <span id="cb2-3"><a href="#cb2-3"></a>soft <span class="op">=</span> torch.nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exam2-abc" class="level2">
-<h2 class="anchored" data-anchor-id="exam2-abc">Exam2: abc</h2>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">data</h3>
+<section id="exam2-abc" class="level1">
+<h1>Exam2: abc</h1>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">data</h2>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abc'</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -490,8 +483,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="하나의-은닉노드를-이용한-풀이-억지로-성공" class="level3">
-<h3 class="anchored" data-anchor-id="하나의-은닉노드를-이용한-풀이-억지로-성공">하나의 은닉노드를 이용한 풀이 – 억지로 성공</h3>
+<section id="하나의-은닉노드를-이용한-풀이-억지로-성공" class="level2">
+<h2 class="anchored" data-anchor-id="하나의-은닉노드를-이용한-풀이-억지로-성공">하나의 은닉노드를 이용한 풀이 – 억지로 성공</h2>
 <p><code>-</code> 데이터정리</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>}</span>
@@ -599,10 +592,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>주황 = hidden * (0.3071) + (0.9143)</li>
 <li>초록 = hidden * (5.2894) + (-1.3970)</li>
 </ul>
-<p><code>-</code> 내부동작을 잘 뜯어보니까 사실 엉성해. 엄청 위태위태하게 맞추고 있었음. - weight: 파랑과 초록을 구분하는 역할을 함 - weight + bias: 뭔가 교모하게 애매한 주황값을 만들어서 애매하게 ’b’라고 나올 확률을 학습시킨다. <span class="math inline">\(\to\)</span> 사실 학습하는 것 같지 않고 때려 맞추는 느낌, 쓸수있는 weight가 한정적이라서 생기는 현상 (양수,음수,0)</p>
+<p><code>-</code> 내부동작을 잘 뜯어보니까 사실 엉성해. 엄청 위태위태하게 맞추고 있었음.</p>
+<ul>
+<li>weight: 파랑과 초록을 구분하는 역할을 함</li>
+<li>weight + bias: 뭔가 교모하게 애매한 주황값을 만들어서 애매하게 ’b’라고 나올 확률을 학습시킨다. <span class="math inline">\(\to\)</span> 사실 학습하는 것 같지 않고 때려 맞추는 느낌, 쓸수있는 weight가 한정적이라서 생기는 현상 (양수,음수,0)</li>
+</ul>
 <hr>
-<p><strong><a href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html">참고</a>: torch.nn.Linear()의 비밀?</strong> - 사실 <span class="math inline">\({\boldsymbol y}={\boldsymbol x}{\bf W} + {\boldsymbol b}\)</span> 꼴에서의 <span class="math inline">\({\bf W}\)</span>와 <span class="math inline">\({\boldsymbol b}\)</span>가 저장되는게 아니다. - <span class="math inline">\({\boldsymbol y}={\boldsymbol x}{\bf A}^T + {\boldsymbol b}\)</span> 꼴에서의 <span class="math inline">\({\bf A}\)</span>와 <span class="math inline">\({\boldsymbol b}\)</span>가 저장된다. - <span class="math inline">\({\bf W} = {\bf A}^T\)</span> 인 관계에 있으므로 l1.weight 가 우리가 생각하는 <span class="math inline">\({\bf W}\)</span> 로 해석하려면 사실 transpose를 취해줘야 한다.</p>
-<p><strong>왜 이렇게..?</strong> - 계산의 효율성 때문 (numpy의 구조를 알아야함) - <span class="math inline">\({\boldsymbol x}\)</span>, <span class="math inline">\({\boldsymbol y}\)</span> 는 수학적으로는 col-vec 이지만 메모리에 저장할시에는 row-vec 로 해석하는 것이 자연스럽다. (사실 메모리는 격자모양으로 되어있지 않음)</p>
+<p><strong><a href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html">참고</a>: torch.nn.Linear()의 비밀?</strong></p>
+<ul>
+<li>사실 <span class="math inline">\({\boldsymbol y}={\boldsymbol x}{\bf W} + {\boldsymbol b}\)</span> 꼴에서의 <span class="math inline">\({\bf W}\)</span>와 <span class="math inline">\({\boldsymbol b}\)</span>가 저장되는게 아니다.</li>
+<li><span class="math inline">\({\boldsymbol y}={\boldsymbol x}{\bf A}^T + {\boldsymbol b}\)</span> 꼴에서의 <span class="math inline">\({\bf A}\)</span>와 <span class="math inline">\({\boldsymbol b}\)</span>가 저장된다.</li>
+<li><span class="math inline">\({\bf W} = {\bf A}^T\)</span> 인 관계에 있으므로 l1.weight 가 우리가 생각하는 <span class="math inline">\({\bf W}\)</span> 로 해석하려면 사실 transpose를 취해줘야 한다.</li>
+</ul>
+<p><strong>왜 이렇게..?</strong></p>
+<ul>
+<li>계산의 효율성 때문 (numpy의 구조를 알아야함)</li>
+<li><span class="math inline">\({\boldsymbol x}\)</span>, <span class="math inline">\({\boldsymbol y}\)</span> 는 수학적으로는 col-vec 이지만 메모리에 저장할시에는 row-vec 로 해석하는 것이 자연스럽다. (사실 메모리는 격자모양으로 되어있지 않음)</li>
+</ul>
 <p><strong><em>잠깐 딴소리!!</em></strong></p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="65">
@@ -726,10 +732,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="exam3-abcd" class="level2">
-<h2 class="anchored" data-anchor-id="exam3-abcd">Exam3: abcd</h2>
-<section id="data-1" class="level3">
-<h3 class="anchored" data-anchor-id="data-1">data</h3>
+<section id="exam3-abcd" class="level1">
+<h1>Exam3: abcd</h1>
+<section id="data-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-1">data</h2>
 <div class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcd'</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb44-2"><a href="#cb44-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -748,8 +754,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="하나의-은닉노드를-이용한-풀이-억지로-성공-1" class="level3">
-<h3 class="anchored" data-anchor-id="하나의-은닉노드를-이용한-풀이-억지로-성공-1">하나의 은닉노드를 이용한 풀이 – 억지로 성공</h3>
+<section id="하나의-은닉노드를-이용한-풀이-억지로-성공-1" class="level2">
+<h2 class="anchored" data-anchor-id="하나의-은닉노드를-이용한-풀이-억지로-성공-1">하나의 은닉노드를 이용한 풀이 – 억지로 성공</h2>
 <p><code>-</code> 데이터정리</p>
 <div class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
@@ -826,8 +832,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="두개의-은닉노드를-이용한-풀이-깔끔한-성공" class="level3">
-<h3 class="anchored" data-anchor-id="두개의-은닉노드를-이용한-풀이-깔끔한-성공">두개의 은닉노드를 이용한 풀이 – 깔끔한 성공</h3>
+<section id="두개의-은닉노드를-이용한-풀이-깔끔한-성공" class="level2">
+<h2 class="anchored" data-anchor-id="두개의-은닉노드를-이용한-풀이-깔끔한-성공">두개의 은닉노드를 이용한 풀이 – 깔끔한 성공</h2>
 <p><code>-</code> 데이터정리</p>
 <div class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
@@ -901,10 +907,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="exam4-abacad" class="level2">
-<h2 class="anchored" data-anchor-id="exam4-abacad">Exam4: AbAcAd</h2>
-<section id="data-2" class="level3">
-<h3 class="anchored" data-anchor-id="data-2">data</h3>
+<section id="exam4-abacad" class="level1">
+<h1>Exam4: AbAcAd</h1>
+<section id="data-2" class="level2">
+<h2 class="anchored" data-anchor-id="data-2">data</h2>
 <div class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'AbAcAd'</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb70-2"><a href="#cb70-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -923,8 +929,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="두개의-은닉노드를-이용한-풀이-실패" class="level3">
-<h3 class="anchored" data-anchor-id="두개의-은닉노드를-이용한-풀이-실패">두개의 은닉노드를 이용한 풀이 – 실패</h3>
+<section id="두개의-은닉노드를-이용한-풀이-실패" class="level2">
+<h2 class="anchored" data-anchor-id="두개의-은닉노드를-이용한-풀이-실패">두개의 은닉노드를 이용한 풀이 – 실패</h2>
 <p><code>-</code> 데이터정리</p>
 <div class="cell" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>mapping <span class="op">=</span> {<span class="st">'A'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
@@ -1050,8 +1056,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong><em>이것에 대한 해결책은 순환신경망이다. 다음시간에 설명</em></strong></p>
 </section>
 </section>
-<section id="숙제" class="level2">
-<h2 class="anchored" data-anchor-id="숙제">숙제</h2>
+<section id="숙제" class="level1">
+<h1>숙제</h1>
 <p>주어진 자료가 다음과 같다고 하자.</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcde'</span>)<span class="op">*</span><span class="dv">100</span></span>
@@ -1077,7 +1083,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-4"><a href="#cb90-4"></a>    torch.nn.Linear(in_features<span class="op">=</span>??,out_features<span class="op">=</span>??)</span>
 <span id="cb90-5"><a href="#cb90-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(풀이)</p>
-<p>a,b,c,d,e 를 표현함에 있어서 3개의 은닉노드면 충분하다. - 1개의 은닉노드 -&gt; 2개의 문자를 표현할 수 있음. - 2개의 은닉노드 -&gt; 4개의 문자를 표현할 수 있음. - 3개의 은닉노드 -&gt; 8개의 문자를 표현할 수 있음.</p>
+<p>a,b,c,d,e 를 표현함에 있어서 3개의 은닉노드면 충분하다.</p>
+<ul>
+<li>1개의 은닉노드 -&gt; 2개의 문자를 표현할 수 있음.</li>
+<li>2개의 은닉노드 -&gt; 4개의 문자를 표현할 수 있음.</li>
+<li>3개의 은닉노드 -&gt; 8개의 문자를 표현할 수 있음.</li>
+</ul>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>,<span class="st">'e'</span>:<span class="dv">4</span>}</span>
 <span id="cb91-2"><a href="#cb91-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
@@ -1151,7 +1162,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

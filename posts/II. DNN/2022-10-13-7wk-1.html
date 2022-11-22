@@ -409,9 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#딥러닝의-기초-깊은신경망4" id="toc-딥러닝의-기초-깊은신경망4" class="nav-link active" data-scroll-target="#딥러닝의-기초-깊은신경망4">10/13: [딥러닝의 기초] 깊은신경망(4)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#지난시간리뷰" id="toc-지난시간리뷰" class="nav-link" data-scroll-target="#지난시간리뷰">지난시간리뷰</a>
   <ul class="collapse">
@@ -424,7 +422,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#오버피팅의-해결" id="toc-오버피팅의-해결" class="nav-link" data-scroll-target="#오버피팅의-해결">오버피팅의 해결</a></li>
   <li><a href="#드랍아웃-레이어" id="toc-드랍아웃-레이어" class="nav-link" data-scroll-target="#드랍아웃-레이어">드랍아웃 레이어</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -434,29 +431,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="딥러닝의-기초-깊은신경망4" class="level1">
-<h1>10/13: [딥러닝의 기초] 깊은신경망(4)</h1>
 <blockquote class="blockquote">
-<p>지난시간리뷰, 드랍아웃</p>
+<p>깊은신경망(4)– 지난시간리뷰, 드랍아웃</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-xIaM33fBWd9bCF_FsXlg2f</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-xIaM33fBWd9bCF_FsXlg2f" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-xIaM33fBWd9bCF_FsXlg2f</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<section id="imports" class="level1">
+<h1>imports</h1>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="지난시간리뷰" class="level2">
-<h2 class="anchored" data-anchor-id="지난시간리뷰">지난시간리뷰</h2>
-<section id="데이터" class="level3">
-<h3 class="anchored" data-anchor-id="데이터">데이터</h3>
+<section id="지난시간리뷰" class="level1">
+<h1>지난시간리뷰</h1>
+<section id="데이터" class="level2">
+<h2 class="anchored" data-anchor-id="데이터">데이터</h2>
 <p><code>-</code> model: <span class="math inline">\(y_i = (0\times x_i) + \epsilon_i\)</span></p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
@@ -468,8 +461,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="모든-데이터를-사용하여-적합-512-relu-1000-epochs" class="level3">
-<h3 class="anchored" data-anchor-id="모든-데이터를-사용하여-적합-512-relu-1000-epochs">모든 데이터를 사용하여 적합 (512, relu, 1000 epochs)</h3>
+<section id="모든-데이터를-사용하여-적합-512-relu-1000-epochs" class="level2">
+<h2 class="anchored" data-anchor-id="모든-데이터를-사용하여-적합-512-relu-1000-epochs">모든 데이터를 사용하여 적합 (512, relu, 1000 epochs)</h2>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
 <span id="cb3-2"><a href="#cb3-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
@@ -499,8 +492,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="전체데이터를-82로-나누어서-8만을-학습" class="level3">
-<h3 class="anchored" data-anchor-id="전체데이터를-82로-나누어서-8만을-학습">전체데이터를 8:2로 나누어서 8만을 학습</h3>
+<section id="전체데이터를-82로-나누어서-8만을-학습" class="level2">
+<h2 class="anchored" data-anchor-id="전체데이터를-82로-나누어서-8만을-학습">전체데이터를 8:2로 나누어서 8만을 학습</h2>
 <p><code>-</code> 데이터를 8:2로 나눈다</p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>xtr <span class="op">=</span> x[:<span class="dv">80</span>]</span>
@@ -559,10 +552,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="드랍아웃" class="level2">
-<h2 class="anchored" data-anchor-id="드랍아웃">드랍아웃</h2>
-<section id="오버피팅의-해결" class="level3">
-<h3 class="anchored" data-anchor-id="오버피팅의-해결">오버피팅의 해결</h3>
+<section id="드랍아웃" class="level1">
+<h1>드랍아웃</h1>
+<section id="오버피팅의-해결" class="level2">
+<h2 class="anchored" data-anchor-id="오버피팅의-해결">오버피팅의 해결</h2>
 <p><code>-</code> 오버피팅의 해결책: 드랍아웃</p>
 <div class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>torch.manual_seed(<span class="dv">1</span>) </span>
@@ -625,8 +618,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="드랍아웃-레이어" class="level3">
-<h3 class="anchored" data-anchor-id="드랍아웃-레이어">드랍아웃 레이어</h3>
+<section id="드랍아웃-레이어" class="level2">
+<h2 class="anchored" data-anchor-id="드랍아웃-레이어">드랍아웃 레이어</h2>
 <div class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>_x <span class="op">=</span> torch.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">101</span>) </span>
 <span id="cb22-2"><a href="#cb22-2"></a>_x </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -676,7 +669,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 
-</section>
 </section>
 </section>
 

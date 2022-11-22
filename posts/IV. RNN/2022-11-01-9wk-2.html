@@ -412,17 +412,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#순환신경망-순환신경망-intro-1" id="toc-순환신경망-순환신경망-intro-1" class="nav-link active" data-scroll-target="#순환신경망-순환신경망-intro-1">11/01: [순환신경망] 순환신경망 intro (1)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">import</a></li>
   <li><a href="#define-some-funtions" id="toc-define-some-funtions" class="nav-link" data-scroll-target="#define-some-funtions">Define some funtions</a></li>
   <li><a href="#exam1-ab" id="toc-exam1-ab" class="nav-link" data-scroll-target="#exam1-ab">Exam1: ab</a>
   <ul class="collapse">
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">data</a></li>
-  <li><a href="#선형모형을-이용한-풀이" id="toc-선형모형을-이용한-풀이" class="nav-link" data-scroll-target="#선형모형을-이용한-풀이">선형모형을 이용한 풀이</a></li>
-  <li><a href="#로지스틱-모형을-이용한-풀이" id="toc-로지스틱-모형을-이용한-풀이" class="nav-link" data-scroll-target="#로지스틱-모형을-이용한-풀이">로지스틱 모형을 이용한 풀이</a></li>
-  <li><a href="#소프트맥스로-확장" id="toc-소프트맥스로-확장" class="nav-link" data-scroll-target="#소프트맥스로-확장">소프트맥스로 확장</a></li>
+  <li><a href="#선형모형을-이용한-풀이" id="toc-선형모형을-이용한-풀이" class="nav-link" data-scroll-target="#선형모형을-이용한-풀이">선형모형을 이용한 풀이</a>
+  <ul class="collapse">
+  <li><a href="#풀이1-1개의-파라메터-실패" id="toc-풀이1-1개의-파라메터-실패" class="nav-link" data-scroll-target="#풀이1-1개의-파라메터-실패"><strong><em>(풀이1) 1개의 파라메터 – 실패</em></strong></a></li>
+  <li><a href="#풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이" id="toc-풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이" class="nav-link" data-scroll-target="#풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이"><strong><em>(풀이2) 1개의 파라메터 – 성공, but 확장성이 없는 풀이</em></strong></a></li>
+  </ul></li>
+  <li><a href="#로지스틱-모형을-이용한-풀이" id="toc-로지스틱-모형을-이용한-풀이" class="nav-link" data-scroll-target="#로지스틱-모형을-이용한-풀이">로지스틱 모형을 이용한 풀이</a>
+  <ul class="collapse">
+  <li><a href="#풀이1-1개의-파라메터-실패-1" id="toc-풀이1-1개의-파라메터-실패-1" class="nav-link" data-scroll-target="#풀이1-1개의-파라메터-실패-1"><strong><em>(풀이1) 1개의 파라메터 – 실패</em></strong></a></li>
+  <li><a href="#풀이2-2개의-파라메터-좋은-초기값-성공" id="toc-풀이2-2개의-파라메터-좋은-초기값-성공" class="nav-link" data-scroll-target="#풀이2-2개의-파라메터-좋은-초기값-성공"><strong><em>(풀이2) 2개의 파라메터 + 좋은 초기값 – 성공</em></strong></a></li>
+  <li><a href="#풀이3-2개의-파라메터-나쁜초기값-성공" id="toc-풀이3-2개의-파라메터-나쁜초기값-성공" class="nav-link" data-scroll-target="#풀이3-2개의-파라메터-나쁜초기값-성공"><strong><em>(풀이3) 2개의 파라메터 + 나쁜초기값 – 성공</em></strong></a></li>
+  <li><a href="#풀이4-3개의-파라메터를-쓴다면" id="toc-풀이4-3개의-파라메터를-쓴다면" class="nav-link" data-scroll-target="#풀이4-3개의-파라메터를-쓴다면"><strong><em>(풀이4) 3개의 파라메터를 쓴다면?</em></strong></a></li>
+  </ul></li>
+  <li><a href="#소프트맥스로-확장" id="toc-소프트맥스로-확장" class="nav-link" data-scroll-target="#소프트맥스로-확장">소프트맥스로 확장</a>
+  <ul class="collapse">
+  <li><a href="#풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장" id="toc-풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장" class="nav-link" data-scroll-target="#풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장">(풀이1) 로지스틱모형에서 3개의 파라메터 버전을 그대로 확장</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#embedding-layer" id="toc-embedding-layer" class="nav-link" data-scroll-target="#embedding-layer">Embedding Layer</a>
   <ul class="collapse">
@@ -430,7 +441,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#연습-ab문제-소프트맥스로-확장한-것-다시-풀이" id="toc-연습-ab문제-소프트맥스로-확장한-것-다시-풀이" class="nav-link" data-scroll-target="#연습-ab문제-소프트맥스로-확장한-것-다시-풀이">연습 (ab문제 소프트맥스로 확장한 것 다시 풀이)</a></li>
   </ul></li>
   <li><a href="#hw" id="toc-hw" class="nav-link" data-scroll-target="#hw">HW</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -440,27 +450,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="순환신경망-순환신경망-intro-1" class="level1">
-<h1>11/01: [순환신경망] 순환신경망 intro (1)</h1>
 <blockquote class="blockquote">
-<p>ab예제, embedding layer</p>
+<p>순환신경망 intro (1)– ab예제, embedding layer</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zya4QF67x6DZfNtJRF-iPc</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-zya4QF67x6DZfNtJRF-iPc" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-zya4QF67x6DZfNtJRF-iPc</a></p>
 </section>
-<section id="import" class="level2">
-<h2 class="anchored" data-anchor-id="import">import</h2>
+<section id="import" class="level1">
+<h1>import</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="define-some-funtions" class="level2">
-<h2 class="anchored" data-anchor-id="define-some-funtions">Define some funtions</h2>
+<section id="define-some-funtions" class="level1">
+<h1>Define some funtions</h1>
 <p><code>-</code> 활성화함수들</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>sig <span class="op">=</span> torch.nn.Sigmoid()</span>
@@ -506,10 +512,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="exam1-ab" class="level2">
-<h2 class="anchored" data-anchor-id="exam1-ab">Exam1: ab</h2>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">data</h3>
+<section id="exam1-ab" class="level1">
+<h1>Exam1: ab</h1>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">data</h2>
 <div class="cell" data-outputid="ac64d3b6-3396-4e89-bcbe-97139fba3582">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'ab'</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -528,10 +534,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="선형모형을-이용한-풀이" class="level3">
-<h3 class="anchored" data-anchor-id="선형모형을-이용한-풀이">선형모형을 이용한 풀이</h3>
-<section id="풀이1-1개의-파라메터-실패" class="level4">
-<h4 class="anchored" data-anchor-id="풀이1-1개의-파라메터-실패"><strong><em>(풀이1) 1개의 파라메터 – 실패</em></strong></h4>
+<section id="선형모형을-이용한-풀이" class="level2">
+<h2 class="anchored" data-anchor-id="선형모형을-이용한-풀이">선형모형을 이용한 풀이</h2>
+<section id="풀이1-1개의-파라메터-실패" class="level3">
+<h3 class="anchored" data-anchor-id="풀이1-1개의-파라메터-실패"><strong><em>(풀이1) 1개의 파라메터 – 실패</em></strong></h3>
 <p><code>-</code> 데이터정리</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,{<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>})).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
@@ -626,12 +632,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>현재 <span class="math inline">\(\hat{y}_i = \hat{w}x_i\)</span> 꼴의 아키텍처이고 <span class="math inline">\(y_i \approx \hat{w}x_i\)</span> 가 되는 적당한 <span class="math inline">\(\hat{w}\)</span>를 찾아야 하는 상황 - <span class="math inline">\((x_i,y_i)=(0,1)\)</span> 이면 어떠한 <span class="math inline">\(\hat{w}\)</span>를 선택해도 <span class="math inline">\(y_i \approx \hat{w}x_i\)</span>를 만드는 것이 불가능<br>
-- <span class="math inline">\((x_i,y_i)=(1,0)\)</span> 이면 <span class="math inline">\(\hat{w}=0\)</span>일 경우 <span class="math inline">\(y_i \approx \hat{w}x_i\)</span>로 만드는 것이 가능</p>
+<p>현재 <span class="math inline">\(\hat{y}_i = \hat{w}x_i\)</span> 꼴의 아키텍처이고 <span class="math inline">\(y_i \approx \hat{w}x_i\)</span> 가 되는 적당한 <span class="math inline">\(\hat{w}\)</span>를 찾아야 하는 상황</p>
+<ul>
+<li><span class="math inline">\((x_i,y_i)=(0,1)\)</span> 이면 어떠한 <span class="math inline">\(\hat{w}\)</span>를 선택해도 <span class="math inline">\(y_i \approx \hat{w}x_i\)</span>를 만드는 것이 불가능<br>
+</li>
+<li><span class="math inline">\((x_i,y_i)=(1,0)\)</span> 이면 <span class="math inline">\(\hat{w}=0\)</span>일 경우 <span class="math inline">\(y_i \approx \hat{w}x_i\)</span>로 만드는 것이 가능</li>
+</ul>
 <p>상황을 종합해보니 <span class="math inline">\(\hat{w}=0\)</span>으로 학습되는 것이 그나마 최선</p>
 </section>
-<section id="풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이" class="level4">
-<h4 class="anchored" data-anchor-id="풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이"><strong><em>(풀이2) 1개의 파라메터 – 성공, but 확장성이 없는 풀이</em></strong></h4>
+<section id="풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이" class="level3">
+<h3 class="anchored" data-anchor-id="풀이2-1개의-파라메터-성공-but-확장성이-없는-풀이"><strong><em>(풀이2) 1개의 파라메터 – 성공, but 확장성이 없는 풀이</em></strong></h3>
 <p><code>-</code> 0이라는 값이 문제가 되므로 인코딩방식의 변경</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,{<span class="st">'a'</span>:<span class="op">-</span><span class="dv">1</span>,<span class="st">'b'</span>:<span class="dv">1</span>})).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>) </span>
@@ -682,10 +692,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 </section>
-<section id="로지스틱-모형을-이용한-풀이" class="level3">
-<h3 class="anchored" data-anchor-id="로지스틱-모형을-이용한-풀이">로지스틱 모형을 이용한 풀이</h3>
-<section id="풀이1-1개의-파라메터-실패-1" class="level4">
-<h4 class="anchored" data-anchor-id="풀이1-1개의-파라메터-실패-1"><strong><em>(풀이1) 1개의 파라메터 – 실패</em></strong></h4>
+<section id="로지스틱-모형을-이용한-풀이" class="level2">
+<h2 class="anchored" data-anchor-id="로지스틱-모형을-이용한-풀이">로지스틱 모형을 이용한 풀이</h2>
+<section id="풀이1-1개의-파라메터-실패-1" class="level3">
+<h3 class="anchored" data-anchor-id="풀이1-1개의-파라메터-실패-1"><strong><em>(풀이1) 1개의 파라메터 – 실패</em></strong></h3>
 <p><code>-</code> 데이터를 다시 a=0, b=1로 정리</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>}</span>
@@ -733,7 +743,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-11-01-9wk-2_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p><code>-</code> 결과해석: 예상되었던 실패임 - 아키텍처는 <span class="math inline">\(\hat{y}_i = \text{sig}(\hat{w}x_i)\)</span> 꼴이다. - <span class="math inline">\((x_i,y_i)=(0,1)\)</span> 이라면 어떠한 <span class="math inline">\(\hat{w}\)</span>을 선택해도 <span class="math inline">\(\hat{w}x_i=0\)</span> 이다. 이경우 <span class="math inline">\(\hat{y}_i = \text{sig}(0) = 0.5\)</span> 가 된다. - <span class="math inline">\((x_i,y_i)=(1,0)\)</span> 이라면 <span class="math inline">\(\hat{w}=-5\)</span>와 같은 값으로 선택하면 <span class="math inline">\(\text{sig}(-5) \approx 0 = y_i\)</span> 와 같이 만들 수 있다. - 상황을 종합하면 net의 weight는 <span class="math inline">\(\text{sig}(\hat{w}x_i) \approx 0\)</span> 이 되도록 적당한 음수로 학습되는 것이 최선임을 알 수 있다.</p>
+<p><code>-</code> 결과해석: 예상되었던 실패임</p>
+<ul>
+<li>아키텍처는 <span class="math inline">\(\hat{y}_i = \text{sig}(\hat{w}x_i)\)</span> 꼴이다.</li>
+<li><span class="math inline">\((x_i,y_i)=(0,1)\)</span> 이라면 어떠한 <span class="math inline">\(\hat{w}\)</span>을 선택해도 <span class="math inline">\(\hat{w}x_i=0\)</span> 이다. 이경우 <span class="math inline">\(\hat{y}_i = \text{sig}(0) = 0.5\)</span> 가 된다.</li>
+<li><span class="math inline">\((x_i,y_i)=(1,0)\)</span> 이라면 <span class="math inline">\(\hat{w}=-5\)</span>와 같은 값으로 선택하면 <span class="math inline">\(\text{sig}(-5) \approx 0 = y_i\)</span> 와 같이 만들 수 있다.</li>
+<li>상황을 종합하면 net의 weight는 <span class="math inline">\(\text{sig}(\hat{w}x_i) \approx 0\)</span> 이 되도록 적당한 음수로 학습되는 것이 최선임을 알 수 있다.</li>
+</ul>
 <div class="cell" data-outputid="be864ef0-9224-401c-c31c-5e81592f3874">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>net.weight <span class="co"># 적당한 음수값으로 학습되어있음을 확인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -742,8 +758,8 @@ tensor([[-4.0070]], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="풀이2-2개의-파라메터-좋은-초기값-성공" class="level4">
-<h4 class="anchored" data-anchor-id="풀이2-2개의-파라메터-좋은-초기값-성공"><strong><em>(풀이2) 2개의 파라메터 + 좋은 초기값 – 성공</em></strong></h4>
+<section id="풀이2-2개의-파라메터-좋은-초기값-성공" class="level3">
+<h3 class="anchored" data-anchor-id="풀이2-2개의-파라메터-좋은-초기값-성공"><strong><em>(풀이2) 2개의 파라메터 + 좋은 초기값 – 성공</em></strong></h3>
 <p><code>-</code> 동일하게 a=0, b=1로 맵핑</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>}</span>
@@ -820,8 +836,8 @@ tensor([[-4.0070]], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="풀이3-2개의-파라메터-나쁜초기값-성공" class="level4">
-<h4 class="anchored" data-anchor-id="풀이3-2개의-파라메터-나쁜초기값-성공"><strong><em>(풀이3) 2개의 파라메터 + 나쁜초기값 – 성공</em></strong></h4>
+<section id="풀이3-2개의-파라메터-나쁜초기값-성공" class="level3">
+<h3 class="anchored" data-anchor-id="풀이3-2개의-파라메터-나쁜초기값-성공"><strong><em>(풀이3) 2개의 파라메터 + 나쁜초기값 – 성공</em></strong></h3>
 <p><code>-</code> a=0, b=1</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>}</span>
@@ -901,8 +917,8 @@ tensor([[-4.0070]], requires_grad=True)</code></pre>
 <li>결국 수렴하긴 할듯</li>
 </ul>
 </section>
-<section id="풀이4-3개의-파라메터를-쓴다면" class="level4">
-<h4 class="anchored" data-anchor-id="풀이4-3개의-파라메터를-쓴다면"><strong><em>(풀이4) 3개의 파라메터를 쓴다면?</em></strong></h4>
+<section id="풀이4-3개의-파라메터를-쓴다면" class="level3">
+<h3 class="anchored" data-anchor-id="풀이4-3개의-파라메터를-쓴다면"><strong><em>(풀이4) 3개의 파라메터를 쓴다면?</em></strong></h3>
 <p><code>-</code> a=0, b=1로 코딩</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>}</span>
@@ -1166,10 +1182,10 @@ tensor([[-4.0070]], requires_grad=True)</code></pre>
 <p><code>-</code> 실험해보니까 tanh가 우수한것 같다. <span class="math inline">\(\to\)</span> 앞으로는 tanh를 쓰자.</p>
 </section>
 </section>
-<section id="소프트맥스로-확장" class="level3">
-<h3 class="anchored" data-anchor-id="소프트맥스로-확장">소프트맥스로 확장</h3>
-<section id="풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장" class="level4">
-<h4 class="anchored" data-anchor-id="풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장">(풀이1) 로지스틱모형에서 3개의 파라메터 버전을 그대로 확장</h4>
+<section id="소프트맥스로-확장" class="level2">
+<h2 class="anchored" data-anchor-id="소프트맥스로-확장">소프트맥스로 확장</h2>
+<section id="풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장" class="level3">
+<h3 class="anchored" data-anchor-id="풀이1-로지스틱모형에서-3개의-파라메터-버전을-그대로-확장">(풀이1) 로지스틱모형에서 3개의 파라메터 버전을 그대로 확장</h3>
 <div class="cell" data-outputid="34a8d1a1-f1ae-4c06-ee88-a26b7dc4c1a3">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:[<span class="dv">1</span>,<span class="dv">0</span>],<span class="st">'b'</span>:[<span class="dv">0</span>,<span class="dv">1</span>]}</span>
 <span id="cb83-2"><a href="#cb83-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping)).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)</span>
@@ -1236,10 +1252,10 @@ tensor([[-4.0070]], requires_grad=True)</code></pre>
 </section>
 </section>
 </section>
-<section id="embedding-layer" class="level2">
-<h2 class="anchored" data-anchor-id="embedding-layer">Embedding Layer</h2>
-<section id="motive" class="level3">
-<h3 class="anchored" data-anchor-id="motive">motive</h3>
+<section id="embedding-layer" class="level1">
+<h1>Embedding Layer</h1>
+<section id="motive" class="level2">
+<h2 class="anchored" data-anchor-id="motive">motive</h2>
 <p><code>-</code> 결국 최종적으로는 아래와 같은 맵핑방식이 확장성이 있어보인다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:[<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>],<span class="st">'b'</span>:[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>],<span class="st">'c'</span>:[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]} <span class="co"># 원핫인코딩 방식 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1304,23 +1320,15 @@ tensor([[-0.8178],
 </div>
 <p>결국 ebdd는 아래의 구조에 해당하는 파라메터들이고</p>
 <ul>
-<li>$=
-<span class="math display">\[\begin{bmatrix} 0 \\ 1 \\ 2 \\ 0 \\ 1 \end{bmatrix}\]</span>
-
-<span class="math display">\[\begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{bmatrix}\]</span>
-net(x)=
-<span class="math display">\[\begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{bmatrix}\begin{bmatrix} -0.8178 \\ -0.7052 \\ -0.5843 \end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix} -0.8178 \\ -0.7052 \\ -0.5843 \\ -0.8178 \\ -0.7052  \end{bmatrix}\]</span>
-$</li>
+<li><span class="math inline">\(\text{x[:5]}= \begin{bmatrix} 0 \\ 1 \\ 2 \\ 0 \\ 1 \end{bmatrix} \Longrightarrow \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{bmatrix} \quad net(x)= \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{bmatrix}\begin{bmatrix} -0.8178 \\ -0.7052 \\ -0.5843 \end{bmatrix} = \begin{bmatrix} -0.8178 \\ -0.7052 \\ -0.5843 \\ -0.8178 \\ -0.7052 \end{bmatrix}\)</span></li>
 </ul>
 <p>linr는 아래의 구조에 해당하는 파라메터이다.</p>
 <ul>
 <li><span class="math inline">\(\text{x[:5]}= \begin{bmatrix} 0 \\ 1 \\ 2 \\ 0 \\ 1 \end{bmatrix} \quad net(x)= \begin{bmatrix} 0 \\ 1 \\ 2 \\ 0 \\ 1 \end{bmatrix} \times (-0.3467) + (-0.8470)=\begin{bmatrix} -0.8470 \\ -1.1937 \\ -1.5404 \\ -0.8470 \\ -1.1937 \end{bmatrix}\)</span></li>
 </ul>
 </section>
-<section id="연습-ab문제-소프트맥스로-확장한-것-다시-풀이" class="level3">
-<h3 class="anchored" data-anchor-id="연습-ab문제-소프트맥스로-확장한-것-다시-풀이">연습 (ab문제 소프트맥스로 확장한 것 다시 풀이)</h3>
+<section id="연습-ab문제-소프트맥스로-확장한-것-다시-풀이" class="level2">
+<h2 class="anchored" data-anchor-id="연습-ab문제-소프트맥스로-확장한-것-다시-풀이">연습 (ab문제 소프트맥스로 확장한 것 다시 풀이)</h2>
 <p><code>-</code> 맵핑</p>
 <div class="cell" data-outputid="221907fb-86d7-44a5-ef2a-b5137bf18355">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>}</span>
@@ -1373,8 +1381,8 @@ $</li>
 <hr>
 </section>
 </section>
-<section id="hw" class="level2">
-<h2 class="anchored" data-anchor-id="hw">HW</h2>
+<section id="hw" class="level1">
+<h1>HW</h1>
 <p>아래의 코드를 관찰하라.</p>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1"></a>x <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>]<span class="op">*</span><span class="dv">5</span></span>
@@ -1394,15 +1402,7 @@ tensor([[-0.8178],
 <p>(풀이)</p>
 <p>굳이 실행해보지 않아도 아래임을 알 수 있다.</p>
 <ul>
-<li>$=
-<span class="math display">\[\begin{bmatrix} 0 \\ 1 \\ 0 \\ 1 \\ 0 \\ 1 \\ 0 \\ 1 \\ 0 \\ 1 \end{bmatrix}\]</span>
-
-<span class="math display">\[\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1  \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1  \end{bmatrix}\]</span>
-net(x)=
-<span class="math display">\[\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1  \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1  \end{bmatrix} \begin{bmatrix} -0.8178 \\ -0.7052 \end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix} -0.8178 \\ -0.7052 \\ -0.8178 \\ -0.7052 \\-0.8178 \\ -0.7052 \\-0.8178 \\ -0.7052 \\-0.8178 \\ -0.7052 \end{bmatrix}\]</span>
-$</li>
+<li><span class="math inline">\(\text{x}= \begin{bmatrix} 0 \\ 1 \\ 0 \\ 1 \\ 0 \\ 1 \\ 0 \\ 1 \\ 0 \\ 1 \end{bmatrix} \Longrightarrow \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \quad net(x)= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix} -0.8178 \\ -0.7052 \end{bmatrix} = \begin{bmatrix} -0.8178 \\ -0.7052 \\ -0.8178 \\ -0.7052 \\-0.8178 \\ -0.7052 \\-0.8178 \\ -0.7052 \\-0.8178 \\ -0.7052 \end{bmatrix}\)</span></li>
 </ul>
 <p>실행해보면서 확인</p>
 <div class="cell" data-execution_count="22">
@@ -1429,7 +1429,6 @@ $</li>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

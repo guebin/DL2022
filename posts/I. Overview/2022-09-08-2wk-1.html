@@ -412,14 +412,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-이미지자료분석2" id="toc-overview-이미지자료분석2" class="nav-link active" data-scroll-target="#overview-이미지자료분석2">09/08: [Overview] 이미지자료분석(2)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#지난시간-복습" id="toc-지난시간-복습" class="nav-link" data-scroll-target="#지난시간-복습">지난시간 복습</a></li>
   <li><a href="#프로그래밍-과정-overview" id="toc-프로그래밍-과정-overview" class="nav-link" data-scroll-target="#프로그래밍-과정-overview">프로그래밍 과정 overview</a></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -429,25 +426,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="overview-이미지자료분석2" class="level1">
-<h1>09/08: [Overview] 이미지자료분석(2)</h1>
 <blockquote class="blockquote">
-<p>fastai: 이미지자료분석 복습 (코드정리) / 데이터정리 <span class="math inline">\(\to\)</span> lrnr <span class="math inline">\(\to\)</span> lrnr.학습() <span class="math inline">\(\to\)</span> lrnr.예측()</p>
+<p>이미지자료분석(2) 데이터정리 <span class="math inline">\(\to\)</span> lrnr <span class="math inline">\(\to\)</span> lrnr.학습() <span class="math inline">\(\to\)</span> lrnr.예측()</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zcq1v38u87lMmD47ujarOZ</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-zcq1v38u87lMmD47ujarOZ" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-zcq1v38u87lMmD47ujarOZ</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<section id="imports" class="level1">
+<h1>imports</h1>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="지난시간-복습" class="level2">
-<h2 class="anchored" data-anchor-id="지난시간-복습">지난시간 복습</h2>
+<section id="지난시간-복습" class="level1">
+<h1>지난시간 복습</h1>
 <p><code>(1)</code> 데이터의 정리</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -599,8 +592,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="프로그래밍-과정-overview" class="level2">
-<h2 class="anchored" data-anchor-id="프로그래밍-과정-overview">프로그래밍 과정 overview</h2>
+<section id="프로그래밍-과정-overview" class="level1">
+<h1>프로그래밍 과정 overview</h1>
 <p><code>-</code> overview</p>
 <ol type="1">
 <li><p><code>dls</code> 오브젝트 생성</p></li>
@@ -652,15 +645,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </section>
-<section id="숙제" class="level2">
-<h2 class="anchored" data-anchor-id="숙제">숙제</h2>
-<p>아래의 함수들이 정의된 위치를 찾아보고 경로를 제출하라. - ImageDataLoaders.from_name_func - cnn_learner - lrnr.fine_tune - lrnr.predict</p>
+<section id="숙제" class="level1">
+<h1>숙제</h1>
+<p>아래의 함수들이 정의된 위치를 찾아보고 경로를 제출하라.</p>
+<ul>
+<li>ImageDataLoaders.from_name_func</li>
+<li>cnn_learner</li>
+<li>lrnr.fine_tune</li>
+<li>lrnr.predict</li>
+</ul>
 <p>단, 여기에서 lrnr는 cnn_learner()로부터 생성된 오브젝트 이다.</p>
 <p><strong>제출예시</strong></p>
-<p>ImageDataLoaders.from_name_func - ~/anaconda3/envs/py37/lib/python3.7/site-packages/fastai/vision/data.py</p>
+<p>ImageDataLoaders.from_name_func</p>
+<ul>
+<li>~/anaconda3/envs/py37/lib/python3.7/site-packages/fastai/vision/data.py</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -409,9 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#순환신경망-rnn-1" id="toc-순환신경망-rnn-1" class="nav-link active" data-scroll-target="#순환신경망-rnn-1">11/08: [순환신경망] RNN (1)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">import</a></li>
   <li><a href="#define-some-funtions" id="toc-define-some-funtions" class="nav-link" data-scroll-target="#define-some-funtions">Define some funtions</a></li>
   <li><a href="#예비학습-net.parameters의-의미" id="toc-예비학습-net.parameters의-의미" class="nav-link" data-scroll-target="#예비학습-net.parameters의-의미">예비학습: <code>net.parameters()</code>의 의미</a></li>
@@ -420,12 +418,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">data</a></li>
   <li><a href="#실패했던-풀이-구현1" id="toc-실패했던-풀이-구현1" class="nav-link" data-scroll-target="#실패했던-풀이-구현1">실패했던 풀이: 구현1</a></li>
   <li><a href="#실패했던-풀이-구현2" id="toc-실패했던-풀이-구현2" class="nav-link" data-scroll-target="#실패했던-풀이-구현2">실패했던 풀이: 구현2</a></li>
-  <li><a href="#순환신경망의-아이디어" id="toc-순환신경망의-아이디어" class="nav-link" data-scroll-target="#순환신경망의-아이디어">순환신경망의 아이디어</a></li>
+  <li><a href="#순환신경망의-아이디어" id="toc-순환신경망의-아이디어" class="nav-link" data-scroll-target="#순환신경망의-아이디어">순환신경망의 아이디어</a>
+  <ul class="collapse">
+  <li><a href="#모티브" id="toc-모티브" class="nav-link" data-scroll-target="#모티브"><strong><em>모티브</em></strong></a></li>
+  <li><a href="#알고리즘" id="toc-알고리즘" class="nav-link" data-scroll-target="#알고리즘"><strong><em>알고리즘</em></strong></a></li>
+  </ul></li>
   <li><a href="#순환신경망-구현1-with-rnncell-class-hidden-node-2-성공" id="toc-순환신경망-구현1-with-rnncell-class-hidden-node-2-성공" class="nav-link" data-scroll-target="#순환신경망-구현1-with-rnncell-class-hidden-node-2-성공">순환신경망 구현1 (with rNNCell class, hidden node 2) – 성공</a></li>
   <li><a href="#순환신경망-구현2-with-rnncell-hidden-node-2-성공" id="toc-순환신경망-구현2-with-rnncell-hidden-node-2-성공" class="nav-link" data-scroll-target="#순환신경망-구현2-with-rnncell-hidden-node-2-성공">순환신경망 구현2 (with RNNCell, hidden node 2) – 성공</a></li>
   </ul></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -435,20 +436,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="순환신경망-rnn-1" class="level1">
-<h1>11/08: [순환신경망] RNN (1)</h1>
 <blockquote class="blockquote">
-<p>AbAcAd예제(2)</p>
+<p>RNN (1)– AbAcAd예제(2)</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-wZO0M4cNFxymfrAumCpRM8</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-wZO0M4cNFxymfrAumCpRM8" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-wZO0M4cNFxymfrAumCpRM8</a></p>
 </section>
-<section id="import" class="level2">
-<h2 class="anchored" data-anchor-id="import">import</h2>
-<div class="cell" data-execution_count="129">
+<section id="import" class="level1">
+<h1>import</h1>
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -456,18 +453,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> time </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="define-some-funtions" class="level2">
-<h2 class="anchored" data-anchor-id="define-some-funtions">Define some funtions</h2>
+<section id="define-some-funtions" class="level1">
+<h1>Define some funtions</h1>
 <div class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> f(txt,mapping):</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="cf">return</span> [mapping[key] <span class="cf">for</span> key <span class="kw">in</span> txt] </span>
 <span id="cb2-3"><a href="#cb2-3"></a>soft <span class="op">=</span> torch.nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="예비학습-net.parameters의-의미" class="level2">
-<h2 class="anchored" data-anchor-id="예비학습-net.parameters의-의미">예비학습: <code>net.parameters()</code>의 의미</h2>
+<section id="예비학습-net.parameters의-의미" class="level1">
+<h1>예비학습: <code>net.parameters()</code>의 의미</h1>
 <p>9월27일 강의노트 중 “<code>net.parameters()</code>의 의미?”를 설명한다.</p>
-<p><code>-</code> iterator, generator의 개념필요 - https://guebin.github.io/IP2022/2022/06/06/(14주차)-6월6일.html, 클래스공부 8단계 참고</p>
+<p><code>-</code> iterator, generator의 개념필요</p>
+<ul>
+<li><a href="https://guebin.github.io/IP2022/2022/06/06/(14주차)-6월6일.html" class="uri">https://guebin.github.io/IP2022/2022/06/06/(14주차)-6월6일.html</a>, 클래스공부 8단계 참고</li>
+</ul>
 <p><code>-</code> 탐구시작: 네트워크 생성</p>
 <div class="cell" data-execution_count="186">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>net <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
@@ -518,8 +518,8 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 <p>결론: <code>net.parameters()</code>는 net오브젝트에서 학습할 파라메터를 모두 모아 리스트같은 iterable object로 만드는 함수라 이해할 수 있다.</p>
 <p><code>-</code> 응용예제1</p>
-<div class="cell" data-execution_count="193">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-09-22-regression.csv"</span>) </span>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/guebin/DL2022/master/posts/II.%20DNN/2022-09-22-regression.csv"</span>) </span>
 <span id="cb14-2"><a href="#cb14-2"></a>x<span class="op">=</span>torch.tensor(df.x).<span class="bu">float</span>().reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
 <span id="cb14-3"><a href="#cb14-3"></a>y<span class="op">=</span>torch.tensor(df.y).<span class="bu">float</span>().reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -555,8 +555,8 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 </div>
 <p><code>-</code> 응용예제2</p>
-<div class="cell" data-execution_count="200">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-09-22-regression.csv"</span>) </span>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/guebin/DL2022/master/posts/II.%20DNN/2022-09-22-regression.csv"</span>) </span>
 <span id="cb19-2"><a href="#cb19-2"></a>x <span class="op">=</span> torch.tensor(df.x).<span class="bu">float</span>().reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
 <span id="cb19-3"><a href="#cb19-3"></a>y <span class="op">=</span> torch.tensor(df.y).<span class="bu">float</span>().reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
 <span id="cb19-4"><a href="#cb19-4"></a>X <span class="op">=</span> torch.concat([torch.ones_like(x),x],axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -599,10 +599,10 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="exam4-abacad-2" class="level2">
-<h2 class="anchored" data-anchor-id="exam4-abacad-2">Exam4: AbAcAd (2)</h2>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">data</h3>
+<section id="exam4-abacad-2" class="level1">
+<h1>Exam4: AbAcAd (2)</h1>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">data</h2>
 <p><code>-</code> 기존의 정리방식</p>
 <div class="cell" data-execution_count="207">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'AbAcAd'</span>)<span class="op">*</span><span class="dv">100</span></span>
@@ -656,8 +656,8 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="실패했던-풀이-구현1" class="level3">
-<h3 class="anchored" data-anchor-id="실패했던-풀이-구현1">실패했던 풀이: 구현1</h3>
+<section id="실패했던-풀이-구현1" class="level2">
+<h2 class="anchored" data-anchor-id="실패했던-풀이-구현1">실패했던 풀이: 구현1</h2>
 <p><code>-</code> 저번시간의 실패한 풀이</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb37-2"><a href="#cb37-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
@@ -667,7 +667,10 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 <span id="cb37-6"><a href="#cb37-6"></a>)</span>
 <span id="cb37-7"><a href="#cb37-7"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
 <span id="cb37-8"><a href="#cb37-8"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>-</code> Tanh까지만 클래스로 바꾸어서 구현 - 클래스를 이용하는 방법: https://guebin.github.io/DL2022/2022/11/01/(9주차)-11월1일.html#로지스틱-모형을-이용한-풀이</p>
+<p><code>-</code> Tanh까지만 클래스로 바꾸어서 구현</p>
+<ul>
+<li>클래스를 이용하는 방법: <a href="https://guebin.github.io/DL2022/2022/11/01/(9주차)-11월1일.html#로지스틱-모형을-이용한-풀이" class="uri">https://guebin.github.io/DL2022/2022/11/01/(9주차)-11월1일.html#로지스틱-모형을-이용한-풀이</a></li>
+</ul>
 <div class="cell" data-execution_count="221">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">class</span> Hnet(torch.nn.Module):</span>
 <span id="cb38-2"><a href="#cb38-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
@@ -714,19 +717,18 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="실패했던-풀이-구현2" class="level3">
-<h3 class="anchored" data-anchor-id="실패했던-풀이-구현2">실패했던 풀이: 구현2</h3>
+<section id="실패했던-풀이-구현2" class="level2">
+<h2 class="anchored" data-anchor-id="실패했던-풀이-구현2">실패했던 풀이: 구현2</h2>
 <p><code>-</code> Tanh까지 구현한 클래스</p>
-<div class="cell" data-execution_count="251">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">#</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="co"># class Hnet(torch.nn.Module):</span></span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="co">#     def __init__(self):</span></span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="co">#         super().__init__()</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a><span class="co">#         self.i2h = torch.nn.Linear(in_features=4,out_features=2)</span></span>
-<span id="cb43-6"><a href="#cb43-6"></a><span class="co">#         self.tanh = torch.nn.Tanh()</span></span>
-<span id="cb43-7"><a href="#cb43-7"></a><span class="co">#     def forward(self,x):</span></span>
-<span id="cb43-8"><a href="#cb43-8"></a><span class="co">#         hidden = self.tanh(self.i2h(x))</span></span>
-<span id="cb43-9"><a href="#cb43-9"></a><span class="co">#         return hidden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># class Hnet(torch.nn.Module):</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="co">#     def __init__(self):</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="co">#         super().__init__()</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="co">#         self.i2h = torch.nn.Linear(in_features=4,out_features=2)</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="co">#         self.tanh = torch.nn.Tanh()</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a><span class="co">#     def forward(self,x):</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="co">#         hidden = self.tanh(self.i2h(x))</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a><span class="co">#         return hidden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> for문돌릴준비</p>
 <div class="cell" data-execution_count="66">
@@ -767,10 +769,10 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="순환신경망의-아이디어" class="level3">
-<h3 class="anchored" data-anchor-id="순환신경망의-아이디어">순환신경망의 아이디어</h3>
-<section id="모티브" class="level4">
-<h4 class="anchored" data-anchor-id="모티브"><strong><em>모티브</em></strong></h4>
+<section id="순환신경망의-아이디어" class="level2">
+<h2 class="anchored" data-anchor-id="순환신경망의-아이디어">순환신경망의 아이디어</h2>
+<section id="모티브" class="level3">
+<h3 class="anchored" data-anchor-id="모티브"><strong><em>모티브</em></strong></h3>
 <p><strong><em>(예비생각1) <span class="math inline">\({\boldsymbol h}\)</span>에 대한 이해</em></strong></p>
 <p><span class="math inline">\({\boldsymbol h}\)</span>는 사실 문자열 ’abcd’들을 숫자로 바꾼 또 다른 형식의 숫자표현이라 해석할 수 있음. 즉 원핫인코딩과 다른 또 다른 형태의 숫자표현이라 해석할 수 있다. (사실 원핫인코딩보다 약간 더 (1) 액기스만 남은 느낌 + (2) 숙성된 느낌을 준다) - (why1) h는 “학습을 용이하게 하기 위해서 x를 적당히 선형적으로 전처리한 상태”라고 이해가능 - (why2) 실제로 예시를 살펴보면 그러했다.</p>
 <p>결론: 사실 <span class="math inline">\({\boldsymbol h}\)</span>는 잘 숙성되어있는 입력정보 <span class="math inline">\({\bf X}\)</span> 그 자체로 해석 할 수 있다.</p>
@@ -821,22 +823,16 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 <p>이제 우리가 배울것은 (1) “<span class="math inline">\(\text{콩물}_{t}\)</span>”와 “<span class="math inline">\(\text{간장}_{t-1}\)</span>”로 “<span class="math inline">\(\text{간장}_t\)</span>”를 <code>숙성</code>하는 방법 (2) “<span class="math inline">\(\text{간장}_t\)</span>”로 “<span class="math inline">\(\text{간장계란밥}_t\)</span>를 <code>조리</code>하는 방법이다</p>
 <p>즉 <code>숙성</code>담당 네트워크와 <code>조리</code>담당 네트워크를 각각 만들어 학습하면 된다.</p>
 </section>
-<section id="알고리즘" class="level4">
-<h4 class="anchored" data-anchor-id="알고리즘"><strong><em>알고리즘</em></strong></h4>
+<section id="알고리즘" class="level3">
+<h3 class="anchored" data-anchor-id="알고리즘"><strong><em>알고리즘</em></strong></h3>
 <p><strong>세부적인 알고리즘 (<span class="math inline">\(t=0,1,2,\dots\)</span>에 대하여 한줄 한줄 쓴 알고리즘)</strong></p>
-<ol type="1">
-<li><span class="math inline">\(t=0\)</span></li>
-</ol>
+<p><code>(1)</code> <span class="math inline">\(t=0\)</span></p>
 <p><span class="math inline">\({\boldsymbol h}_0=[[0,0]]\)</span> &lt;– <span class="math inline">\(\text{간장}_0\)</span>은 맹물로 초기화</p>
-<ol start="2" type="1">
-<li><span class="math inline">\(t=1\)</span></li>
-</ol>
+<p><code>(2)</code> <span class="math inline">\(t=1\)</span></p>
 <p><span class="math inline">\({\boldsymbol h}_1= \tanh({\boldsymbol x}_1{\bf W}_{ih}+{\boldsymbol h}_0{\bf W}_{hh}+{\boldsymbol b}_{ih}+{\boldsymbol b}_{hh})\)</span> - <span class="math inline">\({\boldsymbol x}_1\)</span>: (1,4) - <span class="math inline">\({\bf W}_{ih}\)</span>: (4,2) - <span class="math inline">\({\boldsymbol h}_0\)</span>: (1,2) - <span class="math inline">\({\bf W}_{hh}\)</span>: (2,2) - <span class="math inline">\({\boldsymbol b}_{ih}\)</span>: (1,2) - <span class="math inline">\({\boldsymbol b}_{hh}\)</span>: (1,2)</p>
 <p><span class="math inline">\({\boldsymbol o}_1= {\bf W}_{ho}{\boldsymbol h}_1+{\boldsymbol b}_{ho}\)</span></p>
 <p><span class="math inline">\(\hat{\boldsymbol y}_1 = \text{soft}({\boldsymbol o}_1)\)</span></p>
-<ol start="3" type="1">
-<li><span class="math inline">\(t=2\)</span> &lt;– 여기서부터는 <span class="math inline">\(t=2\)</span>와 비슷</li>
-</ol>
+<p><code>(3)</code> <span class="math inline">\(t=2\)</span> &lt;– 여기서부터는 <span class="math inline">\(t=2\)</span>와 비슷</p>
 <hr>
 <p><strong>좀 더 일반화된 알고리즘</strong></p>
 <p><strong><em>(ver1)</em></strong></p>
@@ -859,29 +855,28 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </ul>
 <hr>
 <p><strong><em>전체알고리즘은 대충 아래와 같은 형식으로 구현될 수 있음</em></strong></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="co">### </span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="kw">class</span> rNNCell(torch.nn.Module):</span>
-<span id="cb50-3"><a href="#cb50-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb50-4"><a href="#cb50-4"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
-<span id="cb50-5"><a href="#cb50-5"></a>        linr1 <span class="op">=</span> torch.nn.Linear(?,?) </span>
-<span id="cb50-6"><a href="#cb50-6"></a>        linr2 <span class="op">=</span> torch.nn.Linear(?,?) </span>
-<span id="cb50-7"><a href="#cb50-7"></a>        tanh <span class="op">=</span> torch.nn.Tanh()</span>
-<span id="cb50-8"><a href="#cb50-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>,x,hidden):</span>
-<span id="cb50-9"><a href="#cb50-9"></a>        hidden <span class="op">=</span> tanh(lrnr1(x)<span class="op">+</span>lrnr2(hidden))</span>
-<span id="cb50-10"><a href="#cb50-10"></a>        <span class="cf">return</span> hidden</span>
-<span id="cb50-11"><a href="#cb50-11"></a></span>
-<span id="cb50-12"><a href="#cb50-12"></a>init ht</span>
-<span id="cb50-13"><a href="#cb50-13"></a>rnncell <span class="op">=</span> rNNCell()</span>
-<span id="cb50-14"><a href="#cb50-14"></a></span>
-<span id="cb50-15"><a href="#cb50-15"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="dv">1</span>:T </span>
-<span id="cb50-16"><a href="#cb50-16"></a>    xt, yt <span class="op">=</span> x[[t]], y[[t]] </span>
-<span id="cb50-17"><a href="#cb50-17"></a>    ht <span class="op">=</span> rnncell(xt, ht)</span>
-<span id="cb50-18"><a href="#cb50-18"></a>    ot <span class="op">=</span> linr(ht) </span>
-<span id="cb50-19"><a href="#cb50-19"></a>    loss <span class="op">=</span> loss <span class="op">+</span> loss_fn(ot, yt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="kw">class</span> rNNCell(torch.nn.Module):</span>
+<span id="cb50-2"><a href="#cb50-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb50-3"><a href="#cb50-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb50-4"><a href="#cb50-4"></a>        linr1 <span class="op">=</span> torch.nn.Linear(?,?) </span>
+<span id="cb50-5"><a href="#cb50-5"></a>        linr2 <span class="op">=</span> torch.nn.Linear(?,?) </span>
+<span id="cb50-6"><a href="#cb50-6"></a>        tanh <span class="op">=</span> torch.nn.Tanh()</span>
+<span id="cb50-7"><a href="#cb50-7"></a>    <span class="kw">def</span> forward(<span class="va">self</span>,x,hidden):</span>
+<span id="cb50-8"><a href="#cb50-8"></a>        hidden <span class="op">=</span> tanh(lrnr1(x)<span class="op">+</span>lrnr2(hidden))</span>
+<span id="cb50-9"><a href="#cb50-9"></a>        <span class="cf">return</span> hidden</span>
+<span id="cb50-10"><a href="#cb50-10"></a></span>
+<span id="cb50-11"><a href="#cb50-11"></a>init ht</span>
+<span id="cb50-12"><a href="#cb50-12"></a>rnncell <span class="op">=</span> rNNCell()</span>
+<span id="cb50-13"><a href="#cb50-13"></a></span>
+<span id="cb50-14"><a href="#cb50-14"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="dv">1</span>:T </span>
+<span id="cb50-15"><a href="#cb50-15"></a>    xt, yt <span class="op">=</span> x[[t]], y[[t]] </span>
+<span id="cb50-16"><a href="#cb50-16"></a>    ht <span class="op">=</span> rnncell(xt, ht)</span>
+<span id="cb50-17"><a href="#cb50-17"></a>    ot <span class="op">=</span> linr(ht) </span>
+<span id="cb50-18"><a href="#cb50-18"></a>    loss <span class="op">=</span> loss <span class="op">+</span> loss_fn(ot, yt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="순환신경망-구현1-with-rnncell-class-hidden-node-2-성공" class="level3">
-<h3 class="anchored" data-anchor-id="순환신경망-구현1-with-rnncell-class-hidden-node-2-성공">순환신경망 구현1 (with rNNCell class, hidden node 2) – 성공</h3>
+<section id="순환신경망-구현1-with-rnncell-class-hidden-node-2-성공" class="level2">
+<h2 class="anchored" data-anchor-id="순환신경망-구현1-with-rnncell-class-hidden-node-2-성공">순환신경망 구현1 (with rNNCell class, hidden node 2) – 성공</h2>
 <p><code>(1)</code> 숙성담당 네트워크</p>
 <div class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">class</span> rNNCell(torch.nn.Module):</span>
@@ -963,8 +958,8 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 <li>왜? 간장계란밥은 간장이 중요한데, 간장은 시간이 갈수록 맛있어지니까..</li>
 </ul>
 </section>
-<section id="순환신경망-구현2-with-rnncell-hidden-node-2-성공" class="level3">
-<h3 class="anchored" data-anchor-id="순환신경망-구현2-with-rnncell-hidden-node-2-성공">순환신경망 구현2 (with RNNCell, hidden node 2) – 성공</h3>
+<section id="순환신경망-구현2-with-rnncell-hidden-node-2-성공" class="level2">
+<h2 class="anchored" data-anchor-id="순환신경망-구현2-with-rnncell-hidden-node-2-성공">순환신경망 구현2 (with RNNCell, hidden node 2) – 성공</h2>
 <p>ref: https://pytorch.org/docs/stable/generated/torch.nn.RNNCell.html</p>
 <p><code>(1)</code> 숙성네트워크</p>
 <p>선언</p>
@@ -1044,8 +1039,8 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </div>
 </section>
 </section>
-<section id="숙제" class="level2">
-<h2 class="anchored" data-anchor-id="숙제">숙제</h2>
+<section id="숙제" class="level1">
+<h1>숙제</h1>
 <p>아래와 같은 자료가 있다고 가정하자.</p>
 <div class="cell" data-execution_count="229">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>x <span class="op">=</span> torch.rand([<span class="dv">1000</span>,<span class="dv">1</span>])<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span></span>
@@ -1104,7 +1099,6 @@ tensor([-0.1656], requires_grad=True)</code></pre>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

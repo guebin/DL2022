@@ -412,9 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-이미지자료분석-1" id="toc-overview-이미지자료분석-1" class="nav-link active" data-scroll-target="#overview-이미지자료분석-1">09/06: [Overview] 이미지자료분석 (1)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
   <li><a href="#데이터저장" id="toc-데이터저장" class="nav-link" data-scroll-target="#데이터저장">데이터저장</a></li>
   <li><a href="#학습" id="toc-학습" class="nav-link" data-scroll-target="#학습">학습</a></li>
@@ -422,7 +420,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#오답분석" id="toc-오답분석" class="nav-link" data-scroll-target="#오답분석">오답분석</a></li>
   <li><a href="#진짜-잘되는게-맞는건가" id="toc-진짜-잘되는게-맞는건가" class="nav-link" data-scroll-target="#진짜-잘되는게-맞는건가">진짜 잘되는게 맞는건가?</a></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -432,25 +429,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="overview-이미지자료분석-1" class="level1">
-<h1>09/06: [Overview] 이미지자료분석 (1)</h1>
 <blockquote class="blockquote">
-<p>fastai로 이미지분석: 데이터저장, 학습, 기존데이터를 잘맞추는지 확인, 오답분석, 진짜 잘 맞추는게 맞을까?</p>
+<p>이미지자료분석(1)– 데이터저장, 학습, 기존데이터를 잘맞추는지 확인, 오답분석, 진짜 잘 맞추는게 맞을까?</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://www.youtube.com/playlist?list=PLQqh36zP38-w4djJcMLe2Jgfuj5V14NPi</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://www.youtube.com/playlist?list=PLQqh36zP38-w4djJcMLe2Jgfuj5V14NPi" class="uri">https://www.youtube.com/playlist?list=PLQqh36zP38-w4djJcMLe2Jgfuj5V14NPi</a></p>
 </section>
-<section id="import" class="level2">
-<h2 class="anchored" data-anchor-id="import">Import</h2>
+<section id="import" class="level1">
+<h1>Import</h1>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="데이터저장" class="level2">
-<h2 class="anchored" data-anchor-id="데이터저장">데이터저장</h2>
+<section id="데이터저장" class="level1">
+<h1>데이터저장</h1>
 <div class="cell" data-outputid="ec2c406a-2875-4bc8-d02a-fcc9b6c710ed" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co"># URLs.PETS: 스트링 -&gt; 주소가 저장되어 있음.. -&gt; 주소로 들어가보니 어떠한 압축파일이 자동으로 다운 받아짐, 이게 데이터 </span></span>
@@ -489,18 +482,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-outputid="b39039cb-cbe3-4098-cf16-ef751a8ca879" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># </span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># 탐색... 여러파일들이 있기는함.. </span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># Abyssinian_1.jpg 를 보고싶다면? </span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 탐색... 여러파일들이 있기는함.. </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># Abyssinian_1.jpg 를 보고싶다면? </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-outputid="b348c44c-88aa-4ef1-8ba0-58138d2dbbd4" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># Abyssinian_100.jpg 를 보고싶다면? </span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_100.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Abyssinian_100.jpg 를 보고싶다면? </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_100.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
@@ -612,9 +603,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># </span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="co"># 특1: 대문자이면 고양이, 소문자이면 강아지그림이다!! (천재적인 저장방식)</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="co"># 특2: 이미지크기가 서로 다르다..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># 특1: 대문자이면 고양이, 소문자이면 강아지그림이다!! (천재적인 저장방식)</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="co"># 특2: 이미지크기가 서로 다르다..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">def</span> label_func(fname):</span>
@@ -638,8 +628,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="학습" class="level2">
-<h2 class="anchored" data-anchor-id="학습">학습</h2>
+<section id="학습" class="level1">
+<h1>학습</h1>
 <div class="cell" data-outputid="8c2b32b2-5bd8-4a65-c726-f6b1b99a40a9" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
 <span id="cb34-2"><a href="#cb34-2"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span>
@@ -762,8 +752,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 </section>
-<section id="기존-데이터를-잘-맞추는지-확인" class="level2">
-<h2 class="anchored" data-anchor-id="기존-데이터를-잘-맞추는지-확인">기존 데이터를 잘 맞추는지 확인</h2>
+<section id="기존-데이터를-잘-맞추는지-확인" class="level1">
+<h1>기존 데이터를 잘 맞추는지 확인</h1>
 <div class="cell" data-outputid="c56fbeeb-c230-4295-8899-58f954e70baf" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>files[<span class="dv">0</span>] <span class="co"># 강아지 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -858,8 +848,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 </section>
-<section id="오답분석" class="level2">
-<h2 class="anchored" data-anchor-id="오답분석">오답분석</h2>
+<section id="오답분석" class="level1">
+<h1>오답분석</h1>
 <div class="cell" data-outputid="8ee6fd2f-acd8-4462-80e6-2f73ba7c2b3c" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>interpreter <span class="op">=</span> Interpretation.from_learner(clsfr) <span class="co"># 오답을 분석하는 오브젝트를 만듬.. 재료는 클래시파이어! </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -912,8 +902,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 </section>
-<section id="진짜-잘되는게-맞는건가" class="level2">
-<h2 class="anchored" data-anchor-id="진짜-잘되는게-맞는건가">진짜 잘되는게 맞는건가?</h2>
+<section id="진짜-잘되는게-맞는건가" class="level1">
+<h1>진짜 잘되는게 맞는건가?</h1>
 <div class="cell" data-outputid="6a1e3089-396c-4418-fb9d-23b7bb4371ce" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>clsfr.predict(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1164,9 +1154,12 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 </section>
-<section id="숙제" class="level2">
-<h2 class="anchored" data-anchor-id="숙제">숙제</h2>
-<p><code>-</code> 인터넷에 존재하는 개 혹은 고양이 이미지를 임의로 하나 불러온뒤 clsfr에 넣어보고 결과를 관찰하라. 관찰결과를 스크린샷하여 제출하라. - 숙제를 위한 예시코드</p>
+<section id="숙제" class="level1">
+<h1>숙제</h1>
+<p><code>-</code> 인터넷에 존재하는 개 혹은 고양이 이미지를 임의로 하나 불러온뒤 clsfr에 넣어보고 결과를 관찰하라. 관찰결과를 스크린샷하여 제출하라.</p>
+<ul>
+<li>숙제를 위한 예시코드</li>
+</ul>
 <div class="sourceCode" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg &lt;-- 인터넷의 이미지 주소</span></span>
 <span id="cb66-2"><a href="#cb66-2"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg'</span>).content)</span>
 <span id="cb66-3"><a href="#cb66-3"></a>clsfr.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1174,7 +1167,6 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <p><code>-</code> 숙제는 간단하게 편한 형식으로 제출하세요. (저는 스크린샷 선호해요..) pdf나 hwp로 만드실 필요 없습니다.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

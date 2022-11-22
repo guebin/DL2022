@@ -412,9 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#딥러닝의-기초-회귀분석2" id="toc-딥러닝의-기초-회귀분석2" class="nav-link active" data-scroll-target="#딥러닝의-기초-회귀분석2">09/22: [딥러닝의 기초] 회귀분석(2)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">review</a>
   <ul class="collapse">
   <li><a href="#ver1-loss-sum-of-squares-error" id="toc-ver1-loss-sum-of-squares-error" class="nav-link" data-scroll-target="#ver1-loss-sum-of-squares-error">ver1: loss = sum of squares error</a></li>
@@ -428,7 +426,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#잘못된사용2" id="toc-잘못된사용2" class="nav-link" data-scroll-target="#잘못된사용2">잘못된사용2</a></li>
   </ul></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -438,22 +435,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="딥러닝의-기초-회귀분석2" class="level1">
-<h1>09/22: [딥러닝의 기초] 회귀분석(2)</h1>
 <blockquote class="blockquote">
-<p>SSE와 MSE, step1의 다른버전 (torch.nn.Linear)</p>
+<p>회귀분석(2)– SSE와 MSE, step1의 다른버전 (torch.nn.Linear)</p>
 </blockquote>
 <section id="강의영상" class="level2">
 <h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-wezS4h765Rs5mQFoSjrLMk</p>
-</blockquote>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-wezS4h765Rs5mQFoSjrLMk" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-wezS4h765Rs5mQFoSjrLMk</a></p>
 <ul>
 <li>강의영상 재업로드 하였습니다.</li>
 </ul>
 </section>
-<section id="review" class="level2">
-<h2 class="anchored" data-anchor-id="review">review</h2>
+<section id="review" class="level1">
+<h1>review</h1>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -558,8 +551,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-22-4wk-1_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<section id="ver1-loss-sum-of-squares-error" class="level3">
-<h3 class="anchored" data-anchor-id="ver1-loss-sum-of-squares-error">ver1: loss = sum of squares error</h3>
+<section id="ver1-loss-sum-of-squares-error" class="level2">
+<h2 class="anchored" data-anchor-id="ver1-loss-sum-of-squares-error">ver1: loss = sum of squares error</h2>
 <div class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>alpha <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">1000</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>What <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.0</span>],[<span class="fl">10.0</span>]],requires_grad<span class="op">=</span><span class="va">True</span>)</span>
@@ -592,8 +585,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>note: 왜 What = What - alpha*What.grad 는 안되는지?</li>
 </ul>
 </section>
-<section id="ver2-loss-mean-squared-error-mse" class="level3">
-<h3 class="anchored" data-anchor-id="ver2-loss-mean-squared-error-mse">ver2: loss = mean squared error = MSE</h3>
+<section id="ver2-loss-mean-squared-error-mse" class="level2">
+<h2 class="anchored" data-anchor-id="ver2-loss-mean-squared-error-mse">ver2: loss = mean squared error = MSE</h2>
 <div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>alpha <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">10</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>What <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.0</span>],[<span class="fl">10.0</span>]],requires_grad<span class="op">=</span><span class="va">True</span>)</span>
@@ -617,10 +610,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="step1의-다른버전-torch.nn.linear" class="level2">
-<h2 class="anchored" data-anchor-id="step1의-다른버전-torch.nn.linear">step1의 다른버전: torch.nn.Linear()</h2>
-<section id="ver1-biastrue" class="level3">
-<h3 class="anchored" data-anchor-id="ver1-biastrue">ver1: bias=True</h3>
+<section id="step1의-다른버전-torch.nn.linear" class="level1">
+<h1>step1의 다른버전: torch.nn.Linear()</h1>
+<section id="ver1-biastrue" class="level2">
+<h2 class="anchored" data-anchor-id="ver1-biastrue">ver1: bias=True</h2>
 <div class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb14-2"><a href="#cb14-2"></a>net <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>, out_features<span class="op">=</span><span class="dv">1</span>, bias<span class="op">=</span><span class="va">True</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -660,8 +653,8 @@ tensor([-0.8470], requires_grad=True)</code></pre>
 </div>
 <p><code>-</code> 수식표현: <span class="math inline">\(\hat{y}_i = \hat{w}_0 + \hat{w}_1 x_i = \hat{b} + \hat{w}x_i = -0.8470 + -0.3467 x_i\)</span> for all <span class="math inline">\(i=1,2,\dots,100\)</span>.</p>
 </section>
-<section id="ver2" class="level3">
-<h3 class="anchored" data-anchor-id="ver2">ver2</h3>
+<section id="ver2" class="level2">
+<h2 class="anchored" data-anchor-id="ver2">ver2</h2>
 <p><code>-</code> 입력이 x가 아닌 X를 넣고 싶다면? (보통 잘 안하긴 해요, 왜? bias=False로 주는게 귀찮거든요) - X는 바이어스가 고려된 상황</p>
 <div class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>net(X) <span class="co">## 그대로 쓰면 당연히 에러</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -693,8 +686,8 @@ tensor([[-0.2451, -0.5989]], requires_grad=True)</code></pre>
 </div>
 <p><code>-</code> 수식표현: <span class="math inline">\(\hat{\bf y} = {\bf X} {\bf \hat W} = \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \dots &amp; \dots \\ 1 &amp; x_{100} \end{bmatrix} \begin{bmatrix} -0.2451 \\ -0.5989 \end{bmatrix}\)</span></p>
 </section>
-<section id="잘못된사용1" class="level3">
-<h3 class="anchored" data-anchor-id="잘못된사용1">잘못된사용1</h3>
+<section id="잘못된사용1" class="level2">
+<h2 class="anchored" data-anchor-id="잘못된사용1">잘못된사용1</h2>
 <div class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>_x <span class="op">=</span> x.reshape(<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -727,8 +720,8 @@ tensor([[-0.2451, -0.5989]], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="잘못된사용2" class="level3">
-<h3 class="anchored" data-anchor-id="잘못된사용2">잘못된사용2</h3>
+<section id="잘못된사용2" class="level2">
+<h2 class="anchored" data-anchor-id="잘못된사용2">잘못된사용2</h2>
 <div class="cell" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb35-2"><a href="#cb35-2"></a>net <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">1</span>) <span class="co"># bias=False를 깜빡..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -760,8 +753,8 @@ tensor([0.2549], requires_grad=True)</code></pre>
 </ul>
 </section>
 </section>
-<section id="숙제" class="level2">
-<h2 class="anchored" data-anchor-id="숙제">숙제</h2>
+<section id="숙제" class="level1">
+<h1>숙제</h1>
 <p><code>(1)</code> 자신의 학번을 seed로 설정하고 표준정규분포에서 5개의 난수를 생성하고 순서대로 정렬한 뒤 이를 <code>x</code>로 저장하라. (아래코드참고)</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>torch.manual_seed(<span class="dv">202043052</span>) </span>
 <span id="cb41-2"><a href="#cb41-2"></a>x,_ <span class="op">=</span> torch.randn(<span class="dv">5</span>).sort()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -856,7 +849,6 @@ tensor([0.2549], requires_grad=True)</code></pre>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
