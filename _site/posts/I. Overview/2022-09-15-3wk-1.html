@@ -399,6 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -412,15 +417,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-gan" id="toc-overview-gan" class="nav-link active" data-scroll-target="#overview-gan">09/15: [Overview] GAN</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#fastai를-이용한-분석-steps" id="toc-fastai를-이용한-분석-steps" class="nav-link" data-scroll-target="#fastai를-이용한-분석-steps">fastai를 이용한 분석 steps</a></li>
   <li><a href="#이미지분석-추천시스템-텍스트분석의-정리" id="toc-이미지분석-추천시스템-텍스트분석의-정리" class="nav-link" data-scroll-target="#이미지분석-추천시스템-텍스트분석의-정리">이미지분석, 추천시스템, 텍스트분석의 정리</a></li>
   <li><a href="#gan-intro" id="toc-gan-intro" class="nav-link" data-scroll-target="#gan-intro">GAN intro</a>
   <ul class="collapse">
   <li><a href="#생성모형이란-쉬운-설명" id="toc-생성모형이란-쉬운-설명" class="nav-link" data-scroll-target="#생성모형이란-쉬운-설명">생성모형이란? (쉬운 설명)</a></li>
+  <li><a href="#gan의-응용분야" id="toc-gan의-응용분야" class="nav-link" data-scroll-target="#gan의-응용분야">GAN의 응용분야</a></li>
   <li><a href="#생성모형이란-통계학과-버전의-설명" id="toc-생성모형이란-통계학과-버전의-설명" class="nav-link" data-scroll-target="#생성모형이란-통계학과-버전의-설명">생성모형이란? 통계학과 버전의 설명</a></li>
   <li><a href="#gan의-원리" id="toc-gan의-원리" class="nav-link" data-scroll-target="#gan의-원리">GAN의 원리</a></li>
   <li><a href="#아키텍처" id="toc-아키텍처" class="nav-link" data-scroll-target="#아키텍처">아키텍처</a></li>
@@ -432,7 +436,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#단계-2" id="toc-단계-2" class="nav-link" data-scroll-target="#단계-2">3단계</a></li>
   <li><a href="#단계-없음" id="toc-단계-없음" class="nav-link" data-scroll-target="#단계-없음">4단계 (없음)</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -442,26 +445,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="overview-gan" class="level1">
-<h1>09/15: [Overview] GAN</h1>
 <blockquote class="blockquote">
-<p>이미지분석, 추천시스템, 텍스트분석 복습 및 비교정리, GAN intro, GAN 실습</p>
+<p>이미지분석, 추천시스템, 텍스트분석 복습 및 비교정리 // GAN intro, GAN 실습</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-wLTADeftdizvmko4y_ATAW</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-wLTADeftdizvmko4y_ATAW" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-wLTADeftdizvmko4y_ATAW</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<section id="imports" class="level1">
+<h1>imports</h1>
 <div class="cell" data-execution_count="159">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.vision.gan <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="fastai를-이용한-분석-steps" class="level2">
-<h2 class="anchored" data-anchor-id="fastai를-이용한-분석-steps">fastai를 이용한 분석 steps</h2>
+<section id="fastai를-이용한-분석-steps" class="level1">
+<h1>fastai를 이용한 분석 steps</h1>
 <p><code>-</code> 비교</p>
 <table class="table">
 <colgroup>
@@ -512,8 +511,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </section>
-<section id="이미지분석-추천시스템-텍스트분석의-정리" class="level2">
-<h2 class="anchored" data-anchor-id="이미지분석-추천시스템-텍스트분석의-정리">이미지분석, 추천시스템, 텍스트분석의 정리</h2>
+<section id="이미지분석-추천시스템-텍스트분석의-정리" class="level1">
+<h1>이미지분석, 추천시스템, 텍스트분석의 정리</h1>
 <p><code>-</code> 데이터는 모두 아래와 같은 느낌이다.</p>
 <ol type="1">
 <li><p>데이터는 <span class="math inline">\((X,y)\)</span>의 형태로 정리되어 있다.</p></li>
@@ -575,30 +574,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><code>-</code> 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “규칙” 혹은 “원리”를 찾는 것이다. - 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “맵핑”을 찾는 것이다. - 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “힘수”을 찾는 것이다. 즉 <span class="math inline">\(y\approx f(X)\)</span>가 되도록 만드는 <span class="math inline">\(f\)</span>를 잘 찾는 것이다. (이 경우 함수를 추정한다라고 표현) - 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “모델”을 찾는 것이다. 즉 <span class="math inline">\(y\approx model(X)\)</span>가 되도록 만드는 <span class="math inline">\(model\)</span>을 잘 찾는 것이다. (이 경우 모형을 학습시킨다라고 표현) - <strong>학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “네트워크”을 찾는 것이다. 즉 <span class="math inline">\(y\approx net(X)\)</span>가 되도록 만드는 <span class="math inline">\(net\)</span>을 잘 찾는 것이다. (이 경우 모형을 네트워크를 학습시킨다라고 표현)</strong></p>
-<p><code>-</code> prediction이란 학습과정에서 찾은 “규착” 혹은 “원리”를 <span class="math inline">\(X\)</span>에 적용하여 <span class="math inline">\(\hat{y}\)</span>을 구하는 과정이다. 학습과정에서 찾은 규칙 혹은 원리는 <span class="math inline">\(f\)</span>,<span class="math inline">\(model\)</span>,<span class="math inline">\(net\)</span> 으로 생각가능한데 이에 따르면 아래가 성립한다. - <span class="math inline">\(\hat{y} = f(X)\)</span> - <span class="math inline">\(\hat{y} = model(X)\)</span> - <span class="math inline">\(\hat{y} = net(X)\)</span></p>
+<p><code>-</code> 학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “규칙” 혹은 “원리”를 찾는 것이다.</p>
+<ul>
+<li>학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “맵핑”을 찾는 것이다.</li>
+<li>학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “힘수”을 찾는 것이다. 즉 <span class="math inline">\(y\approx f(X)\)</span>가 되도록 만드는 <span class="math inline">\(f\)</span>를 잘 찾는 것이다. (이 경우 함수를 추정한다라고 표현)</li>
+<li>학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “모델”을 찾는 것이다. 즉 <span class="math inline">\(y\approx model(X)\)</span>가 되도록 만드는 <span class="math inline">\(model\)</span>을 잘 찾는 것이다. (이 경우 모형을 학습시킨다라고 표현)</li>
+<li><strong>학습이란 주어진 자료 <span class="math inline">\((X,y)\)</span>를 잘 분석하여 <span class="math inline">\(X\)</span>에서 <span class="math inline">\(y\)</span>로 가는 어떠한 “네트워크”을 찾는 것이다. 즉 <span class="math inline">\(y\approx net(X)\)</span>가 되도록 만드는 <span class="math inline">\(net\)</span>을 잘 찾는 것이다. (이 경우 모형을 네트워크를 학습시킨다라고 표현)</strong></li>
+</ul>
+<p><code>-</code> prediction이란 학습과정에서 찾은 “규칙” 혹은 “원리”를 <span class="math inline">\(X\)</span>에 적용하여 <span class="math inline">\(\hat{y}\)</span>을 구하는 과정이다. 학습과정에서 찾은 규칙 혹은 원리는 <span class="math inline">\(f\)</span>,<span class="math inline">\(model\)</span>,<span class="math inline">\(net\)</span> 으로 생각가능한데 이에 따르면 아래가 성립한다.</p>
+<ul>
+<li><span class="math inline">\(\hat{y} = f(X)\)</span></li>
+<li><span class="math inline">\(\hat{y} = model(X)\)</span></li>
+<li><span class="math inline">\(\hat{y} = net(X)\)</span></li>
+</ul>
 <p><strong><em>자잘한개념</em></strong></p>
 <p><code>-</code> <span class="math inline">\(\hat{y}\)</span>는 <span class="math inline">\(X\)</span>가 주어진 자료에 있는 값인지 아니면 새로운 값 인지에 따라 지칭하는 이름이 미묘하게 다르다.</p>
-<p>(경우1) <span class="math inline">\(X \in data\)</span>: <span class="math inline">\(\hat{y}=net(X)\)</span> 는 predicted value, fitted value 라고 부른다.</p>
-<p>(경우2) <span class="math inline">\(X \notin data\)</span>: <span class="math inline">\(\hat{y}=net(X)\)</span> 는 predicted value, predicted value with new data 라고 부른다.</p>
+<ol type="1">
+<li><p><span class="math inline">\(X \in data\)</span>: <span class="math inline">\(\hat{y}=net(X)\)</span> 는 predicted value, fitted value 라고 부른다.</p></li>
+<li><p><span class="math inline">\(X \notin data\)</span>: <span class="math inline">\(\hat{y}=net(X)\)</span> 는 predicted value, predicted value with new data 라고 부른다.</p></li>
+</ol>
 <p><code>-</code> 경우1은 “<span class="math inline">\(loss\)</span> = <span class="math inline">\(y\)</span> 와 <span class="math inline">\(\hat{y}\)</span> 의 차이” 를 정의할 수 있으나 경우2는 그렇지 않다.</p>
 </section>
-<section id="gan-intro" class="level2">
-<h2 class="anchored" data-anchor-id="gan-intro">GAN intro</h2>
-<p><code>-</code> 저자: 이안굿펠로우 - 천재임 - 지도교수가 요수아 벤지오</p>
-<p><code>-</code> 논문 NIPS, 저는 이 논문 읽고 소름돋았어요.. - https://arxiv.org/abs/1406.2661 (현재시점, 38751회 인용되었음 <span class="math inline">\(\to\)</span> 48978회 인용..)</p>
+<section id="gan-intro" class="level1">
+<h1>GAN intro</h1>
+<p><code>-</code> 저자: 이안굿펠로우</p>
+<ul>
+<li>천재임</li>
+<li>지도교수가 요수아 벤지오</li>
+</ul>
+<p><code>-</code> 논문 NIPS, 저는 이 논문 읽고 소름돋았어요..</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1406.2661" class="uri">https://arxiv.org/abs/1406.2661</a> (현재시점, 38751회 인용되었음 <span class="math inline">\(\to\)</span> 48978회 인용..)</li>
+</ul>
 <p><code>-</code> 최근 10년간 머신러닝 분야에서 가장 혁신적인 아이디어이다. (얀르쿤, 2014년 시점..)</p>
 <p><code>-</code> 무슨내용? 생성모형</p>
-<section id="생성모형이란-쉬운-설명" class="level3">
-<h3 class="anchored" data-anchor-id="생성모형이란-쉬운-설명">생성모형이란? (쉬운 설명)</h3>
+<section id="생성모형이란-쉬운-설명" class="level2">
+<h2 class="anchored" data-anchor-id="생성모형이란-쉬운-설명">생성모형이란? (쉬운 설명)</h2>
 <blockquote class="blockquote">
 <p>만들수 없다면 이해하지 못한 것이다, 리처드 파인만 (천재 물리학자)</p>
 </blockquote>
 <p><code>-</code> 사진속에 들어있는 동물이 개인지 고양이인지 맞출수 있는 기계와 개와 고양이를 그릴수 있는 기계중 어떤것이 더 시각적보에 대한 이해가 깊다고 볼수 있는가?</p>
 <p><code>-</code> 진정으로 인공지능이 이미지를 이해했다면, 이미지를 만들수도 있어야 한다. <span class="math inline">\(\to\)</span> 이미지를 생성하는 모형을 만들어보자 <span class="math inline">\(\to\)</span> 성공</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg" class="img-fluid"></p>
-<section id="gan의-응용분야" class="level4">
-<h4 class="anchored" data-anchor-id="gan의-응용분야">GAN의 응용분야</h4>
+</section>
+<section id="gan의-응용분야" class="level2">
+<h2 class="anchored" data-anchor-id="gan의-응용분야">GAN의 응용분야</h2>
 <p><code>-</code> 내가 찍은 사진이 피카소의 화풍으로 표현된다면?</p>
 <p><code>-</code> 퀸의 라이브에이드가 4k로 나온다면?</p>
 <p><code>-</code> 1920년대 서울의 모습이 칼라로 복원된다면?</p>
@@ -607,9 +627,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> 거북이의 커버..</p>
 <p><code>-</code> 너무 많아요…..</p>
 </section>
-</section>
-<section id="생성모형이란-통계학과-버전의-설명" class="level3">
-<h3 class="anchored" data-anchor-id="생성모형이란-통계학과-버전의-설명">생성모형이란? 통계학과 버전의 설명</h3>
+<section id="생성모형이란-통계학과-버전의-설명" class="level2">
+<h2 class="anchored" data-anchor-id="생성모형이란-통계학과-버전의-설명">생성모형이란? 통계학과 버전의 설명</h2>
 <blockquote class="blockquote">
 <p>제한된 정보만으로 어떤 문제를 풀 때, 그 과정에서 원래의 문제보다 일반적인 문제를 풀지 말고, 가능한 원래의 문제를 직접 풀어야한다. 배프닉 (SVM 창시자)</p>
 </blockquote>
@@ -624,8 +643,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> 따라서 배프닉의 원리에 의하면 식별적 분류가 생성적 분류보다 바람직한 접근법이라 할 수 있음.</p>
 <p><code>-</code> 하지만 다양한 현실문제에서 생성모형이 유용할때가 많다.</p>
 </section>
-<section id="gan의-원리" class="level3">
-<h3 class="anchored" data-anchor-id="gan의-원리">GAN의 원리</h3>
+<section id="gan의-원리" class="level2">
+<h2 class="anchored" data-anchor-id="gan의-원리">GAN의 원리</h2>
 <p><code>-</code> GAN은 생성모형중 하나임</p>
 <p><code>-</code> GAN의 원리는 경찰과 위조지폐범이 서로 선의의(?) 경쟁을 통하여 서로 발전하는 모형으로 설명할 수 있다.</p>
 <blockquote class="blockquote">
@@ -644,9 +663,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><code>-</code> 굉장히 우수한 경찰조차도 진짜와 가짜를 구분하지 못할때(=진짜 이미지를 0.5의 확률로만 진짜라고 말할때 = 가짜 이미지를 0.5의 확률로만 가짜라고 말할때) 학습을 멈춘다.</p>
 </section>
-<section id="아키텍처" class="level3">
-<h3 class="anchored" data-anchor-id="아키텍처">아키텍처</h3>
-<p><code>-</code> 아래와 같은 두 모델(네트워크)를 생각하자. - 위조범네트워크: X=노이즈(=아무숫자) <span class="math inline">\(\to\)</span> y=지폐이미지(=가짜지폐) - 경찰네트워크: X={가짜지폐,진짜지폐} <span class="math inline">\(\to\)</span> y={진짜,가짜}</p>
+<section id="아키텍처" class="level2">
+<h2 class="anchored" data-anchor-id="아키텍처">아키텍처</h2>
+<p><code>-</code> 아래와 같은 두 모델(네트워크)를 생각하자.</p>
+<ul>
+<li>위조범네트워크: X=노이즈(=아무숫자) <span class="math inline">\(\to\)</span> y=지폐이미지(=가짜지폐)</li>
+<li>경찰네트워크: X={가짜지폐,진짜지폐} <span class="math inline">\(\to\)</span> y={진짜,가짜}</li>
+</ul>
 <p><code>-</code> 전체 알고리즘은 아래와 같은 순서로 돌아간다. (전체 이미지 자료는 <span class="math inline">\(n\)</span>개라고 하자)</p>
 <ol type="1">
 <li><p>적당한 크기의 <span class="math inline">\(n\)</span>개의 노이즈가 위조범네트워크에 입력으로 들어감</p></li>
@@ -656,10 +679,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="gan-실습" class="level2">
-<h2 class="anchored" data-anchor-id="gan-실습">GAN 실습</h2>
-<section id="단계" class="level3">
-<h3 class="anchored" data-anchor-id="단계">1단계</h3>
+<section id="gan-실습" class="level1">
+<h1>GAN 실습</h1>
+<section id="단계" class="level2">
+<h2 class="anchored" data-anchor-id="단계">1단계</h2>
 <div class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.MNIST_SAMPLE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -677,8 +700,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="단계-1" class="level3">
-<h3 class="anchored" data-anchor-id="단계-1">2단계</h3>
+<section id="단계-1" class="level2">
+<h2 class="anchored" data-anchor-id="단계-1">2단계</h2>
 <div class="cell" data-execution_count="142">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>counterfeiter <span class="op">=</span> basic_generator(<span class="dv">32</span>,n_channels<span class="op">=</span><span class="dv">3</span>,n_extra_layers<span class="op">=</span><span class="dv">1</span>) <span class="co"># 32*32의 이미지가 칼라이미지로 출력. </span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>police <span class="op">=</span> basic_critic(<span class="dv">32</span>,n_channels<span class="op">=</span><span class="dv">3</span>,n_extra_layers<span class="op">=</span><span class="dv">1</span>) <span class="co"># 32*32의 칼라이미지가 입력으로 들어옴. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -687,8 +710,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>lrnr <span class="op">=</span> GANLearner.wgan(dls,counterfeiter,police) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="단계-2" class="level3">
-<h3 class="anchored" data-anchor-id="단계-2">3단계</h3>
+<section id="단계-2" class="level2">
+<h2 class="anchored" data-anchor-id="단계-2">3단계</h2>
 <p><code>-</code> lrnr.fit(10) 진행</p>
 <div class="cell" data-execution_count="144">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>lrnr.fit(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1291,11 +1314,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>그럴싸한 글씨가 몇개 보이긴 함</li>
 </ul>
 </section>
-<section id="단계-없음" class="level3">
-<h3 class="anchored" data-anchor-id="단계-없음">4단계 (없음)</h3>
+<section id="단계-없음" class="level2">
+<h2 class="anchored" data-anchor-id="단계-없음">4단계 (없음)</h2>
 
 
-</section>
 </section>
 </section>
 

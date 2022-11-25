@@ -399,6 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -412,16 +417,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#이미지자료분석-cnn" id="toc-이미지자료분석-cnn" class="nav-link active" data-scroll-target="#이미지자료분석-cnn">10/18: [이미지자료분석] CNN</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">import</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">data</a></li>
   <li><a href="#cnn-예비학습" id="toc-cnn-예비학습" class="nav-link" data-scroll-target="#cnn-예비학습">CNN 예비학습</a>
   <ul class="collapse">
   <li><a href="#기존의-mlp-모형" id="toc-기존의-mlp-모형" class="nav-link" data-scroll-target="#기존의-mlp-모형">기존의 MLP 모형</a></li>
-  <li><a href="#새로운-아키텍처의-제시" id="toc-새로운-아키텍처의-제시" class="nav-link" data-scroll-target="#새로운-아키텍처의-제시">새로운 아키텍처의 제시</a></li>
+  <li><a href="#새로운-아키텍처의-제시" id="toc-새로운-아키텍처의-제시" class="nav-link" data-scroll-target="#새로운-아키텍처의-제시">새로운 아키텍처의 제시</a>
+  <ul class="collapse">
   <li><a href="#conv-레이어-선형변환의-2d-버전" id="toc-conv-레이어-선형변환의-2d-버전" class="nav-link" data-scroll-target="#conv-레이어-선형변환의-2d-버전">CONV 레이어 (선형변환의 2D 버전)</a></li>
+  </ul></li>
   <li><a href="#relu-2d" id="toc-relu-2d" class="nav-link" data-scroll-target="#relu-2d">ReLU (2d)</a></li>
   <li><a href="#maxpooling-레이어" id="toc-maxpooling-레이어" class="nav-link" data-scroll-target="#maxpooling-레이어">Maxpooling 레이어</a></li>
   </ul></li>
@@ -441,7 +446,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#lrnr-오브젝트" id="toc-lrnr-오브젝트" class="nav-link" data-scroll-target="#lrnr-오브젝트">Lrnr 오브젝트</a></li>
   <li><a href="#bcewithlogitsloss" id="toc-bcewithlogitsloss" class="nav-link" data-scroll-target="#bcewithlogitsloss">BCEWithLogitsLoss</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -451,39 +455,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="이미지자료분석-cnn" class="level1">
-<h1>10/18: [이미지자료분석] CNN</h1>
 <blockquote class="blockquote">
-<p>CNN 예비학습, CNN 구현 with CPU, CNN 구현 with GPU, BCEWithLogisticLoss</p>
+<p>CNN– CNN 예비학습, CNN 구현 (CPU), CNN 구현 (GPU), BCEWithLogisticLoss</p>
 </blockquote>
-<ul>
-<li>toc:true</li>
-<li>branch: master</li>
-<li>badges: true</li>
-<li>comments: true</li>
-<li>author: 최규빈</li>
-</ul>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-ymnoeGZPPvaaB35JmhRiTi</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-ymnoeGZPPvaaB35JmhRiTi" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-ymnoeGZPPvaaB35JmhRiTi</a></p>
 </section>
-<section id="import" class="level2">
-<h2 class="anchored" data-anchor-id="import">import</h2>
+<section id="import" class="level1">
+<h1>import</h1>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch </span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> torchvision</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> graphviz</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">def</span> gv(s): <span class="cf">return</span> graphviz.Source(<span class="st">'digraph G{ rankdir="LR"'</span><span class="op">+</span>s <span class="op">+</span> <span class="st">'; }'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">data</h2>
+<section id="data" class="level1">
+<h1>data</h1>
 <p><code>-</code> download data</p>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>path <span class="op">=</span> untar_data(URLs.MNIST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -512,12 +505,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="cnn-예비학습" class="level2">
-<h2 class="anchored" data-anchor-id="cnn-예비학습">CNN 예비학습</h2>
-<section id="기존의-mlp-모형" class="level3">
-<h3 class="anchored" data-anchor-id="기존의-mlp-모형">기존의 MLP 모형</h3>
+<section id="cnn-예비학습" class="level1">
+<h1>CNN 예비학습</h1>
+<section id="기존의-mlp-모형" class="level2">
+<h2 class="anchored" data-anchor-id="기존의-mlp-모형">기존의 MLP 모형</h2>
 <p><code>-</code> 교재의 모형</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>gv(<span class="st">'''</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="st">splines=line</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="st">subgraph cluster_1{</span></span>
@@ -565,7 +560,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-45"><a href="#cb8-45"></a><span class="st">    label = "Layer 2: Sigmoid"</span></span>
 <span id="cb8-46"><a href="#cb8-46"></a><span class="st">}</span></span>
 <span id="cb8-47"><a href="#cb8-47"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <p><img src="2022-10-18-7wk-2_files/figure-html/cell-8-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -573,8 +569,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> 기존에 개발된 모형이 회귀분석 기반으로 되어있어서 결국 회귀분석 틀에 짜 맞추어서 이미지자료를 분석하는 느낌</p>
 <p><code>-</code> observation의 차원은 <span class="math inline">\(784\)</span>가 아니라 <span class="math inline">\(1\times (28\times 28)\)</span>이 되어야 맞다.</p>
 </section>
-<section id="새로운-아키텍처의-제시" class="level3">
-<h3 class="anchored" data-anchor-id="새로운-아키텍처의-제시">새로운 아키텍처의 제시</h3>
+<section id="새로운-아키텍처의-제시" class="level2">
+<h2 class="anchored" data-anchor-id="새로운-아키텍처의-제시">새로운 아키텍처의 제시</h2>
 <p><code>-</code> 예전</p>
 <p><span class="math inline">\(\underset{(n,784)}{\bf X} \overset{l_1}{\to} \underset{(n,30)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,30)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
 <ul>
@@ -582,8 +578,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(relu\)</span>: 뻥튀기된 feature에 비선형을 추가하여 표현력 극대화</li>
 <li><span class="math inline">\(l_2\)</span>: 선형변환, 뻥튀기된 feature를 요약 하는 역할 (=데이터를 요약하는 역할)</li>
 </ul>
-<p><code>-</code> 새로운 아키텍처 - <span class="math inline">\(conv\)</span>: feature를 뻥튀기하는 역할 (2d ver <span class="math inline">\(l_1\)</span> 느낌) - <span class="math inline">\(relu\)</span>: - <span class="math inline">\(pooling\)</span>: 데이터를 요약하는 역할</p>
-</section>
+<p><code>-</code> 새로운 아키텍처</p>
+<ul>
+<li><span class="math inline">\(conv\)</span>: feature를 뻥튀기하는 역할 (2d ver <span class="math inline">\(l_1\)</span> 느낌)</li>
+<li><span class="math inline">\(relu\)</span>:</li>
+<li><span class="math inline">\(pooling\)</span>: 데이터를 요약하는 역할</li>
+</ul>
 <section id="conv-레이어-선형변환의-2d-버전" class="level3">
 <h3 class="anchored" data-anchor-id="conv-레이어-선형변환의-2d-버전">CONV 레이어 (선형변환의 2D 버전)</h3>
 <p><code>-</code> 우선 연산하는 방법만 살펴보자.</p>
@@ -722,11 +722,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><strong><em>(잔소리) axis 사용 익숙하지 않으면 아래 꼭 들으세요..</em></strong></p>
 <ul>
-<li>https://guebin.github.io/IP2022/2022/04/11/(6주차)-4월11일.html , numpy공부 4단계: 축</li>
+<li><a href="https://guebin.github.io/IP2022/2022/04/11/(6주차)-4월11일.html" class="uri">https://guebin.github.io/IP2022/2022/04/11/(6주차)-4월11일.html</a> , numpy공부 4단계: 축</li>
 </ul>
 </section>
-<section id="relu-2d" class="level3">
-<h3 class="anchored" data-anchor-id="relu-2d">ReLU (2d)</h3>
+</section>
+<section id="relu-2d" class="level2">
+<h2 class="anchored" data-anchor-id="relu-2d">ReLU (2d)</h2>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>_X <span class="op">=</span> torch.randn(<span class="dv">25</span>).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span>
 <span id="cb41-2"><a href="#cb41-2"></a>_X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -752,8 +753,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="maxpooling-레이어" class="level3">
-<h3 class="anchored" data-anchor-id="maxpooling-레이어">Maxpooling 레이어</h3>
+<section id="maxpooling-레이어" class="level2">
+<h2 class="anchored" data-anchor-id="maxpooling-레이어">Maxpooling 레이어</h2>
 <div class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>_maxpooling <span class="op">=</span> torch.nn.MaxPool2d((<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -805,16 +806,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="cnn-구현-cpu" class="level2">
-<h2 class="anchored" data-anchor-id="cnn-구현-cpu">CNN 구현 (CPU)</h2>
+<section id="cnn-구현-cpu" class="level1">
+<h1>CNN 구현 (CPU)</h1>
 <div class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>X.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>torch.Size([12665, 1, 28, 28])</code></pre>
 </div>
 </div>
-<section id="conv2d" class="level3">
-<h3 class="anchored" data-anchor-id="conv2d">(1) Conv2d</h3>
+<section id="conv2d" class="level2">
+<h2 class="anchored" data-anchor-id="conv2d">(1) Conv2d</h2>
 <div class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>c1 <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>,<span class="dv">16</span>,(<span class="dv">5</span>,<span class="dv">5</span>))</span>
 <span id="cb58-2"><a href="#cb58-2"></a><span class="bu">print</span>(X.shape)</span>
@@ -825,8 +826,8 @@ torch.Size([12665, 16, 24, 24])</code></pre>
 </div>
 </div>
 </section>
-<section id="relu" class="level3">
-<h3 class="anchored" data-anchor-id="relu">(2) ReLU</h3>
+<section id="relu" class="level2">
+<h2 class="anchored" data-anchor-id="relu">(2) ReLU</h2>
 <div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>a1 <span class="op">=</span> torch.nn.ReLU()</span>
 <span id="cb60-2"><a href="#cb60-2"></a><span class="bu">print</span>(X.shape)</span>
@@ -839,8 +840,8 @@ torch.Size([12665, 16, 24, 24])</code></pre>
 </div>
 </div>
 </section>
-<section id="maxpool2d" class="level3">
-<h3 class="anchored" data-anchor-id="maxpool2d">(3) MaxPool2D</h3>
+<section id="maxpool2d" class="level2">
+<h2 class="anchored" data-anchor-id="maxpool2d">(3) MaxPool2D</h2>
 <div class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>m1 <span class="op">=</span>  torch.nn.MaxPool2d((<span class="dv">2</span>,<span class="dv">2</span>)) </span>
 <span id="cb62-2"><a href="#cb62-2"></a><span class="bu">print</span>(X.shape)</span>
@@ -855,8 +856,8 @@ torch.Size([12665, 16, 12, 12])</code></pre>
 </div>
 </div>
 </section>
-<section id="적당히-마무리하고-시그모이드-태우자" class="level3">
-<h3 class="anchored" data-anchor-id="적당히-마무리하고-시그모이드-태우자">(4) 적당히 마무리하고 시그모이드 태우자</h3>
+<section id="적당히-마무리하고-시그모이드-태우자" class="level2">
+<h2 class="anchored" data-anchor-id="적당히-마무리하고-시그모이드-태우자">(4) 적당히 마무리하고 시그모이드 태우자</h2>
 <p><code>-</code> 펼치자.</p>
 <p>(방법1)</p>
 <div class="cell" data-execution_count="48">
@@ -987,10 +988,10 @@ torch.Size([12665, 1])</code></pre>
 </div>
 </section>
 </section>
-<section id="cnn-구현-gpu" class="level2">
-<h2 class="anchored" data-anchor-id="cnn-구현-gpu">CNN 구현 (GPU)</h2>
-<section id="dls" class="level3">
-<h3 class="anchored" data-anchor-id="dls">1. dls</h3>
+<section id="cnn-구현-gpu" class="level1">
+<h1>CNN 구현 (GPU)</h1>
+<section id="dls" class="level2">
+<h2 class="anchored" data-anchor-id="dls">1. dls</h2>
 <div class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a>ds1<span class="op">=</span>torch.utils.data.TensorDataset(X,y)</span>
 <span id="cb84-2"><a href="#cb84-2"></a>ds2<span class="op">=</span>torch.utils.data.TensorDataset(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1021,8 +1022,8 @@ torch.Size([12665, 1])</code></pre>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>dls <span class="op">=</span> DataLoaders(dl1,dl2) <span class="co"># 이거 fastai 지원함수입니다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="lrnr-생성-아키텍처-손실함수-옵티마이저" class="level3">
-<h3 class="anchored" data-anchor-id="lrnr-생성-아키텍처-손실함수-옵티마이저">2. lrnr 생성: 아키텍처, 손실함수, 옵티마이저</h3>
+<section id="lrnr-생성-아키텍처-손실함수-옵티마이저" class="level2">
+<h2 class="anchored" data-anchor-id="lrnr-생성-아키텍처-손실함수-옵티마이저">2. lrnr 생성: 아키텍처, 손실함수, 옵티마이저</h2>
 <div class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
 <span id="cb93-2"><a href="#cb93-2"></a>    torch.nn.Conv2d(<span class="dv">1</span>,<span class="dv">16</span>,(<span class="dv">5</span>,<span class="dv">5</span>)),</span>
@@ -1038,8 +1039,8 @@ torch.Size([12665, 1])</code></pre>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>lrnr <span class="op">=</span> Learner(dls,net,loss_fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="학습" class="level3">
-<h3 class="anchored" data-anchor-id="학습">3. 학습</h3>
+<section id="학습" class="level2">
+<h2 class="anchored" data-anchor-id="학습">3. 학습</h2>
 <div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a>lrnr.fit(<span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1137,8 +1138,8 @@ torch.Size([12665, 1])</code></pre>
 </div>
 </div>
 </section>
-<section id="예측-및-시각화" class="level3">
-<h3 class="anchored" data-anchor-id="예측-및-시각화">4. 예측 및 시각화</h3>
+<section id="예측-및-시각화" class="level2">
+<h2 class="anchored" data-anchor-id="예측-및-시각화">4. 예측 및 시각화</h2>
 <div class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1"></a>net.to(<span class="st">"cpu"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="69">
@@ -1175,8 +1176,8 @@ torch.Size([12665, 1])</code></pre>
 </div>
 <p><code>-</code> 빠르고 적합결과도 좋음</p>
 </section>
-<section id="lrnr-오브젝트" class="level3">
-<h3 class="anchored" data-anchor-id="lrnr-오브젝트">Lrnr 오브젝트</h3>
+<section id="lrnr-오브젝트" class="level2">
+<h2 class="anchored" data-anchor-id="lrnr-오브젝트">Lrnr 오브젝트</h2>
 <div class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1"></a>lrnr.model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="72">
@@ -1222,8 +1223,8 @@ torch.Size([12665, 1])</code></pre>
 </div>
 </div>
 </section>
-<section id="bcewithlogitsloss" class="level3">
-<h3 class="anchored" data-anchor-id="bcewithlogitsloss">BCEWithLogitsLoss</h3>
+<section id="bcewithlogitsloss" class="level2">
+<h2 class="anchored" data-anchor-id="bcewithlogitsloss">BCEWithLogitsLoss</h2>
 <p><code>-</code> BCEWithLogitsLoss = Sigmoid + BCELoss - 왜 써요? 수치적으로 더 안정</p>
 <p><code>-</code> 사용방법</p>
 <ol type="1">
@@ -1397,7 +1398,6 @@ torch.Size([12665, 1])</code></pre>
 </div>
 
 
-</section>
 </section>
 </section>
 

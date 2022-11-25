@@ -399,6 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -412,9 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#이미지자료분석-전이학습-camxai" id="toc-이미지자료분석-전이학습-camxai" class="nav-link active" data-scroll-target="#이미지자료분석-전이학습-camxai">10/25: [이미지자료분석] 전이학습, CAM/XAI</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#transfer-learning" id="toc-transfer-learning" class="nav-link" data-scroll-target="#transfer-learning">Transfer Learning</a>
   <ul class="collapse">
@@ -426,13 +429,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#cam이란" id="toc-cam이란" class="nav-link" data-scroll-target="#cam이란">CAM이란?</a></li>
   <li><a href="#학습에-사용할-데이터-load" id="toc-학습에-사용할-데이터-load" class="nav-link" data-scroll-target="#학습에-사용할-데이터-load">학습에 사용할 데이터 Load</a></li>
-  <li><a href="#구현0단계-예비학습" id="toc-구현0단계-예비학습" class="nav-link" data-scroll-target="#구현0단계-예비학습">구현0단계– 예비학습</a></li>
+  <li><a href="#구현0단계-예비학습" id="toc-구현0단계-예비학습" class="nav-link" data-scroll-target="#구현0단계-예비학습">구현0단계– 예비학습</a>
+  <ul class="collapse">
+  <li><a href="#하나의-이미지-선택" id="toc-하나의-이미지-선택" class="nav-link" data-scroll-target="#하나의-이미지-선택"><code>#</code> 하나의 이미지 선택</a></li>
+  <li><a href="#ap-layer" id="toc-ap-layer" class="nav-link" data-scroll-target="#ap-layer"><code>#</code> AP layer</a></li>
+  <li><a href="#torch.einsum" id="toc-torch.einsum" class="nav-link" data-scroll-target="#torch.einsum"><code>#</code> torch.einsum</a></li>
+  </ul></li>
   <li><a href="#구현1단계-이미지분류-잘하는-네트워크-선택" id="toc-구현1단계-이미지분류-잘하는-네트워크-선택" class="nav-link" data-scroll-target="#구현1단계-이미지분류-잘하는-네트워크-선택">구현1단계– 이미지분류 잘하는 네트워크 선택</a></li>
   <li><a href="#구현2단계-네트워크의-끝-부분-수정" id="toc-구현2단계-네트워크의-끝-부분-수정" class="nav-link" data-scroll-target="#구현2단계-네트워크의-끝-부분-수정">구현2단계– 네트워크의 끝 부분 수정</a></li>
   <li><a href="#구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈" id="toc-구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈" class="nav-link" data-scroll-target="#구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈">구현3단계– 수정된 net2에서 Linear와 AP의 순서를 바꿈</a></li>
   <li><a href="#잠깐-멈추고-생각" id="toc-잠깐-멈추고-생각" class="nav-link" data-scroll-target="#잠깐-멈추고-생각">잠깐 멈추고 생각</a></li>
   <li><a href="#구현4단계-cam-시각화" id="toc-구현4단계-cam-시각화" class="nav-link" data-scroll-target="#구현4단계-cam-시각화">구현4단계– CAM 시각화</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -443,27 +450,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="이미지자료분석-전이학습-camxai" class="level1">
-<h1>10/25: [이미지자료분석] 전이학습, CAM/XAI</h1>
 <blockquote class="blockquote">
 <p>Transfer Learninig (CIFAR10/ResNet18), CAM의 구현 및 시각화</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-xkHPJ1DiPKfseoBl9yUY4P</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-xkHPJ1DiPKfseoBl9yUY4P" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-xkHPJ1DiPKfseoBl9yUY4P</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<section id="imports" class="level1">
+<h1>imports</h1>
 <div class="cell" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch </span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> torchvision</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="transfer-learning" class="level2">
-<h2 class="anchored" data-anchor-id="transfer-learning">Transfer Learning</h2>
+<section id="transfer-learning" class="level1">
+<h1>Transfer Learning</h1>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.CIFAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -473,11 +476,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>(#3) [Path('/home/cgb4/.fastai/data/cifar10/labels.txt'),Path('/home/cgb4/.fastai/data/cifar10/train'),Path('/home/cgb4/.fastai/data/cifar10/test')]</code></pre>
 </div>
 </div>
-<section id="수제네트워크" class="level3">
-<h3 class="anchored" data-anchor-id="수제네트워크">수제네트워크</h3>
-<ol type="1">
-<li>dls</li>
-</ol>
+<section id="수제네트워크" class="level2">
+<h2 class="anchored" data-anchor-id="수제네트워크">수제네트워크</h2>
+<p><code>(1)</code> dls</p>
 <div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>dls <span class="op">=</span> ImageDataLoaders.from_folder(path,train<span class="op">=</span><span class="st">'train'</span>,valid<span class="op">=</span><span class="st">'test'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -500,9 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-10-25-8wk-2_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<ol start="2" type="1">
-<li>lrnr 생성</li>
-</ol>
+<p><code>(2)</code> lrnr 생성</p>
 <div class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>net1 <span class="op">=</span> torch.nn.Sequential(</span>
 <span id="cb11-2"><a href="#cb11-2"></a>    torch.nn.Conv2d(<span class="dv">3</span>,<span class="dv">128</span>,(<span class="dv">5</span>,<span class="dv">5</span>)),</span>
@@ -525,9 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-5"><a href="#cb14-5"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss() </span>
 <span id="cb14-6"><a href="#cb14-6"></a>lrnr <span class="op">=</span> Learner(dls,net,loss_fn,metrics<span class="op">=</span>accuracy) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>학습</li>
-</ol>
+<p><code>(3)</code> 학습</p>
 <div class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>lrnr.fit(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -639,15 +636,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>이게 생각보다 잘 안맞아요.. 70넘기 힘듬</li>
 </ul>
 </section>
-<section id="전이학습-남이-만든-네트워크" class="level3">
-<h3 class="anchored" data-anchor-id="전이학습-남이-만든-네트워크">전이학습 (남이 만든 네트워크)</h3>
-<ol start="2" type="1">
-<li>lrnr 생성</li>
-</ol>
+<section id="전이학습-남이-만든-네트워크" class="level2">
+<h2 class="anchored" data-anchor-id="전이학습-남이-만든-네트워크">전이학습 (남이 만든 네트워크)</h2>
+<p><code>(2)</code> lrnr 생성</p>
 <div class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">#collapse_output</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>net <span class="op">=</span> torchvision.models.resnet18(weights<span class="op">=</span>torchvision.models.resnet.ResNet18_Weights.IMAGENET1K_V1)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>net <span class="op">=</span> torchvision.models.resnet18(weights<span class="op">=</span>torchvision.models.resnet.ResNet18_Weights.IMAGENET1K_V1)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>net</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="109">
 <pre><code>ResNet(
   (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
@@ -745,9 +739,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss() </span>
 <span id="cb19-2"><a href="#cb19-2"></a>lrnr <span class="op">=</span> Learner(dls,net,loss_fn,metrics<span class="op">=</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>학습</li>
-</ol>
+<p><code>(3)</code> 학습</p>
 <div class="cell" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>lrnr.fit(<span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -860,8 +852,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>일반인이 거의 밑바닥에서 설계하는것보다 전이학습을 이용하는 것이 효율적일 경우가 많다.</li>
 </ul>
 </section>
-<section id="전이학습-다른-구현-순수-fastai-이용" class="level3">
-<h3 class="anchored" data-anchor-id="전이학습-다른-구현-순수-fastai-이용">전이학습 다른 구현: 순수 fastai 이용</h3>
+<section id="전이학습-다른-구현-순수-fastai-이용" class="level2">
+<h2 class="anchored" data-anchor-id="전이학습-다른-구현-순수-fastai-이용">전이학습 다른 구현: 순수 fastai 이용</h2>
 <p><code>-</code> 예전코드 복습</p>
 <div class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1130,17 +1122,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="cam" class="level2">
-<h2 class="anchored" data-anchor-id="cam">CAM</h2>
-<section id="cam이란" class="level3">
-<h3 class="anchored" data-anchor-id="cam이란">CAM이란?</h3>
+<section id="cam" class="level1">
+<h1>CAM</h1>
+<section id="cam이란" class="level2">
+<h2 class="anchored" data-anchor-id="cam이란">CAM이란?</h2>
 <ul>
-<li>ref: http://cnnlocalization.csail.mit.edu/Zhou_Learning_Deep_Features_CVPR_2016_paper.pdf</li>
+<li>ref: <a href="http://cnnlocalization.csail.mit.edu/Zhou_Learning_Deep_Features_CVPR_2016_paper.pdf" class="uri">http://cnnlocalization.csail.mit.edu/Zhou_Learning_Deep_Features_CVPR_2016_paper.pdf</a></li>
 </ul>
 <p><code>-</code> Class Activation Mapping (CAM)은 설명가능한 인공지능모형 (eXplainable Artificial Intelligence, XAI) 중 하나로 CNN의 판단근거를 시각화하는 기술</p>
 </section>
-<section id="학습에-사용할-데이터-load" class="level3">
-<h3 class="anchored" data-anchor-id="학습에-사용할-데이터-load">학습에 사용할 데이터 Load</h3>
+<section id="학습에-사용할-데이터-load" class="level2">
+<h2 class="anchored" data-anchor-id="학습에-사용할-데이터-load">학습에 사용할 데이터 Load</h2>
 <div class="cell" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1160,10 +1152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-7"><a href="#cb32-7"></a>dls <span class="op">=</span> ImageDataLoaders.from_name_func(path,files,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">512</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="구현0단계-예비학습" class="level3">
-<h3 class="anchored" data-anchor-id="구현0단계-예비학습">구현0단계– 예비학습</h3>
-<section id="하나의-이미지-선택" class="level4">
-<h4 class="anchored" data-anchor-id="하나의-이미지-선택"><code>#</code> 하나의 이미지 선택</h4>
+<section id="구현0단계-예비학습" class="level2">
+<h2 class="anchored" data-anchor-id="구현0단계-예비학습">구현0단계– 예비학습</h2>
+<section id="하나의-이미지-선택" class="level3">
+<h3 class="anchored" data-anchor-id="하나의-이미지-선택"><code>#</code> 하나의 이미지 선택</h3>
 <div class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>ximg <span class="op">=</span> PILImage.create(<span class="st">'/home/cgb4/.fastai/data/oxford-iiit-pet/images/staffordshire_bull_terrier_106.jpg'</span>)</span>
 <span id="cb33-2"><a href="#cb33-2"></a>ximg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1202,8 +1194,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="ap-layer" class="level4">
-<h4 class="anchored" data-anchor-id="ap-layer"><code>#</code> AP layer</h4>
+<section id="ap-layer" class="level3">
+<h3 class="anchored" data-anchor-id="ap-layer"><code>#</code> AP layer</h3>
 <div class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>ap <span class="op">=</span> torch.nn.AdaptiveAvgPool2d(output_size<span class="op">=</span><span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1244,8 +1236,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="torch.einsum" class="level4">
-<h4 class="anchored" data-anchor-id="torch.einsum"><code>#</code> torch.einsum</h4>
+<section id="torch.einsum" class="level3">
+<h3 class="anchored" data-anchor-id="torch.einsum"><code>#</code> torch.einsum</h3>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>tsr <span class="op">=</span> torch.arange(<span class="dv">12</span>).reshape(<span class="dv">4</span>,<span class="dv">3</span>)</span>
@@ -1312,8 +1304,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="구현1단계-이미지분류-잘하는-네트워크-선택" class="level3">
-<h3 class="anchored" data-anchor-id="구현1단계-이미지분류-잘하는-네트워크-선택">구현1단계– 이미지분류 잘하는 네트워크 선택</h3>
+<section id="구현1단계-이미지분류-잘하는-네트워크-선택" class="level2">
+<h2 class="anchored" data-anchor-id="구현1단계-이미지분류-잘하는-네트워크-선택">구현1단계– 이미지분류 잘하는 네트워크 선택</h2>
 <div class="cell" data-execution_count="137">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>lrnr <span class="op">=</span> vision_learner(dls,resnet34,metrics<span class="op">=</span>accuracy) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1409,8 +1401,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="구현2단계-네트워크의-끝-부분-수정" class="level3">
-<h3 class="anchored" data-anchor-id="구현2단계-네트워크의-끝-부분-수정">구현2단계– 네트워크의 끝 부분 수정</h3>
+<section id="구현2단계-네트워크의-끝-부분-수정" class="level2">
+<h2 class="anchored" data-anchor-id="구현2단계-네트워크의-끝-부분-수정">구현2단계– 네트워크의 끝 부분 수정</h2>
 <p><code>-</code> 모형의 분해</p>
 <div class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>net1<span class="op">=</span> lrnr.model[<span class="dv">0</span>]</span>
@@ -1593,8 +1585,8 @@ torch.Size([64, 1024])</code></pre>
 </div>
 </div>
 </section>
-<section id="구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈" class="level3">
-<h3 class="anchored" data-anchor-id="구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈">구현3단계– 수정된 net2에서 Linear와 AP의 순서를 바꿈</h3>
+<section id="구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈" class="level2">
+<h2 class="anchored" data-anchor-id="구현3단계-수정된-net2에서-linear와-ap의-순서를-바꿈">구현3단계– 수정된 net2에서 Linear와 AP의 순서를 바꿈</h2>
 <p><code>-</code> 1개의 observation을 고정하였을 경우 출력과정 상상</p>
 <div class="cell" data-execution_count="153">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a>ximg <span class="op">=</span> PILImage.create(<span class="st">'/home/cgb4/.fastai/data/oxford-iiit-pet/images/staffordshire_bull_terrier_106.jpg'</span>)</span>
@@ -1688,8 +1680,8 @@ torch.Size([1, 2])</code></pre>
 </div>
 </div>
 </section>
-<section id="잠깐-멈추고-생각" class="level3">
-<h3 class="anchored" data-anchor-id="잠깐-멈추고-생각">잠깐 멈추고 생각</h3>
+<section id="잠깐-멈추고-생각" class="level2">
+<h2 class="anchored" data-anchor-id="잠깐-멈추고-생각">잠깐 멈추고 생각</h2>
 <p><code>-</code> 이미지</p>
 <div class="cell" data-execution_count="187">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>ximg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1920,8 +1912,8 @@ torch.Size([1, 2])</code></pre>
 </div>
 </div>
 </section>
-<section id="구현4단계-cam-시각화" class="level3">
-<h3 class="anchored" data-anchor-id="구현4단계-cam-시각화">구현4단계– CAM 시각화</h3>
+<section id="구현4단계-cam-시각화" class="level2">
+<h2 class="anchored" data-anchor-id="구현4단계-cam-시각화">구현4단계– CAM 시각화</h2>
 <div class="cell" data-execution_count="278">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1"></a>sftmax <span class="op">=</span> torch.nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2031,7 +2023,6 @@ torch.Size([1, 2])</code></pre>
 </div>
 
 
-</section>
 </section>
 </section>
 

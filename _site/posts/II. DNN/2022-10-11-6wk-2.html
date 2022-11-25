@@ -399,6 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -412,9 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#딥러닝의-기초-깊은신경망3" id="toc-딥러닝의-기초-깊은신경망3" class="nav-link active" data-scroll-target="#딥러닝의-기초-깊은신경망3">10/11: [딥러닝의 기초] 깊은신경망(3)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현" id="toc-신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현" class="nav-link" data-scroll-target="#신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현">신경망의 표현 (<span class="math inline">\({\boldsymbol x} \to \hat{\boldsymbol y}\)</span> 로 가는 과정을 그림으로 표현)</a>
   <ul class="collapse">
@@ -450,7 +453,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#오버피팅-예시" id="toc-오버피팅-예시" class="nav-link" data-scroll-target="#오버피팅-예시">오버피팅 예시</a></li>
   <li><a href="#오버피팅이라는-뚜렷한-증거-train-test" id="toc-오버피팅이라는-뚜렷한-증거-train-test" class="nav-link" data-scroll-target="#오버피팅이라는-뚜렷한-증거-train-test">오버피팅이라는 뚜렷한 증거! (train / test)</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -460,36 +462,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="딥러닝의-기초-깊은신경망3" class="level1">
-<h1>10/11: [딥러닝의 기초] 깊은신경망(3)</h1>
 <blockquote class="blockquote">
-<p>신경망의표현, 시벤코정리증명, CPU vs GPU, 확률적경사하강법(+배치,에폭의 개념), 오버피팅</p>
+<p>깊은신경망(3)– 신경망의표현, 시벤코정리증명, CPU vs GPU, 확률적경사하강법(+배치,에폭의 개념), 오버피팅</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zXzWcQw8KYaSDuBOrEp7AA</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-zXzWcQw8KYaSDuBOrEp7AA" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-zXzWcQw8KYaSDuBOrEp7AA</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
-<div class="cell" data-execution_count="2">
+<section id="imports" class="level1">
+<h1>imports</h1>
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> torchvision</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> fastai.data.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> graphviz</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">def</span> gv(s): <span class="cf">return</span> graphviz.Source(<span class="st">'digraph G{ rankdir="LR"'</span><span class="op">+</span>s <span class="op">+</span> <span class="st">'; }'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현" class="level2">
-<h2 class="anchored" data-anchor-id="신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현">신경망의 표현 (<span class="math inline">\({\boldsymbol x} \to \hat{\boldsymbol y}\)</span> 로 가는 과정을 그림으로 표현)</h2>
-<section id="예제1-undersetn1bf-x-oversetl_1to-undersetn1boldsymbol-u1-oversetsigto-undersetn1boldsymbol-v1-undersetn1hatboldsymbol-y" class="level3">
-<h3 class="anchored" data-anchor-id="예제1-undersetn1bf-x-oversetl_1to-undersetn1boldsymbol-u1-oversetsigto-undersetn1boldsymbol-v1-undersetn1hatboldsymbol-y">예제1: <span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(1)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(1)}} =\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h3>
+<section id="신경망의-표현-boldsymbol-x-to-hatboldsymbol-y-로-가는-과정을-그림으로-표현" class="level1">
+<h1>신경망의 표현 (<span class="math inline">\({\boldsymbol x} \to \hat{\boldsymbol y}\)</span> 로 가는 과정을 그림으로 표현)</h1>
+<section id="예제1-undersetn1bf-x-oversetl_1to-undersetn1boldsymbol-u1-oversetsigto-undersetn1boldsymbol-v1-undersetn1hatboldsymbol-y" class="level2">
+<h2 class="anchored" data-anchor-id="예제1-undersetn1bf-x-oversetl_1to-undersetn1boldsymbol-u1-oversetsigto-undersetn1boldsymbol-v1-undersetn1hatboldsymbol-y">예제1: <span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(1)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(1)}} =\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h2>
 <p><code>-</code> 모든 observation과 가중치를 명시한 버전</p>
 <p><strong>(표현1)</strong></p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>gv(<span class="st">''' </span></span>
@@ -510,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-16"><a href="#cb3-16"></a><span class="st">    "ŵ₀ + x₁*ŵ₁,    bias=False" -&gt; "ŷ₁"[label="sigmoid"]</span></span>
 <span id="cb3-17"><a href="#cb3-17"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-4-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -519,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><code>-</code> observation 반복을 생략한 버전들</p>
 <p><strong>(표현2)</strong> 모든 <span class="math inline">\(i\)</span>에 대하여 아래의 그림을 반복한다고 하면 (표현1)과 같다.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>gv(<span class="st">''' </span></span>
@@ -529,12 +527,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-5"><a href="#cb4-5"></a></span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>(표현3)</strong> 그런데 (표현2)에서 아래와 같이 <span class="math inline">\(x_i\)</span>, <span class="math inline">\(y_i\)</span> 대신에 간단히 <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>로 쓰는 경우도 많음</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>gv(<span class="st">''' </span></span>
@@ -544,44 +542,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-5"><a href="#cb5-5"></a></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-6-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 1을 생략한 버전들</p>
 <p><strong>(표현4)</strong> bais=False 대신에 bias=True를 주면 1을 생략할 수 있음</p>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>gv(<span class="st">'''</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">"x" -&gt; "x*ŵ₁,    bias=True"[label="*ŵ₁"] ;</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="st">"x*ŵ₁,    bias=True" -&gt; "ŷ"[label="sigmoid"] '''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-7-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>(표현4의 수정)</strong> <span class="math inline">\(\hat{w}_1\)</span>대신에 <span class="math inline">\(\hat{w}\)</span>를 쓰는 것이 더 자연스러움</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>gv(<span class="st">'''</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="st">"x" -&gt; "x*ŵ,    bias=True"[label="*ŵ"] ;</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="st">"x*ŵ,    bias=True" -&gt; "ŷ"[label="sigmoid"] '''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-8-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>(표현5)</strong> 선형변환의 결과는 아래와 같이 <span class="math inline">\(u\)</span>로 표현하기도 한다.</p>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>gv(<span class="st">'''</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="st">"x" -&gt; "u";</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="st">"u" -&gt; "y"[label="sigmoid"] '''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-9-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -589,8 +587,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>다이어그램은 그리는 사람의 취향에 따라 그리는 방법이 조금씩 다릅니다. 즉 교재마다 달라요.</p>
 </blockquote>
 </section>
-<section id="예제2-undersetn1bf-x-oversetl_1to-undersetn2boldsymbol-u1-oversetreluto-undersetn2boldsymbol-v1-oversetl_2to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2-undersetn1hatboldsymbol-y" class="level3">
-<h3 class="anchored" data-anchor-id="예제2-undersetn1bf-x-oversetl_1to-undersetn2boldsymbol-u1-oversetreluto-undersetn2boldsymbol-v1-oversetl_2to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2-undersetn1hatboldsymbol-y">예제2: <span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,2)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,2)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}} =\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h3>
+<section id="예제2-undersetn1bf-x-oversetl_1to-undersetn2boldsymbol-u1-oversetreluto-undersetn2boldsymbol-v1-oversetl_2to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2-undersetn1hatboldsymbol-y" class="level2">
+<h2 class="anchored" data-anchor-id="예제2-undersetn1bf-x-oversetl_1to-undersetn2boldsymbol-u1-oversetreluto-undersetn2boldsymbol-v1-oversetl_2to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2-undersetn1hatboldsymbol-y">예제2: <span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,2)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,2)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}} =\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h2>
 <p><strong>참고: 코드로 표현</strong></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>torch.nn.Sequential(</span>
 <span id="cb9-2"><a href="#cb9-2"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">2</span>),</span>
@@ -601,7 +599,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> 이해를 위해서 10월4일 강의노트에서 다루었던 아래의 상황을 고려하자.</p>
 <p><img src="https://guebin.github.io/DL2022/posts/II.%20DNN/2022-10-04-5wk-2_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 <p><strong>(강의노트의 표현)</strong></p>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="9">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>gv(<span class="st">'''</span></span>
@@ -615,12 +613,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-9"><a href="#cb10-9"></a><span class="st">'''</span></span>
 <span id="cb10-10"><a href="#cb10-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-10-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>(좀 더 일반화된 표현)</strong> 10월4일 강의노트 상황을 일반화하면 아래와 같다.</p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="10">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>gv(<span class="st">'''</span></span>
@@ -634,7 +632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-9"><a href="#cb11-9"></a><span class="st">'''</span></span>
 <span id="cb11-10"><a href="#cb11-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-11-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -642,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \left( \underset{(n,2)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,2)}{\boldsymbol v^{(1)}} \right) \overset{l_2}{\to} \left(\underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}\right), \quad \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{net({\bf X})}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
 <p>이것을 다이어그램으로 표현한다면 아래와 같다.</p>
 <p><strong>(선형+비선형을 하나의 Layer로 묶은 표현)</strong></p>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>gv(<span class="st">'''</span></span>
@@ -671,7 +669,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-24"><a href="#cb12-24"></a><span class="st">}</span></span>
 <span id="cb12-25"><a href="#cb12-25"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-12-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -691,7 +689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><code>*</code> node의 개념: <span class="math inline">\(u\to v\)</span>로 가는 쌍을 간단히 노드라는 개념을 이용하여 나타낼 수 있음.</p>
 <p><strong>(노드의 개념이 포함된 그림)</strong></p>
-<div class="cell" data-tags="[]" data-execution_count="15">
+<div class="cell" data-tags="[]" data-execution_count="12">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>gv(<span class="st">'''</span></span>
@@ -717,13 +715,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-21"><a href="#cb13-21"></a><span class="st">}</span></span>
 <span id="cb13-22"><a href="#cb13-22"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-13-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <p>여기에서 <code>node의 숫자 = feature의 숫자</code>와 같이 이해할 수 있다. 즉 아래와 같이 이해할 수 있다.</p>
 <p><strong>(“number of nodes = number of features”로 이해한 그림)</strong></p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="13">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>gv(<span class="st">'''</span></span>
@@ -749,7 +747,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-21"><a href="#cb14-21"></a><span class="st">}</span></span>
 <span id="cb14-22"><a href="#cb14-22"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-14-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -757,10 +755,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>다이어그램의 표현방식은 교재마다 달라서 모든 예시를 달달 외울 필요는 없습니다. 다만 임의의 다이어그램을 보고 대응하는 네트워크를 pytorch로 구현하는 능력은 매우 중요합니다.</p>
 </blockquote>
 </section>
-<section id="예제3-undersetn784bf-x-oversetl_1to-undersetn32boldsymbol-u1-oversetreluto-undersetn32boldsymbol-v1-oversetl_1to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2undersetn1hatboldsymbol-y" class="level3">
-<h3 class="anchored" data-anchor-id="예제3-undersetn784bf-x-oversetl_1to-undersetn32boldsymbol-u1-oversetreluto-undersetn32boldsymbol-v1-oversetl_1to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2undersetn1hatboldsymbol-y">예제3: <span class="math inline">\(\underset{(n,784)}{\bf X} \overset{l_1}{\to} \underset{(n,32)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,32)}{\boldsymbol v^{(1)}} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h3>
+<section id="예제3-undersetn784bf-x-oversetl_1to-undersetn32boldsymbol-u1-oversetreluto-undersetn32boldsymbol-v1-oversetl_1to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2undersetn1hatboldsymbol-y" class="level2">
+<h2 class="anchored" data-anchor-id="예제3-undersetn784bf-x-oversetl_1to-undersetn32boldsymbol-u1-oversetreluto-undersetn32boldsymbol-v1-oversetl_1to-undersetn1boldsymbol-u2-oversetsigto-undersetn1boldsymbol-v2undersetn1hatboldsymbol-y">예제3: <span class="math inline">\(\underset{(n,784)}{\bf X} \overset{l_1}{\to} \underset{(n,32)}{\boldsymbol u^{(1)}} \overset{relu}{\to} \underset{(n,32)}{\boldsymbol v^{(1)}} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{sig}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></h2>
 <p><strong>(다이어그램표현)</strong></p>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="14">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>gv(<span class="st">'''</span></span>
@@ -813,7 +811,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-48"><a href="#cb15-48"></a><span class="st">}</span></span>
 <span id="cb15-49"><a href="#cb15-49"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-15-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
@@ -829,35 +827,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-6"><a href="#cb16-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="시벤코정리가-성립하는-이유-엄밀한-증명-x" class="level2">
-<h2 class="anchored" data-anchor-id="시벤코정리가-성립하는-이유-엄밀한-증명-x">시벤코정리가 성립하는 이유? (엄밀한 증명 X)</h2>
-<section id="그림으로-보는-증명과정" class="level3">
-<h3 class="anchored" data-anchor-id="그림으로-보는-증명과정">그림으로 보는 증명과정</h3>
+<section id="시벤코정리가-성립하는-이유-엄밀한-증명-x" class="level1">
+<h1>시벤코정리가 성립하는 이유? (엄밀한 증명 X)</h1>
+<section id="그림으로-보는-증명과정" class="level2">
+<h2 class="anchored" data-anchor-id="그림으로-보는-증명과정">그림으로 보는 증명과정</h2>
 <p><code>-</code> 데이터</p>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>x <span class="op">=</span> torch.linspace(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 아래와 같은 네트워크를 고려하자.</p>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>l1 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a>a1 <span class="op">=</span> torch.nn.Sigmoid()</span>
 <span id="cb18-3"><a href="#cb18-3"></a>l2 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 직관1: <span class="math inline">\(l_1\)</span>,<span class="math inline">\(l_2\)</span>의 가중치를 잘 결합하다보면 우연히 아래와 같이 만들 수 있다.</p>
-<div class="cell" data-execution_count="42">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
 <span id="cb19-2"><a href="#cb19-2"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="op">+</span><span class="fl">10.00</span>,<span class="op">+</span><span class="fl">10.00</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="43">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.00</span>,<span class="fl">1.00</span>]])</span>
 <span id="cb20-2"><a href="#cb20-2"></a>l2.bias.data <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.00</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="44">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">9</span>,<span class="dv">3</span>))</span>
 <span id="cb21-2"><a href="#cb21-2"></a>ax[<span class="dv">0</span>].plot(x,l1(x).data)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$l_1(x)$'</span>)</span>
 <span id="cb21-3"><a href="#cb21-3"></a>ax[<span class="dv">1</span>].plot(x,a1(l1(x)).data)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$(a_1 \circ l_1)(x)$'</span>)</span>
 <span id="cb21-4"><a href="#cb21-4"></a>ax[<span class="dv">2</span>].plot(x,l2(a1(l1(x))).data,color<span class="op">=</span><span class="st">'C2'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$(l_2 \circ a_1 \circ \l_1)(x)$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Text(0.5, 1.0, '$(l_2 \\circ a_1 \\circ \\l_1)(x)$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -865,7 +863,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><code>-</code> 직관2: 아래들도 가능할듯?</p>
-<div class="cell" data-tags="[]" data-execution_count="45">
+<div class="cell" data-tags="[]" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
 <span id="cb23-2"><a href="#cb23-2"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="op">+</span><span class="fl">0.00</span>,<span class="op">+</span><span class="fl">20.00</span>])</span>
 <span id="cb23-3"><a href="#cb23-3"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.00</span>,<span class="fl">1.00</span>]])</span>
@@ -878,7 +876,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
 <span id="cb24-2"><a href="#cb24-2"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="op">+</span><span class="fl">20.00</span>,<span class="op">+</span><span class="fl">0.00</span>])</span>
 <span id="cb24-3"><a href="#cb24-3"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">2.50</span>,<span class="fl">2.50</span>]])</span>
@@ -887,36 +885,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-6"><a href="#cb24-6"></a>ax[<span class="dv">1</span>].plot(x,a1(l1(x)).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C1'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$(a_1 \circ l_1)(x)$'</span>)</span>
 <span id="cb24-7"><a href="#cb24-7"></a>ax[<span class="dv">2</span>].plot(x,l2(a1(l1(x))).data,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C1'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$(l_2 \circ a_1 \circ \l_1)(x)$'</span>)<span class="op">;</span></span>
 <span id="cb24-8"><a href="#cb24-8"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> <code>은닉층의노드수=4</code>로 하고 적당한 가중치를 조정하면 <span class="math inline">\((l_2\circ a_1 \circ l_1)(x)\)</span>의 결과로 주황색선 + 파란색선도 가능할 것 같다. <span class="math inline">\(\to\)</span> 실제로 가능함</p>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>l1 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb25-2"><a href="#cb25-2"></a>a1 <span class="op">=</span> torch.nn.Sigmoid()</span>
 <span id="cb25-3"><a href="#cb25-3"></a>l2 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">4</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>l1.weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>],[<span class="op">-</span><span class="fl">5.00</span>],[<span class="fl">5.00</span>]])</span>
 <span id="cb26-2"><a href="#cb26-2"></a>l1.bias.data <span class="op">=</span> torch.tensor([<span class="fl">0.00</span>, <span class="fl">20.00</span>, <span class="fl">20.00</span>, <span class="dv">0</span>])</span>
 <span id="cb26-3"><a href="#cb26-3"></a>l2.weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.00</span>,  <span class="fl">1.00</span>, <span class="fl">2.50</span>,  <span class="fl">2.50</span>]])</span>
 <span id="cb26-4"><a href="#cb26-4"></a>l2.bias.data <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.0</span><span class="op">-</span><span class="fl">2.5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>plt.plot(l2(a1(l1(x))).data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 2개의 시그모이드를 우연히 잘 결합하면 아래와 같은 함수 <span class="math inline">\(h\)</span>를 만들 수 있다.</p>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: torch.sigmoid(<span class="dv">200</span><span class="op">*</span>(x<span class="op">+</span><span class="fl">0.5</span>))<span class="op">+</span>torch.sigmoid(<span class="op">-</span><span class="dv">200</span><span class="op">*</span>(x<span class="op">-</span><span class="fl">0.5</span>))<span class="op">-</span><span class="fl">1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="51">
+<div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>plt.plot(x,h(x))</span>
 <span id="cb29-2"><a href="#cb29-2"></a>plt.title(<span class="st">"$h(x)$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>Text(0.5, 1.0, '$h(x)$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -928,25 +926,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>그리고 위의 네트워크와 동일한 효과를 주는 아래의 네트워크가 항상 존재함.</p>
 <p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,2m)}{\boldsymbol u^{(1)}} \overset{sig}{\to} \underset{(n,2m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
 <p><code>-</code> <span class="math inline">\(h(x)\)</span>를 활성화함수로 가지는 네트워크를 설계하여 보자.</p>
-<div class="cell" data-execution_count="52">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">class</span> MyActivation(torch.nn.Module): <span class="co">## 사용자정의 활성화함수를 선언하는 방법</span></span>
 <span id="cb31-2"><a href="#cb31-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb31-3"><a href="#cb31-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>() </span>
 <span id="cb31-4"><a href="#cb31-4"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="bu">input</span>):</span>
 <span id="cb31-5"><a href="#cb31-5"></a>        <span class="cf">return</span> h(<span class="bu">input</span>) <span class="co"># activation 의 출력 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="53">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>a1<span class="op">=</span>MyActivation()</span>
 <span id="cb32-2"><a href="#cb32-2"></a><span class="co"># a1 = torch.nn.Sigmoid(), a1 = torch.nn.ReLU() 대신에 a1 = MyActivation()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="54">
+<div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>plt.plot(x,a1(x)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-10-11-6wk-2_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>히든레이어가 1개의 노드를 가지는 경우</strong></p>
-<div class="cell" data-execution_count="55">
+<div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb34-2"><a href="#cb34-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
 <span id="cb34-3"><a href="#cb34-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
@@ -962,7 +960,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><strong>히든레이어가 2개의 노드를 가지는 경우</strong></p>
-<div class="cell" data-execution_count="56">
+<div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb35-2"><a href="#cb35-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
 <span id="cb35-3"><a href="#cb35-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
@@ -978,7 +976,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><strong>히든레이어가 3개의 노드를 가지는 경우</strong></p>
-<div class="cell" data-execution_count="57">
+<div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb36-2"><a href="#cb36-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
 <span id="cb36-3"><a href="#cb36-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
@@ -994,7 +992,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><strong>히든레이어가 1024개의 노드를 가지는 경우</strong></p>
-<div class="cell" data-execution_count="58">
+<div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb37-2"><a href="#cb37-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))</span>
 <span id="cb37-3"><a href="#cb37-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
@@ -1010,8 +1008,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="하나의-은닉층에-많은-노드수가-있는-신경망" class="level3">
-<h3 class="anchored" data-anchor-id="하나의-은닉층에-많은-노드수가-있는-신경망">하나의 은닉층에 많은 노드수가 있는 신경망</h3>
+<section id="하나의-은닉층에-많은-노드수가-있는-신경망" class="level2">
+<h2 class="anchored" data-anchor-id="하나의-은닉층에-많은-노드수가-있는-신경망">하나의 은닉층에 많은 노드수가 있는 신경망</h2>
 <p><code>-</code> 아래와 같이 하나의 은닉층을 가지고 있더라도 많은 노드수만 보장되면 매우 충분한 표현력을 가짐</p>
 <p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{h}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
 <p>(예시1)</p>
@@ -1204,11 +1202,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="cpu-vs-gpu" class="level2">
-<h2 class="anchored" data-anchor-id="cpu-vs-gpu">CPU vs GPU</h2>
+<section id="cpu-vs-gpu" class="level1">
+<h1>CPU vs GPU</h1>
 <p><code>-</code> 파이토치에서 GPU를 쓰는 방법을 알아보자. (사실 지금까지 우리는 CPU만 쓰고 있었음)</p>
-<section id="gpu-사용방법" class="level3">
-<h3 class="anchored" data-anchor-id="gpu-사용방법">GPU 사용방법</h3>
+<section id="gpu-사용방법" class="level2">
+<h2 class="anchored" data-anchor-id="gpu-사용방법">GPU 사용방법</h2>
 <p><code>-</code> cpu 연산이 가능한 메모리에 데이터 저장</p>
 <div class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
@@ -1316,8 +1314,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="시간측정-예비학습" class="level3">
-<h3 class="anchored" data-anchor-id="시간측정-예비학습">시간측정 (예비학습)</h3>
+<section id="시간측정-예비학습" class="level2">
+<h2 class="anchored" data-anchor-id="시간측정-예비학습">시간측정 (예비학습)</h2>
 <div class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a><span class="im">import</span> time </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1334,8 +1332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="cpu-512" class="level3">
-<h3 class="anchored" data-anchor-id="cpu-512">CPU (512)</h3>
+<section id="cpu-512" class="level2">
+<h2 class="anchored" data-anchor-id="cpu-512">CPU (512)</h2>
 <p><code>-</code> 데이터준비</p>
 <div class="cell" data-execution_count="90">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
@@ -1372,8 +1370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="gpu-512" class="level3">
-<h3 class="anchored" data-anchor-id="gpu-512">GPU (512)</h3>
+<section id="gpu-512" class="level2">
+<h2 class="anchored" data-anchor-id="gpu-512">GPU (512)</h2>
 <p><code>-</code> 데이터준비</p>
 <div class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
@@ -1413,8 +1411,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>!! CPU가 더 빠르다?</li>
 </ul>
 </section>
-<section id="cpu-vs-gpu-20480" class="level3">
-<h3 class="anchored" data-anchor-id="cpu-vs-gpu-20480">CPU vs GPU (20480)</h3>
+<section id="cpu-vs-gpu-20480" class="level2">
+<h2 class="anchored" data-anchor-id="cpu-vs-gpu-20480">CPU vs GPU (20480)</h2>
 <p><code>-</code> CPU (20480)</p>
 <div class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
@@ -1479,8 +1477,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><code>-</code> 왜 이런 차이가 나는가? 연산을 하는 주체는 코어인데 CPU는 수는 적지만 일을 잘하는 코어들을 가지고 있고 GPU는 일은 못하지만 다수의 코어를 가지고 있기 때문</p>
 </section>
-<section id="cpu-vs-gpu-204800" class="level3">
-<h3 class="anchored" data-anchor-id="cpu-vs-gpu-204800">CPU vs GPU (204800)</h3>
+<section id="cpu-vs-gpu-204800" class="level2">
+<h2 class="anchored" data-anchor-id="cpu-vs-gpu-204800">CPU vs GPU (204800)</h2>
 <p><code>-</code> CPU (204800)</p>
 <div class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
@@ -1545,11 +1543,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="확률적경사하강법-배치-에폭" class="level2">
-<h2 class="anchored" data-anchor-id="확률적경사하강법-배치-에폭">확률적경사하강법, 배치, 에폭</h2>
-<section id="좀-이상하지-않아요" class="level3">
-<h3 class="anchored" data-anchor-id="좀-이상하지-않아요">좀 이상하지 않아요?</h3>
-<p><code>-</code> 우리가 쓰는 GPU: <a href="http://shop.danawa.com/virtualestimate/?controller=estimateMain&amp;methods=index&amp;marketPlaceSeq=16">다나와 PC견적</a> - GPU 메모리 끽해봐야 24GB</p>
+<section id="확률적경사하강법-배치-에폭" class="level1">
+<h1>확률적경사하강법, 배치, 에폭</h1>
+<section id="좀-이상하지-않아요" class="level2">
+<h2 class="anchored" data-anchor-id="좀-이상하지-않아요">좀 이상하지 않아요?</h2>
+<p><code>-</code> 우리가 쓰는 GPU: <a href="http://shop.danawa.com/virtualestimate/?controller=estimateMain&amp;methods=index&amp;marketPlaceSeq=16">다나와 PC견적</a></p>
+<ul>
+<li>GPU 메모리 끽해봐야 24GB</li>
+</ul>
 <p><code>-</code> 우리가 분석하는 데이터: 빅데이터..?</p>
 <p><code>-</code> 데이터의 크기가 커지는순간 <code>X.to("cuda:0")</code>, <code>y.to("cuda:0")</code> 쓰면 난리나겠는걸?</p>
 <div class="cell" data-execution_count="100">
@@ -1576,8 +1577,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>대충 이거만 가지고 적합해도 충분히 정확할것 같은데</li>
 </ul>
 </section>
-<section id="xy-데이터를-굳이-모두-gpu에-넘겨야-하는가" class="level3">
-<h3 class="anchored" data-anchor-id="xy-데이터를-굳이-모두-gpu에-넘겨야-하는가">X,y 데이터를 굳이 모두 GPU에 넘겨야 하는가?</h3>
+<section id="xy-데이터를-굳이-모두-gpu에-넘겨야-하는가" class="level2">
+<h2 class="anchored" data-anchor-id="xy-데이터를-굳이-모두-gpu에-넘겨야-하는가">X,y 데이터를 굳이 모두 GPU에 넘겨야 하는가?</h2>
 <p><code>-</code> 데이터셋을 짝홀로 나누어서 번갈아가면서 GPU에 올렸다 내렸다하면 안되나?</p>
 <p><code>-</code> 아래의 알고리즘을 생각해보자.</p>
 <ol type="1">
@@ -1590,8 +1591,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>반복</li>
 </ol>
 </section>
-<section id="경사하강법-확률적경사하강법-미니배치-경사하강법" class="level3">
-<h3 class="anchored" data-anchor-id="경사하강법-확률적경사하강법-미니배치-경사하강법">경사하강법, 확률적경사하강법, 미니배치 경사하강법</h3>
+<section id="경사하강법-확률적경사하강법-미니배치-경사하강법" class="level2">
+<h2 class="anchored" data-anchor-id="경사하강법-확률적경사하강법-미니배치-경사하강법">경사하강법, 확률적경사하강법, 미니배치 경사하강법</h2>
 <p>10개의 샘플이 있다고 가정. <span class="math inline">\(\{(x_i,y_i)\}_{i=1}^{10}\)</span></p>
 <p><code>-</code> ver1: 모든 샘플을 이용하여 slope 계산</p>
 <p>(epoch1) <span class="math inline">\(loss=\sum_{i=1}^{10}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span></p>
@@ -1607,8 +1608,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>(epoch2) - <span class="math inline">\(loss=\sum_{i=1}^{3}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=\sum_{i=4}^{6}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=\sum_{i=7}^{9}(y_i-\beta_0-\beta_1x_i)^2 \to slope \to update\)</span> - <span class="math inline">\(loss=(y_{10}-\beta_0-\beta_1x_{10})^2 \to slope \to update\)</span></p>
 <p>…</p>
 </section>
-<section id="용어의-정리" class="level3">
-<h3 class="anchored" data-anchor-id="용어의-정리">용어의 정리</h3>
+<section id="용어의-정리" class="level2">
+<h2 class="anchored" data-anchor-id="용어의-정리">용어의 정리</h2>
 <p><strong>옛날</strong></p>
 <p><code>-</code> ver1: gradient descent, batch gradient descent</p>
 <p><code>-</code> ver2: stochastic gradient descent</p>
@@ -1618,8 +1619,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> ver2: stochastic gradient descent with batch size = 1</p>
 <p><code>-</code> <strong>ver3: stochastic gradient descent</strong> - https://www.deeplearningbook.org/contents/optimization.html, 알고리즘 8-1 참고.</p>
 </section>
-<section id="ds-dl" class="level3">
-<h3 class="anchored" data-anchor-id="ds-dl">ds, dl</h3>
+<section id="ds-dl" class="level2">
+<h2 class="anchored" data-anchor-id="ds-dl">ds, dl</h2>
 <p><code>-</code> ds</p>
 <div class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a>x<span class="op">=</span>torch.tensor(<span class="bu">range</span>(<span class="dv">10</span>)).<span class="bu">float</span>()<span class="co">#.reshape(-1,1)</span></span>
@@ -1655,8 +1656,8 @@ tensor([9.]) tensor([0.])</code></pre>
 </div>
 </div>
 </section>
-<section id="ds-dl을-이용한-mnist-구현" class="level3">
-<h3 class="anchored" data-anchor-id="ds-dl을-이용한-mnist-구현">ds, dl을 이용한 MNIST 구현</h3>
+<section id="ds-dl을-이용한-mnist-구현" class="level2">
+<h2 class="anchored" data-anchor-id="ds-dl을-이용한-mnist-구현">ds, dl을 이용한 MNIST 구현</h2>
 <p><code>-</code> 데이터정리</p>
 <div class="cell" data-execution_count="108">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a>path <span class="op">=</span> untar_data(URLs.MNIST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1766,11 +1767,11 @@ tensor([9.]) tensor([0.])</code></pre>
 </div>
 </section>
 </section>
-<section id="오버피팅" class="level2">
-<h2 class="anchored" data-anchor-id="오버피팅">오버피팅</h2>
+<section id="오버피팅" class="level1">
+<h1>오버피팅</h1>
 <p><code>-</code> 오버피팅이란? - 위키: In mathematical modeling, overfitting is “the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit to additional data or predict future observations reliably”. - 제 개념: 데이터를 “데이터 = 언더라잉 + 오차”라고 생각할때 우리가 데이터로부터 적합할 것은 언더라잉인데 오차항을 적합하고 있는 현상.</p>
-<section id="오버피팅-예시" class="level3">
-<h3 class="anchored" data-anchor-id="오버피팅-예시">오버피팅 예시</h3>
+<section id="오버피팅-예시" class="level2">
+<h2 class="anchored" data-anchor-id="오버피팅-예시">오버피팅 예시</h2>
 <p><code>-</code> <span class="math inline">\(m\)</span>이 매우 클때 아래의 네트워크 거의 무엇이든 맞출 수 있다고 보면 된다.</p>
 <ul>
 <li><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,m)}{\boldsymbol u^{(1)}} \overset{h}{\to} \underset{(n,m)}{\boldsymbol v^{(1)}} \overset{l_2}{\to} \underset{(n,1)}{\hat{\boldsymbol y}}\)</span></li>
@@ -1822,8 +1823,8 @@ tensor([9.]) tensor([0.])</code></pre>
 <li>우리는 데이터를 랜덤에서 뽑았는데, 데이터의 추세를 따라간다 <span class="math inline">\(\to\)</span> 오버피팅 (underlying이 아니라 오차항을 따라가고 있음)</li>
 </ul>
 </section>
-<section id="오버피팅이라는-뚜렷한-증거-train-test" class="level3">
-<h3 class="anchored" data-anchor-id="오버피팅이라는-뚜렷한-증거-train-test">오버피팅이라는 뚜렷한 증거! (train / test)</h3>
+<section id="오버피팅이라는-뚜렷한-증거-train-test" class="level2">
+<h2 class="anchored" data-anchor-id="오버피팅이라는-뚜렷한-증거-train-test">오버피팅이라는 뚜렷한 증거! (train / test)</h2>
 <p><code>-</code> 데이터의 분리하여 보자.</p>
 <div class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1"></a>torch.manual_seed(<span class="dv">5</span>) </span>
@@ -1886,7 +1887,6 @@ tensor([9.]) tensor([0.])</code></pre>
 </ul>
 
 
-</section>
 </section>
 </section>
 

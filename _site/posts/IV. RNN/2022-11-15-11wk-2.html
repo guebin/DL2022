@@ -395,6 +395,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -408,9 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#순환신경망-lstm-1" id="toc-순환신경망-lstm-1" class="nav-link active" data-scroll-target="#순환신경망-lstm-1">11/15: [순환신경망] LSTM (1)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">import</a></li>
   <li><a href="#define-some-funtions" id="toc-define-some-funtions" class="nav-link" data-scroll-target="#define-some-funtions">Define some funtions</a></li>
   <li><a href="#gpu-실험" id="toc-gpu-실험" class="nav-link" data-scroll-target="#gpu-실험">GPU 실험</a>
@@ -435,7 +438,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1">data</a></li>
   <li><a href="#rnn-vs-lstm-성능비교실험-1" id="toc-rnn-vs-lstm-성능비교실험-1" class="nav-link" data-scroll-target="#rnn-vs-lstm-성능비교실험-1">RNN vs LSTM 성능비교실험</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -445,27 +447,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="순환신경망-lstm-1" class="level1">
-<h1>11/15: [순환신경망] LSTM (1)</h1>
 <blockquote class="blockquote">
-<p>GPU실험, abcabC예제, abcdabcD예제</p>
+<p>LSTM (1)– GPU실험, abcabC예제, abcdabcD예제</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>https://youtube.com/playlist?list=PLQqh36zP38-wCXvhHTVOdOLBFD5T5uscl</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-wCXvhHTVOdOLBFD5T5uscl" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-wCXvhHTVOdOLBFD5T5uscl</a></p>
 </section>
-<section id="import" class="level2">
-<h2 class="anchored" data-anchor-id="import">import</h2>
+<section id="import" class="level1">
+<h1>import</h1>
 <div class="cell" data-execution_count="175">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="define-some-funtions" class="level2">
-<h2 class="anchored" data-anchor-id="define-some-funtions">Define some funtions</h2>
+<section id="define-some-funtions" class="level1">
+<h1>Define some funtions</h1>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> f(txt,mapping):</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="cf">return</span> [mapping[key] <span class="cf">for</span> key <span class="kw">in</span> txt] </span>
@@ -474,12 +472,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-5"><a href="#cb2-5"></a>tanh <span class="op">=</span> torch.nn.Tanh()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="gpu-실험" class="level2">
-<h2 class="anchored" data-anchor-id="gpu-실험">GPU 실험</h2>
-<section id="len-20-hidden-nodes" class="level3">
-<h3 class="anchored" data-anchor-id="len-20-hidden-nodes">20000 len + 20 hidden nodes</h3>
-<section id="cpu" class="level4">
-<h4 class="anchored" data-anchor-id="cpu"><strong><em>cpu</em></strong></h4>
+<section id="gpu-실험" class="level1">
+<h1>GPU 실험</h1>
+<section id="len-20-hidden-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="len-20-hidden-nodes">20000 len + 20 hidden nodes</h2>
+<p><strong><em>cpu</em></strong></p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]) </span>
 <span id="cb3-2"><a href="#cb3-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -510,9 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>93.01761960983276</code></pre>
 </div>
 </div>
-</section>
-<section id="gpu" class="level4">
-<h4 class="anchored" data-anchor-id="gpu"><strong><em>gpu</em></strong></h4>
+<p><strong><em>gpu</em></strong></p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -547,11 +542,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>왜 빠른지?</li>
 </ul>
 </section>
-</section>
-<section id="len-20-hidden-nodes-역전파주석처리" class="level3">
-<h3 class="anchored" data-anchor-id="len-20-hidden-nodes-역전파주석처리">20000 len + 20 hidden nodes + 역전파주석처리</h3>
-<section id="cpu-1" class="level4">
-<h4 class="anchored" data-anchor-id="cpu-1"><strong><em>cpu</em></strong></h4>
+<section id="len-20-hidden-nodes-역전파주석처리" class="level2">
+<h2 class="anchored" data-anchor-id="len-20-hidden-nodes-역전파주석처리">20000 len + 20 hidden nodes + 역전파주석처리</h2>
+<p><strong><em>cpu</em></strong></p>
 <div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]) </span>
 <span id="cb11-2"><a href="#cb11-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,9 +575,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>18.851768255233765</code></pre>
 </div>
 </div>
-</section>
-<section id="gpu-1" class="level4">
-<h4 class="anchored" data-anchor-id="gpu-1"><strong><em>gpu</em></strong></h4>
+<p><strong><em>gpu</em></strong></p>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">20000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -616,11 +607,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
-<section id="len-20-hidden-nodes-1" class="level3">
-<h3 class="anchored" data-anchor-id="len-20-hidden-nodes-1">2000 len + 20 hidden nodes</h3>
-<section id="cpu-2" class="level4">
-<h4 class="anchored" data-anchor-id="cpu-2"><strong><em>cpu</em></strong></h4>
+<section id="len-20-hidden-nodes-1" class="level2">
+<h2 class="anchored" data-anchor-id="len-20-hidden-nodes-1">2000 len + 20 hidden nodes</h2>
+<p><strong><em>cpu</em></strong></p>
 <div class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span>
 <span id="cb19-2"><a href="#cb19-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -651,9 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>6.533619165420532</code></pre>
 </div>
 </div>
-</section>
-<section id="gpu-2" class="level4">
-<h4 class="anchored" data-anchor-id="gpu-2"><strong><em>gpu</em></strong></h4>
+<p><strong><em>gpu</em></strong></p>
 <div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -685,11 +672,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
-<section id="len-20-hidden-nodes-역전파주석처리-1" class="level3">
-<h3 class="anchored" data-anchor-id="len-20-hidden-nodes-역전파주석처리-1">2000 len + 20 hidden nodes + 역전파주석처리</h3>
-<section id="cpu-3" class="level4">
-<h4 class="anchored" data-anchor-id="cpu-3"><strong><em>cpu</em></strong></h4>
+<section id="len-20-hidden-nodes-역전파주석처리-1" class="level2">
+<h2 class="anchored" data-anchor-id="len-20-hidden-nodes-역전파주석처리-1">2000 len + 20 hidden nodes + 역전파주석처리</h2>
+<p><strong><em>cpu</em></strong></p>
 <div class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span>
 <span id="cb27-2"><a href="#cb27-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -720,9 +705,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>1.2477965354919434</code></pre>
 </div>
 </div>
-</section>
-<section id="gpu-3" class="level4">
-<h4 class="anchored" data-anchor-id="gpu-3"><strong><em>gpu</em></strong></h4>
+<p><strong><em>gpu</em></strong></p>
 <div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span>
 <span id="cb31-2"><a href="#cb31-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -754,11 +737,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
-<section id="len-5000-hidden-nodes" class="level3">
-<h3 class="anchored" data-anchor-id="len-5000-hidden-nodes">2000 len + 5000 hidden nodes</h3>
-<section id="cpu-4" class="level4">
-<h4 class="anchored" data-anchor-id="cpu-4"><strong><em>cpu</em></strong></h4>
+<section id="len-5000-hidden-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="len-5000-hidden-nodes">2000 len + 5000 hidden nodes</h2>
+<p><strong><em>cpu</em></strong></p>
 <div class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span>
 <span id="cb35-2"><a href="#cb35-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -789,9 +770,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>58.99820685386658</code></pre>
 </div>
 </div>
-</section>
-<section id="gpu-4" class="level4">
-<h4 class="anchored" data-anchor-id="gpu-4"><strong><em>gpu</em></strong></h4>
+<p><strong><em>gpu</em></strong></p>
 <div class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span>
 <span id="cb39-2"><a href="#cb39-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -823,11 +802,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
-<section id="len-5000-hidden-nodes-역전파주석처리" class="level3">
-<h3 class="anchored" data-anchor-id="len-5000-hidden-nodes-역전파주석처리">2000 len + 5000 hidden nodes + 역전파주석처리</h3>
-<section id="cpu-5" class="level4">
-<h4 class="anchored" data-anchor-id="cpu-5"><strong><em>cpu</em></strong></h4>
+<section id="len-5000-hidden-nodes-역전파주석처리" class="level2">
+<h2 class="anchored" data-anchor-id="len-5000-hidden-nodes-역전파주석처리">2000 len + 5000 hidden nodes + 역전파주석처리</h2>
+<p><strong><em>cpu</em></strong></p>
 <div class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span>
 <span id="cb43-2"><a href="#cb43-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -858,9 +835,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>13.163657188415527</code></pre>
 </div>
 </div>
-</section>
-<section id="gpu-5" class="level4">
-<h4 class="anchored" data-anchor-id="gpu-5"><strong><em>gpu</em></strong></h4>
+<p><strong><em>gpu</em></strong></p>
 <div class="cell" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>x <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span>
 <span id="cb47-2"><a href="#cb47-2"></a>y <span class="op">=</span> torch.randn([<span class="dv">2000</span>,<span class="dv">4</span>]).to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -892,9 +867,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
-<section id="실험결과-요약" class="level3">
-<h3 class="anchored" data-anchor-id="실험결과-요약">실험결과 요약</h3>
+<section id="실험결과-요약" class="level2">
+<h2 class="anchored" data-anchor-id="실험결과-요약">실험결과 요약</h2>
 <table class="table">
 <thead>
 <tr class="header">
@@ -959,10 +933,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </section>
 </section>
-<section id="exam5-abcabc" class="level2">
-<h2 class="anchored" data-anchor-id="exam5-abcabc">Exam5: abcabC</h2>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">data</h3>
+<section id="exam5-abcabc" class="level1">
+<h1>Exam5: abcabC</h1>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">data</h2>
 <div class="cell" data-execution_count="160">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcabC'</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb51-2"><a href="#cb51-2"></a>txt[:<span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -990,8 +964,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="rnn" class="level3">
-<h3 class="anchored" data-anchor-id="rnn">RNN</h3>
+<section id="rnn" class="level2">
+<h2 class="anchored" data-anchor-id="rnn">RNN</h2>
 <div class="cell" data-execution_count="110">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>torch.manual_seed(<span class="dv">43052</span>) </span>
 <span id="cb58-2"><a href="#cb58-2"></a>rnn <span class="op">=</span> torch.nn.RNN(<span class="dv">4</span>,<span class="dv">3</span>) </span>
@@ -1147,8 +1121,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="lstm" class="level3">
-<h3 class="anchored" data-anchor-id="lstm">LSTM</h3>
+<section id="lstm" class="level2">
+<h2 class="anchored" data-anchor-id="lstm">LSTM</h2>
 <p><code>-</code> LSTM</p>
 <div class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a>torch.manual_seed(<span class="dv">43052</span>) </span>
@@ -1221,8 +1195,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="rnn-vs-lstm-성능비교실험" class="level3">
-<h3 class="anchored" data-anchor-id="rnn-vs-lstm-성능비교실험">RNN vs LSTM 성능비교실험</h3>
+<section id="rnn-vs-lstm-성능비교실험" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-vs-lstm-성능비교실험">RNN vs LSTM 성능비교실험</h2>
 <p><code>-</code> RNN</p>
 <div class="cell" data-execution_count="167">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">5</span>,<span class="dv">5</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
@@ -1285,10 +1259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="exam6-abcdabcd" class="level2">
-<h2 class="anchored" data-anchor-id="exam6-abcdabcd">Exam6: abcdabcD</h2>
-<section id="data-1" class="level3">
-<h3 class="anchored" data-anchor-id="data-1">data</h3>
+<section id="exam6-abcdabcd" class="level1">
+<h1>Exam6: abcdabcD</h1>
+<section id="data-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-1">data</h2>
 <div class="cell" data-execution_count="169">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcdabcD'</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb94-2"><a href="#cb94-2"></a>txt[:<span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1310,8 +1284,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-2"><a href="#cb98-2"></a>y<span class="op">=</span>y.to(<span class="st">"cuda:0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="rnn-vs-lstm-성능비교실험-1" class="level3">
-<h3 class="anchored" data-anchor-id="rnn-vs-lstm-성능비교실험-1">RNN vs LSTM 성능비교실험</h3>
+<section id="rnn-vs-lstm-성능비교실험-1" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-vs-lstm-성능비교실험-1">RNN vs LSTM 성능비교실험</h2>
 <p><code>-</code> RNN</p>
 <div class="cell" data-execution_count="173">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">5</span>,<span class="dv">5</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
@@ -1382,7 +1356,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 
-</section>
 </section>
 </section>
 

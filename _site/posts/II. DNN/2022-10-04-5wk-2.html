@@ -399,6 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -412,9 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#딥러닝의-기초-깊은신경망1" id="toc-딥러닝의-기초-깊은신경망1" class="nav-link active" data-scroll-target="#딥러닝의-기초-깊은신경망1">10/04: [딥러닝의 기초] 깊은신경망(1)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#로지스틱-회귀의-한계" id="toc-로지스틱-회귀의-한계" class="nav-link" data-scroll-target="#로지스틱-회귀의-한계">로지스틱 회귀의 한계</a>
   <ul class="collapse">
@@ -437,7 +440,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#예제3" id="toc-예제3" class="nav-link" data-scroll-target="#예제3">예제3</a></li>
   </ul></li>
   <li><a href="#appedix-데이터-생성코드" id="toc-appedix-데이터-생성코드" class="nav-link" data-scroll-target="#appedix-데이터-생성코드">Appedix: 데이터 생성코드</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -447,42 +449,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="딥러닝의-기초-깊은신경망1" class="level1">
-<h1>10/04: [딥러닝의 기초] 깊은신경망(1)</h1>
 <blockquote class="blockquote">
-<p>로지스틱 회귀의 한계, DNN을 이용한 해결, DNN으로 해결가능한 다양한 예제</p>
+<p>깊은신경망(1)– 로지스틱 회귀의 한계, DNN을 이용한 해결, DNN으로 해결가능한 다양한 예제</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-yLHMwQLokXiLhTZefRlSXY</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-yLHMwQLokXiLhTZefRlSXY" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-yLHMwQLokXiLhTZefRlSXY</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
-<div class="cell" data-execution_count="1">
+<section id="imports" class="level1">
+<h1>imports</h1>
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="로지스틱-회귀의-한계" class="level2">
-<h2 class="anchored" data-anchor-id="로지스틱-회귀의-한계">로지스틱 회귀의 한계</h2>
-<section id="신문기사-데이터의-모티브" class="level3">
-<h3 class="anchored" data-anchor-id="신문기사-데이터의-모티브">신문기사 (데이터의 모티브)</h3>
+<section id="로지스틱-회귀의-한계" class="level1">
+<h1>로지스틱 회귀의 한계</h1>
+<section id="신문기사-데이터의-모티브" class="level2">
+<h2 class="anchored" data-anchor-id="신문기사-데이터의-모티브">신문기사 (데이터의 모티브)</h2>
 <p><code>-</code> <a href="https://www.joongang.co.kr/article/23637092#home">스펙이 높아도 취업이 안된다고 합니다..</a></p>
 <p><strong>중소·지방 기업 “뽑아봤자 그만두니까”</strong></p>
 <p>중소기업 관계자들은 고스펙 지원자를 꺼리는 이유로 높은 퇴직률을 꼽는다. 여건이 좋은 대기업으로 이직하거나 회사를 관두는 경우가 많다는 하소연이다. 고용정보원이 지난 3일 공개한 자료에 따르면 중소기업 청년취업자 가운데 49.5%가 2년 내에 회사를 그만두는 것으로 나타났다.</p>
 <p>중소 IT업체 관계자는 “기업 입장에서 가장 뼈아픈 게 신입사원이 그만둬서 새로 뽑는 일”이라며 “명문대 나온 스펙 좋은 지원자를 뽑아놔도 1년을 채우지 않고 그만두는 사원이 대부분이라 우리도 눈을 낮춰 사람을 뽑는다”고 말했다.</p>
 </section>
-<section id="가짜데이터" class="level3">
-<h3 class="anchored" data-anchor-id="가짜데이터">가짜데이터</h3>
+<section id="가짜데이터" class="level2">
+<h2 class="anchored" data-anchor-id="가짜데이터">가짜데이터</h2>
 <p><code>-</code> 위의 기사를 모티브로 한 데이터</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-10-04-dnnex0.csv'</span>)</span>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/main/posts/II.%20DNN/2022-10-04-dnnex0.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
 
@@ -568,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>plt.plot(df.x,df.y,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.02</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>plt.plot(df.x,df.underlying,<span class="st">'-b'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -576,8 +574,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="로지스틱-회귀로-적합" class="level3">
-<h3 class="anchored" data-anchor-id="로지스틱-회귀로-적합">로지스틱 회귀로 적합</h3>
+<section id="로지스틱-회귀로-적합" class="level2">
+<h2 class="anchored" data-anchor-id="로지스틱-회귀로-적합">로지스틱 회귀로 적합</h2>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>x<span class="op">=</span> torch.tensor(df.x).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>y<span class="op">=</span> torch.tensor(df.y).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -630,8 +628,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><code>-</code> Epoch을 한 6억번 넣어도 이건 못 맞출 것 같다 (증가하다가 감소하는 underlying을 설계하는 것이 불가능) <span class="math inline">\(\to\)</span> 모형의 표현력이 너무 낮다.</p>
 </section>
-<section id="해결책" class="level3">
-<h3 class="anchored" data-anchor-id="해결책">해결책</h3>
+<section id="해결책" class="level2">
+<h2 class="anchored" data-anchor-id="해결책">해결책</h2>
 <p><code>-</code> sigmoid 넣기 전의 상태가 꺽인 그래프 이어야 한다.</p>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>sig <span class="op">=</span> torch.nn.Sigmoid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -652,12 +650,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="dnn을-이용한-해결" class="level2">
-<h2 class="anchored" data-anchor-id="dnn을-이용한-해결">DNN을 이용한 해결</h2>
+<section id="dnn을-이용한-해결" class="level1">
+<h1>DNN을 이용한 해결</h1>
 <p><code>-</code> 목표: 아래와 같은 벡터 <span class="math inline">\({\boldsymbol u}\)</span>를 만들어보자.</p>
 <p><span class="math inline">\({\boldsymbol u} = [u_1,u_2,\dots,u_{2000}], \quad u_i = \begin{cases} 9x_i +4.5&amp; x_i &lt;0 \\ -4.5x_i + 4.5&amp; x_i &gt;0 \end{cases}\)</span></p>
-<section id="꺽인-그래프를-만드는-방법1" class="level3">
-<h3 class="anchored" data-anchor-id="꺽인-그래프를-만드는-방법1">꺽인 그래프를 만드는 방법1</h3>
+<section id="꺽인-그래프를-만드는-방법1" class="level2">
+<h2 class="anchored" data-anchor-id="꺽인-그래프를-만드는-방법1">꺽인 그래프를 만드는 방법1</h2>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>u <span class="op">=</span> [<span class="dv">9</span><span class="op">*</span>xi<span class="op">+</span><span class="fl">4.5</span> <span class="cf">if</span> xi <span class="op">&lt;</span><span class="dv">0</span> <span class="cf">else</span> <span class="op">-</span><span class="fl">4.5</span><span class="op">*</span>xi<span class="op">+</span><span class="fl">4.5</span> <span class="cf">for</span> xi <span class="kw">in</span> x.reshape(<span class="op">-</span><span class="dv">1</span>).tolist()]</span>
 <span id="cb14-2"><a href="#cb14-2"></a>plt.plot(u,<span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -666,8 +664,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="꺽인-그래프를-만드는-방법2" class="level3">
-<h3 class="anchored" data-anchor-id="꺽인-그래프를-만드는-방법2">꺽인 그래프를 만드는 방법2</h3>
+<section id="꺽인-그래프를-만드는-방법2" class="level2">
+<h2 class="anchored" data-anchor-id="꺽인-그래프를-만드는-방법2">꺽인 그래프를 만드는 방법2</h2>
 <p><code>-</code> 전략: 선형변환 <span class="math inline">\(\to\)</span> ReLU <span class="math inline">\(\to\)</span> 선형변환</p>
 <p>(예비학습) ReLU 함수란?</p>
 <p><span class="math inline">\(ReLU(x) = \max(0,x)\)</span></p>
@@ -734,8 +732,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>이런느낌으로 <span class="math inline">\(\hat{\boldsymbol y}\)</span>을 만들면 된다.</li>
 </ul>
 </section>
-<section id="torch.nn.linear를-이용한-꺽인-그래프-구현" class="level3">
-<h3 class="anchored" data-anchor-id="torch.nn.linear를-이용한-꺽인-그래프-구현">torch.nn.Linear()를 이용한 꺽인 그래프 구현</h3>
+<section id="torch.nn.linear를-이용한-꺽인-그래프-구현" class="level2">
+<h2 class="anchored" data-anchor-id="torch.nn.linear를-이용한-꺽인-그래프-구현">torch.nn.Linear()를 이용한 꺽인 그래프 구현</h2>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
 <span id="cb21-2"><a href="#cb21-2"></a>l1 <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">2</span>,bias<span class="op">=</span><span class="va">True</span>) </span>
@@ -804,21 +802,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><code>-</code> 수식표현</p>
-<ol type="1">
-<li><p><span class="math inline">\({\bf X}=\begin{bmatrix} x_1 \\ \dots \\ x_n \end{bmatrix}\)</span></p></li>
-<li><p><span class="math inline">\(l_1({\bf X})={\bf X}{\bf W}^{(1)}\overset{bc}{+} {\boldsymbol b}^{(1)}=\begin{bmatrix} x_1 &amp; -x_1 \\ x_2 &amp; -x_2 \\ \dots &amp; \dots \\ x_n &amp; -x_n\end{bmatrix}\)</span></p>
+<p><code>(1)</code> <span class="math inline">\({\bf X}=\begin{bmatrix} x_1 \\ \dots \\ x_n \end{bmatrix}\)</span></p>
+<p><code>(2)</code> <span class="math inline">\(l_1({\bf X})={\bf X}{\bf W}^{(1)}\overset{bc}{+} {\boldsymbol b}^{(1)}=\begin{bmatrix} x_1 &amp; -x_1 \\ x_2 &amp; -x_2 \\ \dots &amp; \dots \\ x_n &amp; -x_n\end{bmatrix}\)</span></p>
 <ul>
 <li><span class="math inline">\({\bf W}^{(1)}=\begin{bmatrix} 1 &amp; -1 \end{bmatrix}\)</span></li>
 <li><span class="math inline">\({\boldsymbol b}^{(1)}=\begin{bmatrix} 0 &amp; 0 \end{bmatrix}\)</span></li>
-</ul></li>
-<li><p><span class="math inline">\((a_1\circ l_1)({\bf X})=\text{relu}\big({\bf X}{\bf W}^{(1)}\overset{bc}{+}{\boldsymbol b}^{(1)}\big)=\begin{bmatrix} \text{relu}(x_1) &amp; \text{relu}(-x_1) \\ \text{relu}(x_2) &amp; \text{relu}(-x_2) \\ \dots &amp; \dots \\ \text{relu}(x_n) &amp; \text{relu}(-x_n)\end{bmatrix}\)</span></p></li>
-<li><p><span class="math inline">\((l_2 \circ a_1\circ l_1)({\bf X})=\text{relu}\big({\bf X}{\bf W}^{(1)}\overset{bc}{+}{\boldsymbol b}^{(1)}\big){\bf W}^{(2)}\overset{bc}{+}b^{(2)}\\ =\begin{bmatrix} -4.5\times\text{relu}(x_1) -9.0 \times \text{relu}(-x_1) +4.5 \\ -4.5\times\text{relu}(x_2) -9.0 \times\text{relu}(-x_2) + 4.5 \\ \dots \\ -4.5\times \text{relu}(x_n) -9.0 \times\text{relu}(-x_n)+4.5 \end{bmatrix}\)</span></p>
+</ul>
+<p><code>(3)</code> <span class="math inline">\((a_1\circ l_1)({\bf X})=\text{relu}\big({\bf X}{\bf W}^{(1)}\overset{bc}{+}{\boldsymbol b}^{(1)}\big)=\begin{bmatrix} \text{relu}(x_1) &amp; \text{relu}(-x_1) \\ \text{relu}(x_2) &amp; \text{relu}(-x_2) \\ \dots &amp; \dots \\ \text{relu}(x_n) &amp; \text{relu}(-x_n)\end{bmatrix}\)</span></p>
+<p><code>(4)</code> <span class="math inline">\((l_2 \circ a_1\circ l_1)({\bf X})=\text{relu}\big({\bf X}{\bf W}^{(1)}\overset{bc}{+}{\boldsymbol b}^{(1)}\big){\bf W}^{(2)}\overset{bc}{+}b^{(2)}\)</span></p>
+<p><span class="math inline">\(\quad=\begin{bmatrix} -4.5\times\text{relu}(x_1) -9.0 \times \text{relu}(-x_1) +4.5 \\ -4.5\times\text{relu}(x_2) -9.0 \times\text{relu}(-x_2) + 4.5 \\ \dots \\ -4.5\times \text{relu}(x_n) -9.0 \times\text{relu}(-x_n)+4.5 \end{bmatrix}\)</span></p>
 <ul>
 <li><span class="math inline">\({\bf W}^{(2)}=\begin{bmatrix} -4.5 \\ -9 \end{bmatrix}\)</span></li>
 <li><span class="math inline">\(b^{(2)}=4.5\)</span></li>
-</ul></li>
-<li><p><span class="math inline">\(net({\bf X})=(a_2 \circ l_2 \circ a_1\circ l_1)({\bf X})=\text{sig}\Big(\text{relu}\big({\bf X}{\bf W}^{(1)}\overset{bc}{+}{\boldsymbol b}^{(1)}\big){\bf W}^{(2)}\overset{bc}{+}b^{(2)}\Big)\\=\begin{bmatrix} \text{sig}\Big(-4.5\times\text{relu}(x_1) -9.0 \times \text{relu}(-x_1) +4.5\Big) \\ \text{sig}\Big(-4.5\times\text{relu}(x_2) -9.0 \times\text{relu}(-x_2) + 4.5 \Big)\\ \dots \\ \text{sig}\Big(-4.5\times \text{relu}(x_n) -9.0 \times\text{relu}(-x_n)+4.5 \Big)\end{bmatrix}\)</span></p></li>
-</ol>
+</ul>
+<p><code>(5)</code> <span class="math inline">\(net({\bf X})=(a_2 \circ l_2 \circ a_1\circ l_1)({\bf X})=\text{sig}\Big(\text{relu}\big({\bf X}{\bf W}^{(1)}\overset{bc}{+}{\boldsymbol b}^{(1)}\big){\bf W}^{(2)}\overset{bc}{+}b^{(2)}\Big)\)</span></p>
+<p><span class="math inline">\(\quad =\begin{bmatrix} \text{sig}\Big(-4.5\times\text{relu}(x_1) -9.0 \times \text{relu}(-x_1) +4.5\Big) \\ \text{sig}\Big(-4.5\times\text{relu}(x_2) -9.0 \times\text{relu}(-x_2) + 4.5 \Big)\\ \dots \\ \text{sig}\Big(-4.5\times \text{relu}(x_n) -9.0 \times\text{relu}(-x_n)+4.5 \Big)\end{bmatrix}\)</span></p>
 <p><code>-</code> 차원만 따지자</p>
 <p><span class="math inline">\(\underset{(n,1)}{\bf X} \overset{l_1}{\to} \underset{(n,2)}{\boldsymbol u^{(1)}} \overset{a_1}{\to} \underset{(n,2)}{\boldsymbol v^{(1)}} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{a_2}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{\hat{\boldsymbol y}}\)</span></p>
 <div class="cell" data-execution_count="28">
@@ -830,8 +828,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="step1-step4" class="level3">
-<h3 class="anchored" data-anchor-id="step1-step4">Step1 ~ Step4</h3>
+<section id="step1-step4" class="level2">
+<h2 class="anchored" data-anchor-id="step1-step4">Step1 ~ Step4</h2>
 <p><code>-</code> 준비</p>
 <div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
@@ -911,13 +909,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="dnn으로-해결가능한-다양한-예제" class="level2">
-<h2 class="anchored" data-anchor-id="dnn으로-해결가능한-다양한-예제">DNN으로 해결가능한 다양한 예제</h2>
-<section id="예제1" class="level3">
-<h3 class="anchored" data-anchor-id="예제1">예제1</h3>
+<section id="dnn으로-해결가능한-다양한-예제" class="level1">
+<h1>DNN으로 해결가능한 다양한 예제</h1>
+<section id="예제1" class="level2">
+<h2 class="anchored" data-anchor-id="예제1">예제1</h2>
 <p><code>-</code> 언뜻 생각하면 방금 배운 기술은 sig를 취하기 전이 꺽은선인 형태만 가능할 듯 하다. <span class="math inline">\(\to\)</span> 그래서 이 역시 표현력이 부족할 듯 하다. <span class="math inline">\(\to\)</span> 그런데 생각보다 표현력이 풍부한 편이다. 즉 생각보다 쓸 만하다.</p>
-<div class="cell" data-execution_count="123">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-10-04-dnnex1.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/posts/II.%20DNN/2022-10-04-dnnex1.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>x <span class="op">=</span> torch.tensor(df.x).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
@@ -972,11 +970,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="예제2" class="level3">
-<h3 class="anchored" data-anchor-id="예제2">예제2</h3>
+<section id="예제2" class="level2">
+<h2 class="anchored" data-anchor-id="예제2">예제2</h2>
 <p><code>-</code> 사실 꺽은선의 조합으로 꽤 많은걸 표현할 수 있거든요? <span class="math inline">\(\to\)</span> 심지어 곡선도 대충 맞게 적합된다.</p>
-<div class="cell" data-execution_count="280">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-10-04-dnnex2.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/posts/II.%20DNN/2022-10-04-dnnex2.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="281">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>x <span class="op">=</span> torch.tensor(df.x).<span class="bu">float</span>().reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
@@ -1089,15 +1087,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>풀이1에서 에폭을 많이 반복하면 풀이2의 적합선이 나올까? –&gt; 안나옴!! (local min에 빠졌다)</li>
 </ul>
 </section>
-<section id="예제3" class="level3">
-<h3 class="anchored" data-anchor-id="예제3">예제3</h3>
+<section id="예제3" class="level2">
+<h2 class="anchored" data-anchor-id="예제3">예제3</h2>
 <div class="cell" data-execution_count="296">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="297">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-10-04-dnnex3.csv'</span>)</span>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/posts/II.%20DNN/2022-10-04-dnnex3.csv'</span>)</span>
 <span id="cb68-2"><a href="#cb68-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="297">
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -1359,8 +1357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> 교훈: underlying이 엄청 이상해보여도 생각보다 잘 맞춤</p>
 </section>
 </section>
-<section id="appedix-데이터-생성코드" class="level2">
-<h2 class="anchored" data-anchor-id="appedix-데이터-생성코드">Appedix: 데이터 생성코드</h2>
+<section id="appedix-데이터-생성코드" class="level1">
+<h1>Appedix: 데이터 생성코드</h1>
 <div class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1423,7 +1421,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

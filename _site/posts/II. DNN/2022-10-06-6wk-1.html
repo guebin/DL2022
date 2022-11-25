@@ -396,6 +396,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -409,14 +414,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#딥러닝의-기초-깊은신경망2" id="toc-딥러닝의-기초-깊은신경망2" class="nav-link active" data-scroll-target="#딥러닝의-기초-깊은신경망2">10/06: [딥러닝의 기초] 깊은신경망(2)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
   <li><a href="#시벤코정리" id="toc-시벤코정리" class="nav-link" data-scroll-target="#시벤코정리">시벤코정리</a>
   <ul class="collapse">
-  <li><a href="#지난시간-논리전개" id="toc-지난시간-논리전개" class="nav-link" data-scroll-target="#지난시간-논리전개">지난시간 논리전개</a></li>
+  <li><a href="#지난시간-논리전개" id="toc-지난시간-논리전개" class="nav-link" data-scroll-target="#지난시간-논리전개">지난시간 논리전개</a>
+  <ul class="collapse">
   <li><a href="#시벤코정리-1" id="toc-시벤코정리-1" class="nav-link" data-scroll-target="#시벤코정리-1">시벤코정리</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#mnist-with-dnn" id="toc-mnist-with-dnn" class="nav-link" data-scroll-target="#mnist-with-dnn">MNIST with DNN</a>
   <ul class="collapse">
@@ -428,7 +433,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#학습-숙제-스스로-확인해-볼-것" id="toc-학습-숙제-스스로-확인해-볼-것" class="nav-link" data-scroll-target="#학습-숙제-스스로-확인해-볼-것">학습 (숙제: 스스로 확인해 볼 것)</a></li>
   </ul></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -438,19 +442,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="딥러닝의-기초-깊은신경망2" class="level1">
-<h1>10/06: [딥러닝의 기초] 깊은신경망(2)</h1>
 <blockquote class="blockquote">
-<p>시벤코정리, MNIST with DNN</p>
+<p>깊은신경망(2)– 시벤코정리, MNIST with DNN</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-x9XuXWwAmKKI3JbTRoXVJA</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-x9XuXWwAmKKI3JbTRoXVJA" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-x9XuXWwAmKKI3JbTRoXVJA</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">imports</h2>
+<section id="imports" class="level1">
+<h1>imports</h1>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -458,30 +458,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> torchvision</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="시벤코정리" class="level2">
-<h2 class="anchored" data-anchor-id="시벤코정리">시벤코정리</h2>
-<section id="지난시간-논리전개" class="level3">
-<h3 class="anchored" data-anchor-id="지난시간-논리전개">지난시간 논리전개</h3>
-<p><code>-</code> 아이디어: linear -&gt; relu -&gt; linear (-&gt; sigmoid) 조합으로 꺽은선으로 표현되는 underlying 을 표현할 수 있었다. - 아이디어의 실용성: 실제자료에서 꺽은선으로 표현되는 underlying은 몇개 없을 것 같음. 그건 맞는데 꺽이는 점을 많이 설정하면 얼추 비슷하게는 “근사” 시킬 수 있음. - 아이디어의 확장성: 이러한 논리전개는 X:(n,2)인 경우도 가능했음. (이 경우 꺽인선은 꺽인평면이 된다) - 아이디어에 해당하는 용어정리: : 이 구조가 x-&gt;y 로 바로 가는 것이 아니라 x-&gt;(u1-&gt;v1)-&gt;(u2-&gt;v2)=y 의 구조인데 이러한 네트워크를 하나의 은닉층을 포함하는 네트워크라고 표현한다.</p>
-</section>
+<section id="시벤코정리" class="level1">
+<h1>시벤코정리</h1>
+<section id="지난시간-논리전개" class="level2">
+<h2 class="anchored" data-anchor-id="지난시간-논리전개">지난시간 논리전개</h2>
+<p><code>-</code> 아이디어: linear -&gt; relu -&gt; linear (-&gt; sigmoid) 조합으로 꺽은선으로 표현되는 underlying 을 표현할 수 있었다.</p>
+<ul>
+<li>아이디어의 실용성: 실제자료에서 꺽은선으로 표현되는 underlying은 몇개 없을 것 같음. 그건 맞는데 꺽이는 점을 많이 설정하면 얼추 비슷하게는 “근사” 시킬 수 있음.</li>
+<li>아이디어의 확장성: 이러한 논리전개는 X:(n,2)인 경우도 가능했음. (이 경우 꺽인선은 꺽인평면이 된다)</li>
+<li>아이디어에 해당하는 용어정리: : 이 구조가 x-&gt;y 로 바로 가는 것이 아니라 x-&gt;(u1-&gt;v1)-&gt;(u2-&gt;v2)=y 의 구조인데 이러한 네트워크를 하나의 은닉층을 포함하는 네트워크라고 표현한다.</li>
+</ul>
 <section id="시벤코정리-1" class="level3">
 <h3 class="anchored" data-anchor-id="시벤코정리-1">시벤코정리</h3>
 <p><strong>universal approximation thm: (범용근사정리,보편근사정리,시벤코정리)</strong>, 1989</p>
 <blockquote class="blockquote">
 <p>하나의 은닉층을 가지는 “linear -&gt; sigmoid -&gt; linear” 꼴의 네트워크를 이용하여 세상에 존재하는 모든 (다차원) 연속함수를 원하는 정확도로 근사시킬 수 있다. (계수를 잘 추정한다면)</p>
 </blockquote>
-<p><code>-</code> 사실 엄청 이해안되는 정리임. 왜냐햐면, - 그렇게 잘 맞추면 1989년에 세상의 모든 문제를 다 풀어야 한거 아니야? - 요즘은 “linear -&gt; sigmoid -&gt; linear” 가 아니라 “linear -&gt; relu -&gt; linear” 조합으로 많이 쓰던데? - 요즘은 하나의 은닉층을 포함하는 네트워크는 잘 안쓰지 않나? 은닉층이 여러개일수록 좋다고 어디서 본 것 같은데?</p>
-<p><code>-</code> 약간의 의구심이 있지만 아무튼 universal approximation thm에 따르면 우리는 아래와 같은 무기를 가진 꼴이 된다. - 우리의 무기: <span class="math inline">\({\bf X}: (n,p)\)</span> 꼴의 입력에서 <span class="math inline">\({\bf y}:(n,1)\)</span> 꼴의 출력으로 향하는 맵핑을 “linear -&gt; relu -&gt; linear”와 같은 네트워크를 이용해서 “근사”시킬 수 있다.</p>
+<p><code>-</code> 사실 엄청 이해안되는 정리임. 왜냐햐면,</p>
+<ul>
+<li>그렇게 잘 맞추면 1989년에 세상의 모든 문제를 다 풀어야 한거 아니야?</li>
+<li>요즘은 “linear -&gt; sigmoid -&gt; linear” 가 아니라 “linear -&gt; relu -&gt; linear” 조합으로 많이 쓰던데?</li>
+<li>요즘은 하나의 은닉층을 포함하는 네트워크는 잘 안쓰지 않나? 은닉층이 여러개일수록 좋다고 어디서 본 것 같은데?</li>
+</ul>
+<p><code>-</code> 약간의 의구심이 있지만 아무튼 universal approximation thm에 따르면 우리는 아래와 같은 무기를 가진 꼴이 된다.</p>
+<ul>
+<li>우리의 무기: <span class="math inline">\({\bf X}: (n,p)\)</span> 꼴의 입력에서 <span class="math inline">\({\bf y}:(n,1)\)</span> 꼴의 출력으로 향하는 맵핑을 “linear -&gt; relu -&gt; linear”와 같은 네트워크를 이용해서 “근사”시킬 수 있다.</li>
+</ul>
 </section>
 </section>
-<section id="mnist-with-dnn" class="level2">
-<h2 class="anchored" data-anchor-id="mnist-with-dnn">MNIST with DNN</h2>
-<section id="목표" class="level3">
-<h3 class="anchored" data-anchor-id="목표">목표</h3>
+</section>
+<section id="mnist-with-dnn" class="level1">
+<h1>MNIST with DNN</h1>
+<section id="목표" class="level2">
+<h2 class="anchored" data-anchor-id="목표">목표</h2>
 <p><code>-</code> 목표: <span class="math inline">\({\bf X}:(n,1,28,28)\)</span> 에서 <span class="math inline">\(y:(n,1)\)</span> 로 가는 맵핑을 학습하자 –&gt; 배운적이 없는데? –&gt; <span class="math inline">\({\bf X}:(n,784)\)</span> 에서 <span class="math inline">\(y:(n,1)\)</span> 로 가는 맵핑을 학습하자..</p>
 </section>
-<section id="예비학습1-path" class="level3">
-<h3 class="anchored" data-anchor-id="예비학습1-path">예비학습1: Path</h3>
+<section id="예비학습1-path" class="level2">
+<h2 class="anchored" data-anchor-id="예비학습1-path">예비학습1: Path</h2>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.MNIST) </span>
 <span id="cb2-2"><a href="#cb2-2"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -531,8 +544,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>‘/home/cgb4/.fastai/data/mnist_png/training/3/37912.png’ 이 파일을 더블클릭하면 이미지가 보인단 말임</li>
 </ul>
 </section>
-<section id="예비학습2-plt.imshow" class="level3">
-<h3 class="anchored" data-anchor-id="예비학습2-plt.imshow">예비학습2: plt.imshow</h3>
+<section id="예비학습2-plt.imshow" class="level2">
+<h2 class="anchored" data-anchor-id="예비학습2-plt.imshow">예비학습2: plt.imshow</h2>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>imgtsr <span class="op">=</span> torch.tensor([[<span class="fl">1.0</span>,<span class="dv">2</span>],[<span class="fl">2.0</span>,<span class="fl">4.0</span>]])</span>
 <span id="cb14-2"><a href="#cb14-2"></a>imgtsr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -552,9 +565,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="예비학습3-torchvision" class="level3">
-<h3 class="anchored" data-anchor-id="예비학습3-torchvision">예비학습3: torchvision</h3>
-<p><code>-</code> ’/home/cgb4/.fastai/data/mnist_png/training/3/37912.png’의 이미지파일을 torchvision.io.read_image 를 이용하여 텐서로 만듬</p>
+<section id="예비학습3-torchvision" class="level2">
+<h2 class="anchored" data-anchor-id="예비학습3-torchvision">예비학습3: torchvision</h2>
+<p><code>-</code> <code>/home/cgb4/.fastai/data/mnist_png/training/3/37912.png</code>의 이미지파일을 torchvision.io.read_image 를 이용하여 텐서로 만듬</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>imgtsr <span class="op">=</span> torchvision.io.read_image(<span class="st">'/home/cgb4/.fastai/data/mnist_png/training/3/37912.png'</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a>imgtsr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -639,8 +652,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>진짜 숫자3이 있음</li>
 </ul>
 </section>
-<section id="데이터정리" class="level3">
-<h3 class="anchored" data-anchor-id="데이터정리">데이터정리</h3>
+<section id="데이터정리" class="level2">
+<h2 class="anchored" data-anchor-id="데이터정리">데이터정리</h2>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>threes <span class="op">=</span> (path<span class="op">/</span><span class="st">'training/3'</span>).ls()</span>
 <span id="cb24-2"><a href="#cb24-2"></a>sevens <span class="op">=</span> (path<span class="op">/</span><span class="st">'training/7'</span>).ls()</span>
@@ -691,8 +704,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>숫자3은 6131개, 숫자7은 6265개 있음</li>
 </ul>
 </section>
-<section id="학습-숙제-스스로-확인해-볼-것" class="level3">
-<h3 class="anchored" data-anchor-id="학습-숙제-스스로-확인해-볼-것">학습 (숙제: 스스로 확인해 볼 것)</h3>
+<section id="학습-숙제-스스로-확인해-볼-것" class="level2">
+<h2 class="anchored" data-anchor-id="학습-숙제-스스로-확인해-볼-것">학습 (숙제: 스스로 확인해 볼 것)</h2>
 <p><code>-</code> 네트워크의 설계</p>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
@@ -736,14 +749,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 </section>
-<section id="숙제" class="level2">
-<h2 class="anchored" data-anchor-id="숙제">숙제</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zEUnVaQveVvRD-eMBPtxIp</p>
-</blockquote>
-<ol type="1">
-<li>숫자0과 숫자1을 구분하는 네트워크를 아래와 같은 구조로 설계하라</li>
-</ol>
+<section id="숙제" class="level1">
+<h1>숙제</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-zEUnVaQveVvRD-eMBPtxIp" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-zEUnVaQveVvRD-eMBPtxIp</a></p>
+<p><code>(1)</code> 숫자0과 숫자1을 구분하는 네트워크를 아래와 같은 구조로 설계하라</p>
 <p><span class="math display">\[\underset{(n,784)}{\bf X} \overset{l_1}{\to} \underset{(n,64)}{\boldsymbol u^{(1)}} \overset{a_1}{\to} \underset{(n,64)}{\boldsymbol v^{(1)}} \overset{l_1}{\to} \underset{(n,1)}{\boldsymbol u^{(2)}} \overset{a_2}{\to} \underset{(n,1)}{\boldsymbol v^{(2)}}=\underset{(n,1)}{\hat{\boldsymbol y}}\]</span></p>
 <p>위에서 <span class="math inline">\(a_1\)</span>은 relu를, <span class="math inline">\(a_2\)</span>는 sigmoid를 의미한다.</p>
 <ul>
@@ -767,9 +776,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb43-5"><a href="#cb43-5"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">64</span>,out_features<span class="op">=</span><span class="dv">1</span>),</span>
 <span id="cb43-6"><a href="#cb43-6"></a>    torch.nn.Sigmoid())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li>아래의 지침에 따라 200 epoch 학습을 진행하라.</li>
-</ol>
+<p><code>(2)</code> 아래의 지침에 따라 200 epoch 학습을 진행하라.</p>
 <ul>
 <li>손실함수는 BECLoss를 이용할 것. torch.nn.BCELoss() 를 이용할 것.</li>
 <li>옵티마이저는 아담으로 설정할 것. 학습률은 lr=0.002로 설정할 것.</li>
@@ -798,9 +805,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-10-06-6wk-1_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<ol start="3" type="1">
-<li>아래의 지침에 따라 200 epoch 학습을 진행하라. 학습이 잘 되는가?</li>
-</ol>
+<p><code>(3)</code> 아래의 지침에 따라 200 epoch 학습을 진행하라. 학습이 잘 되는가?</p>
 <ul>
 <li>손실함수는 BECLoss를 이용할 것. torch.nn.BCELoss()를 사용하지 않고 수식을 직접 입력할 것.</li>
 <li>옵티마이저는 아담으로 설정할 것. 학습률은 lr=0.002로 설정할 것.</li>
@@ -852,9 +857,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>학습이 잘 안되었다!</li>
 </ul>
-<ol start="4" type="1">
-<li>아래의 지침에 따라 200 epoch 학습을 진행하라. 학습이 잘 되는가?</li>
-</ol>
+<p><code>(4)</code> 아래의 지침에 따라 200 epoch 학습을 진행하라. 학습이 잘 되는가?</p>
 <ul>
 <li>이미지의 값을 0과 1사이로 규격화 하라. (Xnp = Xnp/255 를 이용하세요!)</li>
 <li>손실함수는 BECLoss를 이용할 것. torch.nn.BCELoss()를 사용하지 않고 수식을 직접 입력할 것.</li>
@@ -897,10 +900,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>이번엔 학습이 잘 되었다!</li>
 </ul>
-<ol start="5" type="1">
-<li>아래와 같은 수식을 이용하여 accuracy를 계산하라.</li>
-</ol>
-<p><span class="math inline">\(\text{accuracy}=\frac{1}{n}\sum_{i=1}^n I(\tilde{y}_i=y_i)\)</span> - <span class="math inline">\(\tilde{y}_i = \begin{cases}  1 &amp; \hat{y}_i &gt; 0.5 \\  0 &amp; \hat{y}_i \leq 0.5 \end{cases}\)</span> - <span class="math inline">\(I(\tilde{y}_i=y_i) = \begin{cases} 1 &amp; \tilde{y}_i=y_i \\ 0 &amp; \tilde{y}_i \neq y_i \end{cases}\)</span></p>
+<p><code>(5)</code> 아래와 같은 수식을 이용하여 accuracy를 계산하라.</p>
+<p><span class="math inline">\(\text{accuracy}=\frac{1}{n}\sum_{i=1}^n I(\tilde{y}_i=y_i)\)</span></p>
+<ul>
+<li><span class="math inline">\(\tilde{y}_i = \begin{cases}  1 &amp; \hat{y}_i &gt; 0.5 \\  0 &amp; \hat{y}_i \leq 0.5 \end{cases}\)</span></li>
+<li><span class="math inline">\(I(\tilde{y}_i=y_i) = \begin{cases} 1 &amp; \tilde{y}_i=y_i \\ 0 &amp; \tilde{y}_i \neq y_i \end{cases}\)</span></li>
+</ul>
 <p>단, <span class="math inline">\(n\)</span>은 0과 1을 의미하는 이미지의 수</p>
 <p>(풀이1)</p>
 <div class="cell" data-execution_count="89">
@@ -1104,11 +1109,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>(tensor(inf, grad_fn=&lt;NegBackward0&gt;), tensor(0.7558, grad_fn=&lt;NegBackward0&gt;))</code></pre>
 </div>
 </div>
-<p><code>-</code> 깨달음1 - X가 0~255사이의 값을 가지면 <span class="math inline">\(X \to u^{(1)} \to v^{(1)} \to u^{(2)} \to yhat\)</span> 의 구조에서 <span class="math inline">\(u^{(2)}\)</span>의 값이 클 확률이 높다. (예를들면 21.7626 같은 값) - 큰 <span class="math inline">\(u^{(2)}\)</span>의 값은 <span class="math inline">\(yhat \approx 1\)</span> 이 되는 상황을 야기한다. - <span class="math inline">\(yhat \approx 1\)</span>인 상황은 <span class="math inline">\(loss=\infty\)</span>인 상황을 야기한다. - 그래서 학습이 안된다.</p>
-<p><code>-</code> 깨달음2 - X가 0~1사이의 값을 가지면 <span class="math inline">\(X \to u^{(1)} \to v^{(1)} \to u^{(2)} \to yhat\)</span> 의 구조에서 <span class="math inline">\(u^{(2)}\)</span>의 값이 클 확률이 적다. (예를들면 0.1216와 같이 적당한 값이 나옴) - 적당한 크기의 <span class="math inline">\(u^{(2)}\)</span>의 값은 <span class="math inline">\(yhat \approx 1\)</span> 이 되는 상황을 만들지 않는다. - 그래서 <span class="math inline">\(loss=\infty\)</span>인 상황도 잘 생기지 않는다. - 그래서 학습이 (상대적으로) 잘된다.</p>
+<p><code>-</code> 깨달음1</p>
+<ul>
+<li>X가 0~255사이의 값을 가지면 <span class="math inline">\(X \to u^{(1)} \to v^{(1)} \to u^{(2)} \to yhat\)</span> 의 구조에서 <span class="math inline">\(u^{(2)}\)</span>의 값이 클 확률이 높다. (예를들면 21.7626 같은 값)</li>
+<li>큰 <span class="math inline">\(u^{(2)}\)</span>의 값은 <span class="math inline">\(yhat \approx 1\)</span> 이 되는 상황을 야기한다.</li>
+<li><span class="math inline">\(yhat \approx 1\)</span>인 상황은 <span class="math inline">\(loss=\infty\)</span>인 상황을 야기한다.</li>
+<li>그래서 학습이 안된다.</li>
+</ul>
+<p><code>-</code> 깨달음2</p>
+<ul>
+<li>X가 0~1사이의 값을 가지면 <span class="math inline">\(X \to u^{(1)} \to v^{(1)} \to u^{(2)} \to yhat\)</span> 의 구조에서 <span class="math inline">\(u^{(2)}\)</span>의 값이 클 확률이 적다. (예를들면 0.1216와 같이 적당한 값이 나옴)</li>
+<li>적당한 크기의 <span class="math inline">\(u^{(2)}\)</span>의 값은 <span class="math inline">\(yhat \approx 1\)</span> 이 되는 상황을 만들지 않는다.</li>
+<li>그래서 <span class="math inline">\(loss=\infty\)</span>인 상황도 잘 생기지 않는다.</li>
+<li>그래서 학습이 (상대적으로) 잘된다.</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

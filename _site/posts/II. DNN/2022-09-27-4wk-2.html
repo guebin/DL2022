@@ -399,6 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-11-25-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -412,9 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#딥러닝의-기초-회귀분석3-로지스틱1" id="toc-딥러닝의-기초-회귀분석3-로지스틱1" class="nav-link active" data-scroll-target="#딥러닝의-기초-회귀분석3-로지스틱1">09/27: [딥러닝의 기초] 회귀분석(3), 로지스틱(1)</a>
-  <ul class="collapse">
-  <li><a href="#강의영상" id="toc-강의영상" class="nav-link" data-scroll-target="#강의영상">강의영상</a></li>
+  <li><a href="#강의영상" id="toc-강의영상" class="nav-link active" data-scroll-target="#강의영상">강의영상</a></li>
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">Imports</a></li>
   <li><a href="#numpy-torch-선택학습" id="toc-numpy-torch-선택학습" class="nav-link" data-scroll-target="#numpy-torch-선택학습">numpy, torch (선택학습)</a>
   <ul class="collapse">
@@ -441,7 +444,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">model</a></li>
   <li><a href="#toy-example" id="toc-toy-example" class="nav-link" data-scroll-target="#toy-example">toy example</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -451,19 +453,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="딥러닝의-기초-회귀분석3-로지스틱1" class="level1">
-<h1>09/27: [딥러닝의 기초] 회귀분석(3), 로지스틱(1)</h1>
 <blockquote class="blockquote">
-<p>step1의 다른버전 (복습+<span class="math inline">\(\alpha\)</span>), step4의 다른버전, 로지스틱 motive</p>
+<p>회귀분석(3)– step1의 다른버전 (복습+<span class="math inline">\(\alpha\)</span>) // 로지스틱(1)– step4의 다른버전, 로지스틱 motive</p>
 </blockquote>
-<section id="강의영상" class="level2">
-<h2 class="anchored" data-anchor-id="강의영상">강의영상</h2>
-<blockquote class="blockquote">
-<p>youtube: https://youtube.com/playlist?list=PLQqh36zP38-zQEazdKzpyl8St3r8F9b8u</p>
-</blockquote>
+<section id="강의영상" class="level1">
+<h1>강의영상</h1>
+<p><a href="https://youtube.com/playlist?list=PLQqh36zP38-zQEazdKzpyl8St3r8F9b8u" class="uri">https://youtube.com/playlist?list=PLQqh36zP38-zQEazdKzpyl8St3r8F9b8u</a></p>
 </section>
-<section id="imports" class="level2">
-<h2 class="anchored" data-anchor-id="imports">Imports</h2>
+<section id="imports" class="level1">
+<h1>Imports</h1>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -471,10 +469,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="numpy-torch-선택학습" class="level2">
-<h2 class="anchored" data-anchor-id="numpy-torch-선택학습">numpy, torch (선택학습)</h2>
-<section id="numpy-torch는-엄청-비슷해요" class="level3">
-<h3 class="anchored" data-anchor-id="numpy-torch는-엄청-비슷해요">numpy, torch는 엄청 비슷해요</h3>
+<section id="numpy-torch-선택학습" class="level1">
+<h1>numpy, torch (선택학습)</h1>
+<section id="numpy-torch는-엄청-비슷해요" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-torch는-엄청-비슷해요">numpy, torch는 엄청 비슷해요</h2>
 <p><code>-</code> torch.tensor() = np.array() 처럼 생각해도 무방</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]), torch.tensor([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -526,8 +524,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="length-n-vector-n-times-1-col-vector-1-times-n-row-vector" class="level3">
-<h3 class="anchored" data-anchor-id="length-n-vector-n-times-1-col-vector-1-times-n-row-vector">length <span class="math inline">\(n\)</span> vector, <span class="math inline">\(n \times 1\)</span> col-vector, <span class="math inline">\(1 \times n\)</span> row-vector</h3>
+<section id="length-n-vector-n-times-1-col-vector-1-times-n-row-vector" class="level2">
+<h2 class="anchored" data-anchor-id="length-n-vector-n-times-1-col-vector-1-times-n-row-vector">length <span class="math inline">\(n\)</span> vector, <span class="math inline">\(n \times 1\)</span> col-vector, <span class="math inline">\(1 \times n\)</span> row-vector</h2>
 <p><code>-</code> 길이가 3인 벡터 선언방법</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>a <span class="op">=</span> torch.tensor([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
@@ -571,11 +569,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><code>-</code> 3x1 col-vec 선언방법, 1x3 row-vec 선언방법에서 <code>[[1],[2],[3]]</code> 혹은 <code>[[1,2,3]]</code> 와 같은 표현이 이해안되면 아래링크로 가셔서</p>
-<p>https://guebin.github.io/STBDA2022/2022/03/14/(2주차)-3월14일.html</p>
+<p><a href="https://guebin.github.io/STBDA2022/2022/03/14/(2주차)-3월14일.html" class="uri">https://guebin.github.io/STBDA2022/2022/03/14/(2주차)-3월14일.html</a></p>
 <p>첫번째 동영상 12:15 - 22:45 에 해당하는 분량을 학습하시길 바랍니다.</p>
 </section>
-<section id="torch의-dtype" class="level3">
-<h3 class="anchored" data-anchor-id="torch의-dtype">torch의 dtype</h3>
+<section id="torch의-dtype" class="level2">
+<h2 class="anchored" data-anchor-id="torch의-dtype">torch의 dtype</h2>
 <p><code>-</code> 기본적으로 torch는 소수점으로 저장되면 dtype=torch.float32 가 된다. (이걸로 맞추는게 편리함)</p>
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>tsr <span class="op">=</span> torch.tensor([<span class="fl">1.23</span>,<span class="fl">2.34</span>])</span>
@@ -687,8 +685,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="shape-of-vector" class="level3">
-<h3 class="anchored" data-anchor-id="shape-of-vector">shape of vector</h3>
+<section id="shape-of-vector" class="level2">
+<h2 class="anchored" data-anchor-id="shape-of-vector">shape of vector</h2>
 <p><code>-</code> 행렬곱셈에 대한 shape 조심</p>
 <div class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>A <span class="op">=</span> torch.tensor([[<span class="fl">2.00</span>,<span class="fl">0.00</span>],[<span class="fl">0.00</span>,<span class="fl">3.00</span>]]) </span>
@@ -769,14 +767,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="step1의-다른버전-복습-alpha" class="level2">
-<h2 class="anchored" data-anchor-id="step1의-다른버전-복습-alpha">step1의 다른버전 (복습 + <span class="math inline">\(\alpha\)</span>)</h2>
-<section id="read-data" class="level3">
-<h3 class="anchored" data-anchor-id="read-data">read data</h3>
-<div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-09-22-regression.csv"</span>) </span>
+<section id="step1의-다른버전-복습-alpha" class="level1">
+<h1>step1의 다른버전 (복습 + <span class="math inline">\(\alpha\)</span>)</h1>
+<section id="read-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-data">read data</h2>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/guebin/DL2022/master/posts/II.%20DNN/2022-09-22-regression.csv"</span>) </span>
 <span id="cb77-2"><a href="#cb77-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <div>
 
@@ -850,21 +848,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a>x<span class="op">=</span>torch.tensor(df.x).<span class="bu">float</span>().reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
 <span id="cb78-2"><a href="#cb78-2"></a>y<span class="op">=</span>torch.tensor(df.y).<span class="bu">float</span>().reshape(<span class="dv">100</span>,<span class="dv">1</span>)</span>
 <span id="cb78-3"><a href="#cb78-3"></a>_1 <span class="op">=</span> torch.ones([<span class="dv">100</span>,<span class="dv">1</span>])</span>
 <span id="cb78-4"><a href="#cb78-4"></a>X <span class="op">=</span> torch.concat([_1,x],axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a>plt.plot(x,y,<span class="st">'o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-09-27-4wk-2_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
-<section id="ver1-net-torch.nn.linear11biastrue" class="level3">
-<h3 class="anchored" data-anchor-id="ver1-net-torch.nn.linear11biastrue">ver1: net = torch.nn.Linear(1,1,bias=True)</h3>
+<section id="ver1-net-torch.nn.linear11biastrue" class="level2">
+<h2 class="anchored" data-anchor-id="ver1-net-torch.nn.linear11biastrue">ver1: net = torch.nn.Linear(1,1,bias=True)</h2>
 <p><code>-</code> 준비</p>
 <div class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>net <span class="op">=</span> torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>,bias<span class="op">=</span><span class="va">True</span>)</span>
@@ -991,8 +989,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="ver2-net-torch.nn.linear21biasfalse" class="level3">
-<h3 class="anchored" data-anchor-id="ver2-net-torch.nn.linear21biasfalse">ver2: net = torch.nn.Linear(2,1,bias=False)</h3>
+<section id="ver2-net-torch.nn.linear21biasfalse" class="level2">
+<h2 class="anchored" data-anchor-id="ver2-net-torch.nn.linear21biasfalse">ver2: net = torch.nn.Linear(2,1,bias=False)</h2>
 <p><code>-</code> 준비</p>
 <div class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1"></a>net <span class="op">=</span> torch.nn.Linear(<span class="dv">2</span>,<span class="dv">1</span>,bias<span class="op">=</span><span class="va">False</span>)</span>
@@ -1098,10 +1096,10 @@ tensor([[-3.6577,  8.8111]], requires_grad=True)</code></pre>
 </div>
 </section>
 </section>
-<section id="step4의-다른버전-옵티마이저" class="level2">
-<h2 class="anchored" data-anchor-id="step4의-다른버전-옵티마이저">step4의 다른버전: 옵티마이저!</h2>
-<section id="ver1-net-torch.nn.linear11biastrue-1" class="level3">
-<h3 class="anchored" data-anchor-id="ver1-net-torch.nn.linear11biastrue-1">ver1: net = torch.nn.Linear(1,1,bias=True)</h3>
+<section id="step4의-다른버전-옵티마이저" class="level1">
+<h1>step4의 다른버전: 옵티마이저!</h1>
+<section id="ver1-net-torch.nn.linear11biastrue-1" class="level2">
+<h2 class="anchored" data-anchor-id="ver1-net-torch.nn.linear11biastrue-1">ver1: net = torch.nn.Linear(1,1,bias=True)</h2>
 <p><code>-</code> 준비</p>
 <div class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1"></a>net <span class="op">=</span> torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>) </span>
@@ -1175,8 +1173,8 @@ tensor([[-3.6577,  8.8111]], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="ver2-net-torch.nn.linear21biasfalse-1" class="level3">
-<h3 class="anchored" data-anchor-id="ver2-net-torch.nn.linear21biasfalse-1">ver2: net = torch.nn.Linear(2,1,bias=False)</h3>
+<section id="ver2-net-torch.nn.linear21biasfalse-1" class="level2">
+<h2 class="anchored" data-anchor-id="ver2-net-torch.nn.linear21biasfalse-1">ver2: net = torch.nn.Linear(2,1,bias=False)</h2>
 <p><code>-</code> 바로 반복하겠습니다..</p>
 <div class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1"></a>net <span class="op">=</span> torch.nn.Linear(<span class="dv">2</span>,<span class="dv">1</span>,bias<span class="op">=</span><span class="va">False</span>) </span>
@@ -1200,9 +1198,12 @@ tensor([[-3.6577,  8.8111]], requires_grad=True)</code></pre>
 <hr>
 </section>
 </section>
-<section id="appendix-net.parameters의-의미-선택학습" class="level2">
-<h2 class="anchored" data-anchor-id="appendix-net.parameters의-의미-선택학습">Appendix: <code>net.parameters()</code>의 의미? (선택학습)</h2>
-<p><code>-</code> iterator, generator의 개념필요 - https://guebin.github.io/IP2022/2022/06/06/(14주차)-6월6일.html, 클래스공부 8단계 참고</p>
+<section id="appendix-net.parameters의-의미-선택학습" class="level1">
+<h1>Appendix: <code>net.parameters()</code>의 의미? (선택학습)</h1>
+<p><code>-</code> iterator, generator의 개념필요</p>
+<ul>
+<li><a href="https://guebin.github.io/IP2022/2022/06/06/(14주차)-6월6일.html" class="uri">https://guebin.github.io/IP2022/2022/06/06/(14주차)-6월6일.html</a>, 클래스공부 8단계 참고</li>
+</ul>
 <p><code>-</code> 탐구시작: 네트워크 생성</p>
 <div class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1"></a>net <span class="op">=</span> torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1354,11 +1355,14 @@ tensor([-0.5233], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="logistic-regression" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression">Logistic regression</h2>
-<section id="motive" class="level3">
-<h3 class="anchored" data-anchor-id="motive">motive</h3>
-<p><code>-</code> 현실에서 이런 경우가 많음 - <span class="math inline">\(x\)</span>가 커질수록 (혹은 작아질수록) 성공확률이 증가함.</p>
+<section id="logistic-regression" class="level1">
+<h1>Logistic regression</h1>
+<section id="motive" class="level2">
+<h2 class="anchored" data-anchor-id="motive">motive</h2>
+<p><code>-</code> 현실에서 이런 경우가 많음</p>
+<ul>
+<li><span class="math inline">\(x\)</span>가 커질수록 (혹은 작아질수록) 성공확률이 증가함.</li>
+</ul>
 <p><code>-</code> (X,y)는 어떤모양?</p>
 <div class="cell" data-execution_count="249">
 <div class="sourceCode cell-code" id="cb184"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb184-1"><a href="#cb184-1"></a>_df <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>:<span class="bu">range</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">7</span>),<span class="st">'y'</span>:[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]})</span>
@@ -1466,17 +1470,17 @@ tensor([-0.5233], requires_grad=True)</code></pre>
 </div>
 </div>
 </section>
-<section id="model" class="level3">
-<h3 class="anchored" data-anchor-id="model">model</h3>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">model</h2>
 <p><code>-</code> <span class="math inline">\(x\)</span>가 커질수록 <span class="math inline">\(y=1\)</span>이 잘나오는 모형은 아래와 같이 설계할 수 있음 &lt;— 외우세요!!!</p>
 <ul>
-<li><p>$y_i Ber(_i),$ where <span class="math inline">\(\pi_i = \frac{\exp(w_0+w_1x_i)}{1+\exp(w_0+w_1x_i)}\)</span></p></li>
+<li><p><span class="math inline">\(y_i \sim Ber(\pi_i),\quad\)</span> where <span class="math inline">\(\pi_i = \frac{\exp(w_0+w_1x_i)}{1+\exp(w_0+w_1x_i)}\)</span></p></li>
 <li><p><span class="math inline">\(\hat{y}_i= \frac{\exp(\hat{w}_0+\hat{w}_1x_i)}{1+\exp(\hat{w}_0+\hat{w}_1x_i)}=\frac{1}{1+\exp(-\hat{w}_0-\hat{w}_1x_i)}\)</span></p></li>
 <li><p><span class="math inline">\(loss= - \sum_{i=1}^{n} \big(y_i\log(\hat{y}_i)+(1-y_i)\log(1-\hat{y}_i)\big)\)</span> &lt;— 외우세요!!</p></li>
 </ul>
 </section>
-<section id="toy-example" class="level3">
-<h3 class="anchored" data-anchor-id="toy-example">toy example</h3>
+<section id="toy-example" class="level2">
+<h2 class="anchored" data-anchor-id="toy-example">toy example</h2>
 <p><code>-</code> 예제시작</p>
 <div class="cell" data-execution_count="271">
 <div class="sourceCode cell-code" id="cb188"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1"></a>x<span class="op">=</span>torch.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2000</span>).reshape(<span class="dv">2000</span>,<span class="dv">1</span>)</span>
@@ -1498,7 +1502,6 @@ tensor([-0.5233], requires_grad=True)</code></pre>
 </ul>
 
 
-</section>
 </section>
 </section>
 
