@@ -970,7 +970,7 @@
     "href": "posts/2022-11-29-13wk-2-final.html#다음을-읽고-참-거짓을-판단하여라.-10점",
     "title": "final",
     "section": "2. 다음을 읽고 참 거짓을 판단하여라. (10점)",
-    "text": "2. 다음을 읽고 참 거짓을 판단하여라. (10점)\n(1) LSTM은 RNN보다 장기기억에 유리하다.\n(2) torch.nn.Embedding(num_embeddings=2,embedding_dim=1)와 torch.nn.Linear(in_features=1,out_features=1)의 학습가능한 파라메터수는 같다.\n(3) 아래와 같은 네트워크를 고려하자.\nnet = torch.nn.Linear(1,1)\n차원이 (n,1) 인 임의의 텐서에 대하여 net(x)와 net.forword(x)의 출력결과는 같다.\n(4) 아래와 같이 a,b,c,d 가 반복되는 문자열이 반복되는 자료에서 다음문자열을 맞추는 과업을 수행하기 위해서는 반드시 순환신경망의 형태로 설계해야만 한다.\na,b,c,d,a,b,c,e,...\n(5) RNN 혹은 LSTM 으로 신경망을 설계할 시 손실함수는 항상 torch.nn.CrossEntropyLoss 를 사용해야 한다."
+    "text": "2. 다음을 읽고 참 거짓을 판단하여라. (10점)\n(1) LSTM은 RNN보다 장기기억에 유리하다.\n(2) torch.nn.Embedding(num_embeddings=2,embedding_dim=1)와 torch.nn.Linear(in_features=1,out_features=1)의 학습가능한 파라메터수는 같다.\n(3) 아래와 같은 네트워크를 고려하자.\nnet = torch.nn.Linear(1,1)\n차원이 (n,1) 인 임의의 텐서에 대하여 net(x)와 net.forword(x)의 출력결과는 같다.\n(4) 아래와 같이 a,b,c,d 가 반복되는 문자열이 반복되는 자료에서 다음문자열을 맞추는 과업을 수행하기 위해서는 반드시 순환신경망의 형태로 설계해야만 한다.\na,b,c,d,a,b,c,d,...\n(5) RNN 혹은 LSTM 으로 신경망을 설계할 시 손실함수는 항상 torch.nn.CrossEntropyLoss 를 사용해야 한다."
   },
   {
     "objectID": "posts/II. DNN/2022-09-29-5wk-1.html",
