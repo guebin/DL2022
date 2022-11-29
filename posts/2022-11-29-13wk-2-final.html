@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="다음을-읽고-참-거짓을-판단하여라.-10점" class="level2">
 <h2 class="anchored" data-anchor-id="다음을-읽고-참-거짓을-판단하여라.-10점"><code>2</code>. 다음을 읽고 참 거짓을 판단하여라. (10점)</h2>
 <p><code>(1)</code> LSTM은 RNN보다 장기기억에 유리하다.</p>
-<p><code>(2)</code> torch.nn.Embedding(num_embeddings=2,embedding_dim=1)와 torch.nn.Linear(in_features=1,out_features=1)의 학습가능한 파라메터수는 같다.</p>
+<p><code>(2)</code> <code>torch.nn.Embedding(num_embeddings=2,embedding_dim=1)</code>와 <code>torch.nn.Linear(in_features=1,out_features=1)</code>의 학습가능한 파라메터수는 같다.</p>
 <p><code>(3)</code> 아래와 같은 네트워크를 고려하자.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>net <span class="op">=</span> torch.nn.Linear(<span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>차원이 (n,1) 인 임의의 텐서에 대하여 net(x)와 net.forword(x)의 출력결과는 같다.</p>
