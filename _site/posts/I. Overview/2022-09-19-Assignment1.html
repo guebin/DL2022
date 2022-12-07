@@ -408,6 +408,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">14wk-1: 순환신경망 (8)</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -1493,10 +1498,10 @@ show_image<span class="ansi-blue-fg">(</span>
 <section id="시퀀스자료분석" class="level2">
 <h2 class="anchored" data-anchor-id="시퀀스자료분석"><code>3</code>. 시퀀스자료분석</h2>
 <p>아래를 이용하여 자료를 다운로드 받아라.</p>
-<div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-09-19-human_numbers_100.csv'</span>)</span>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/main/posts/IV.%20RNN/2022-11-25-human_numbers_100.csv'</span>)</span>
 <span id="cb32-2"><a href="#cb32-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -1504,75 +1509,63 @@ show_image<span class="ansi-blue-fg">(</span>
   <thead>
     <tr>
       <th></th>
-      <th>Unnamed: 0</th>
       <th>text</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>3</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>4</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
       <th>1995</th>
-      <td>1995</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>1996</th>
-      <td>1996</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>1997</th>
-      <td>1997</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>1998</th>
-      <td>1998</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
     <tr>
       <th>1999</th>
-      <td>1999</td>
       <td>one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty one, twenty two, twenty three, twenty four, twenty five, twenty six, twenty seven, twenty eight, twenty nine, thirty, thirty one, thirty two, thirty three, thirty four, thirty five, thirty six, thirty seven, thirty eight, thirty nine, forty, forty one, forty two, forty three, forty four, forty five, forty six, forty seven, forty eight, forty nine, fifty, fifty one, fifty two, fifty three, fifty four, fifty five, fifty six, fifty seve...</td>
     </tr>
   </tbody>
 </table>
-<p>2000 rows × 2 columns</p>
+<p>2000 rows × 1 columns</p>
 </div>
 </div>
 </div>
 <p><code>(1)</code> TextDataLoaders.from_df을 이용하여 dls오브젝트를 만들어라. - is_lm = True 로 설정할 것 - seq_len = 5 로 설정할 것</p>
 <p>(풀이)</p>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>dls <span class="op">=</span> TextDataLoaders.from_df(df,is_lm<span class="op">=</span><span class="va">True</span>,seq_len<span class="op">=</span><span class="dv">5</span>,text_col<span class="op">=</span><span class="st">'text'</span>)</span>
 <span id="cb33-2"><a href="#cb33-2"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1658,12 +1651,12 @@ show_image<span class="ansi-blue-fg">(</span>
 </div>
 <p><code>(2)</code> lrnr 오브젝트를 만들어라. - arch = AWD_LSTM 이용 - metrics = accuracy 이용</p>
 <p>(풀이)</p>
-<div class="cell" data-execution_count="51">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>lrnr <span class="op">=</span> language_model_learner(dls, arch<span class="op">=</span> AWD_LSTM, metrics<span class="op">=</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>(3)</code> lrnr오브젝트에서 fine_tune(3) 메소드를 이용하여 모형을 학습하라.</p>
 <p>(풀이)</p>
-<div class="cell" data-execution_count="53">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>lrnr.fine_tune(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
@@ -1698,10 +1691,10 @@ show_image<span class="ansi-blue-fg">(</span>
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.534681</td>
-      <td>0.168856</td>
-      <td>0.977650</td>
-      <td>00:49</td>
+      <td>0.562629</td>
+      <td>0.170190</td>
+      <td>0.980446</td>
+      <td>00:47</td>
     </tr>
   </tbody>
 </table>
@@ -1739,24 +1732,24 @@ show_image<span class="ansi-blue-fg">(</span>
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.018749</td>
-      <td>0.003256</td>
-      <td>0.999205</td>
-      <td>00:54</td>
+      <td>0.024269</td>
+      <td>0.004158</td>
+      <td>0.999150</td>
+      <td>00:52</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.001580</td>
-      <td>0.002430</td>
-      <td>0.999324</td>
-      <td>00:54</td>
+      <td>0.001330</td>
+      <td>0.002540</td>
+      <td>0.999296</td>
+      <td>00:52</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.000651</td>
-      <td>0.002244</td>
-      <td>0.999315</td>
-      <td>00:54</td>
+      <td>0.000305</td>
+      <td>0.002321</td>
+      <td>0.999324</td>
+      <td>00:52</td>
     </tr>
   </tbody>
 </table>
@@ -1764,7 +1757,7 @@ show_image<span class="ansi-blue-fg">(</span>
 </div>
 <p><code>(4)</code> ‘one , two ,’ 이후에 이어질 50개의 단어를 생성하라.</p>
 <p>(풀이)</p>
-<div class="cell" data-execution_count="56">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>lrnr.predict(<span class="st">'one, two,'</span>, n_words<span class="op">=</span><span class="dv">50</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
@@ -1787,13 +1780,13 @@ show_image<span class="ansi-blue-fg">(</span>
 <div class="cell-output cell-output-display">
 
 </div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>'one , two , three , four , five , six , seven , eight , nine , ten , eleven , twelve , thirteen , fourteen , fifteen , sixteen , seventeen , eighteen , nineteen , twenty , twenty one , twenty two , twenty three , twenty four , twenty five'</code></pre>
 </div>
 </div>
 <p><code>(5)</code> ‘twenty , twenty one ,’ 이후에 이어질 50개의 단어를 생성하라.</p>
 <p>(풀이)</p>
-<div class="cell" data-execution_count="57">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>lrnr.predict(<span class="st">'twenty, twenty one,'</span>, n_words<span class="op">=</span><span class="dv">50</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
@@ -1816,7 +1809,7 @@ show_image<span class="ansi-blue-fg">(</span>
 <div class="cell-output cell-output-display">
 
 </div>
-<div class="cell-output cell-output-display" data-execution_count="57">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>'twenty , twenty one , twenty two , twenty three , twenty four , twenty five , twenty six , twenty seven , twenty eight , twenty nine , thirty , thirty one , thirty two , thirty three , thirty four , thirty five , thirty six , thirty seven , thirty eight ,'</code></pre>
 </div>
 </div>
