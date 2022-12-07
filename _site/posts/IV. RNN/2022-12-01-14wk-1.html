@@ -1319,8 +1319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><code>(1)</code> TextDataLoaders.from_df을 이용하여 dls오브젝트를 만들어라. - is_lm = True 로 설정할 것 - seq_len = 5 로 설정할 것</p>
-<p>(풀이)</p>
+<p><code>(1)</code> TextDataLoaders.from_df을 이용하여 dls오브젝트 생성</p>
 <div class="cell" data-execution_count="791">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a>dls <span class="op">=</span> TextDataLoaders.from_df(df,is_lm<span class="op">=</span><span class="va">True</span>,seq_len<span class="op">=</span><span class="dv">5</span>,text_col<span class="op">=</span><span class="st">'text'</span>)</span>
 <span id="cb103-2"><a href="#cb103-2"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1405,13 +1404,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 </div>
-<p><code>(2)</code> lrnr 오브젝트를 만들어라. - arch = AWD_LSTM 이용 - metrics = accuracy 이용</p>
-<p>(풀이)</p>
+<p><code>(2)</code> lrnr 오브젝트를 생성</p>
 <div class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1"></a>lrnr <span class="op">=</span> language_model_learner(dls, arch<span class="op">=</span> AWD_LSTM, metrics<span class="op">=</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>(3)</code> lrnr오브젝트에서 fine_tune(3) 메소드를 이용하여 모형을 학습하라.</p>
-<p>(풀이)</p>
+<p><code>(3)</code> lrnr오브젝트에서 모형을 학습</p>
 <div class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1"></a>lrnr.fine_tune(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1511,8 +1508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 </div>
-<p><code>(4)</code> ‘one , two ,’ 이후에 이어질 50개의 단어를 생성하라.</p>
-<p>(풀이)</p>
+<p><code>(4)</code> ‘one , two ,’ 이후에 이어질 50개의 단어를 생성</p>
 <div class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1"></a>lrnr.predict(<span class="st">'one, two,'</span>, n_words<span class="op">=</span><span class="dv">50</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1540,8 +1536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>'one , two , three , four , five , six , seven , eight , nine , ten , eleven , twelve , thirteen , fourteen , fifteen , sixteen , seventeen , eighteen , nineteen , twenty , twenty one , twenty two , twenty three , twenty four , twenty five'</code></pre>
 </div>
 </div>
-<p><code>(5)</code> ‘twenty , twenty one ,’ 이후에 이어질 50개의 단어를 생성하라.</p>
-<p>(풀이)</p>
+<p><code>(5)</code> ‘twenty , twenty one ,’ 이후에 이어질 50개의 단어를 생성</p>
 <div class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1"></a>lrnr.predict(<span class="st">'twenty, twenty one,'</span>, n_words<span class="op">=</span><span class="dv">50</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
