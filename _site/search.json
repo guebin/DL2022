@@ -823,7 +823,7 @@
     "href": "posts/IV. RNN/2022-12-01-14wk-2.html",
     "title": "14wk-2: 순환신경망 (9)",
     "section": "",
-    "text": "import torch\nfrom fastai.text.all import *"
+    "text": "IMDB자료의 분석 (텍스트생성과 감성분류), 잡담"
   },
   {
     "objectID": "posts/IV. RNN/2022-12-01-14wk-2.html#잡담1-순환신경망-텍스트마이닝-시계열분석",
