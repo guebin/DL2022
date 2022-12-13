@@ -1726,7 +1726,7 @@
     "href": "posts/II. DNN/2022-12-13-Extra-1.html",
     "title": "Extra-1: 딥러닝의 기초 (9)",
     "section": "",
-    "text": "깊은신경망 (5)– 역전파와 기울기 소멸"
+    "text": "벡터미분, 역전파와 기울기 소멸"
   },
   {
     "objectID": "posts/II. DNN/2022-12-13-Extra-1.html#예시-2021-빅데이터분석-중간고사-문제-2-b",
