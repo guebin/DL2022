@@ -783,7 +783,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>이론적인 결과인 <span class="math inline">\(-{\bf I}\)</span>와 일치한다.</li>
 </ul>
 <p><code>-</code> <span class="math inline">\(\frac{\partial }{\partial {\bf W}}{\bf u}^\top\)</span>의 계산</p>
-<p>$^= (u_1,,u_5)=(u_1,,u_5 ) $</p>
+<p><span class="math inline">\(\frac{\partial }{\partial {\bf W}}{\bf u}^\top = \frac{\partial }{\partial {\bf W}}(u_1,\dots,u_5)=\big(\frac{\partial }{\partial {\bf W}}u_1,\dots,\frac{\partial }{\partial {\bf W}}u_5 \big)\)</span></p>
 <div class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>B <span class="op">=</span> torch.zeros((<span class="dv">2</span>,<span class="dv">5</span>))</span>
 <span id="cb48-2"><a href="#cb48-2"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
