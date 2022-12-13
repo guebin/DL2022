@@ -454,7 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#벡터미분" id="toc-벡터미분" class="nav-link" data-scroll-target="#벡터미분">벡터미분</a></li>
   <li><a href="#지난시간-복습-벡터미분-복습" id="toc-지난시간-복습-벡터미분-복습" class="nav-link" data-scroll-target="#지난시간-복습-벡터미분-복습">지난시간 복습 (벡터미분 복습)</a></li>
   <li><a href="#오늘수업의-목표" id="toc-오늘수업의-목표" class="nav-link" data-scroll-target="#오늘수업의-목표">오늘수업의 목표</a></li>
-  <li><a href="#체인룰-어려운-하나의-미분을-손쉬운-여러개의-미분으로-나누는-기법" id="toc-체인룰-어려운-하나의-미분을-손쉬운-여러개의-미분으로-나누는-기법" class="nav-link" data-scroll-target="#체인룰-어려운-하나의-미분을-손쉬운-여러개의-미분으로-나누는-기법">체인룰 (어려운 하나의 미분을 손쉬운 여러개의 미분으로 나누는 기법)</a>
+  <li><a href="#체인룰" id="toc-체인룰" class="nav-link" data-scroll-target="#체인룰">체인룰</a>
   <ul class="collapse">
   <li><a href="#예시-2021-빅데이터분석-중간고사-문제-2-b" id="toc-예시-2021-빅데이터분석-중간고사-문제-2-b" class="nav-link" data-scroll-target="#예시-2021-빅데이터분석-중간고사-문제-2-b">예시: 2021 빅데이터분석 중간고사 문제 2-(b)</a></li>
   <li><a href="#잠깐-생각해보자.." id="toc-잠깐-생각해보자.." class="nav-link" data-scroll-target="#잠깐-생각해보자..">잠깐 생각해보자..</a>
@@ -517,8 +517,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>오늘수업의 목표</h1>
 <p><code>-</code> 체인룰을 이해하자.</p>
 </section>
-<section id="체인룰-어려운-하나의-미분을-손쉬운-여러개의-미분으로-나누는-기법" class="level1">
-<h1>체인룰 (어려운 하나의 미분을 손쉬운 여러개의 미분으로 나누는 기법)</h1>
+<section id="체인룰" class="level1">
+<h1>체인룰</h1>
+<p><code>-</code> 체인룰: 어려운 하나의 미분을 손쉬운 여러개의 미분으로 나누는 기법</p>
 <p><code>-</code> 손실함수가 사실 아래와 같은 변환을 거쳐서 계산되었다고 볼 수 있다.</p>
 <ul>
 <li><span class="math inline">\({\bf X} \to {\bf X}{\bf W} \to {\bf y} -{\bf X}{\bf W} \to ({\bf y}-{\bf X}{\bf W})^\top ({\bf y}-{\bf X}{\bf W})\)</span></li>
@@ -527,16 +528,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p><span class="math inline">\({\bf u}={\bf X}{\bf W}\)</span>, <span class="math inline">\(\quad {\bf u}: n \times 1\)</span></p></li>
 <li><p><span class="math inline">\({\bf v} = {\bf y}- {\bf u},\)</span> <span class="math inline">\(\quad {\bf v}: n \times 1\)</span></p></li>
-<li><p><span class="math inline">\(loss={\bf v}^\top {\bf v},\)</span> $loss: 1 $</p></li>
+<li><p><span class="math inline">\(loss={\bf v}^\top {\bf v},\)</span> <span class="math inline">\(\quad loss: 1 \times 1\)</span></p></li>
 </ul>
 <p><code>-</code> 손실함수에 대한 미분은 아래와 같다.</p>
-<p><span class="math display">\[\frac{\partial }{\partial {\bf W}} loss = \frac{\partial }{\partial {\bf W}} {\bf v}^\top {\bf v} \]</span></p>
+<p><span class="math display">\[\frac{\partial }{\partial {\bf W}} loss = \frac{\partial }{\partial {\bf W}} {\bf v}^\top {\bf v}\]</span></p>
 <p>(그런데 이걸 어떻게 계산함?)</p>
 <p><code>-</code> 계산할 수 있는것들의 모음..</p>
 <ul>
-<li><p>$ loss = 2{} $ <span class="math inline">\(\quad \to\)</span> (n,1) 벡터</p></li>
-<li><p><span class="math inline">\(\frac{\partial }{\partial {\bf u}} {\bf v}^\top = -{\bf I}\)</span> $$ (n,n) 매트릭스</p></li>
-<li><p>$^= {}^$ <span class="math inline">\(\quad \to\)</span> (p,n) 매트릭스</p></li>
+<li><p><span class="math inline">\(\frac{\partial}{\partial {\bf v}} loss = 2{\bf v}\)</span> <span class="math inline">\(\quad \to\)</span> (n,1) 벡터</p></li>
+<li><p><span class="math inline">\(\frac{\partial }{\partial {\bf u}} {\bf v}^\top = -{\bf I}\)</span> <span class="math inline">\(\quad \to\)</span> (n,n) 매트릭스</p></li>
+<li><p><span class="math inline">\(\frac{\partial }{\partial \bf W}{\bf u}^\top = {\bf X}^\top\)</span> <span class="math inline">\(\quad \to\)</span> (p,n) 매트릭스</p></li>
 </ul>
 <p><code>-</code> 혹시.. 아래와 같이 쓸 수 있을까?</p>
 <p><span class="math display">\[ \left(\frac{\partial }{\partial \bf W}{\bf u}^\top \right)
@@ -869,24 +870,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>의문해결: 어차피 우리가 쓰는 층은 선형+(렐루, 시그모이드, …) 정도가 전부임. 따라서 변환규칙은 미리 계산할 수 있음.</li>
 </ul>
 <p><code>-</code> 결국</p>
-<ol type="1">
-<li><p>순전파를 하면서 입출력값을 모두 저장하고</p></li>
-<li><p>그에 대응하는 층별 미분계수값 <span class="math inline">\(2{\bf v}, -{\bf I}, {\bf X}^\top\)</span> 를 구하고</p></li>
-<li><p>층별미분계수값을 다시 곱하면 (그러니까 <span class="math inline">\({\bf X}^\top (-{\bf I}) 2{\bf v}\)</span> 를 계산) 된다.</p></li>
-</ol>
+<p><code>(1)</code> 순전파를 하면서 입출력값을 모두 저장하고</p>
+<p><code>(2)</code> 그에 대응하는 층별 미분계수값 <span class="math inline">\(2{\bf v}, -{\bf I}, {\bf X}^\top\)</span> 를 구하고</p>
+<p><code>(3)</code> 층별미분계수값을 다시 곱하면 (그러니까 <span class="math inline">\({\bf X}^\top (-{\bf I}) 2{\bf v}\)</span> 를 계산) 된다.</p>
 </section>
 <section id="backpropagation" class="level3">
 <h3 class="anchored" data-anchor-id="backpropagation">backpropagation</h3>
-<ol type="1">
-<li>순전파를 계산하고 각 층별 입출력 값을 기록</li>
-</ol>
+<p><code>(1)</code> 순전파를 계산하고 각 층별 입출력 값을 기록</p>
 <ul>
 <li>yhat = net(X)</li>
 <li>loss = loss_fn(yhat,y)</li>
 </ul>
-<ol start="2" type="1">
-<li>역전파를 수행하여 손실함수의 미분값을 계산</li>
-</ol>
+<p><code>(2)</code> 역전파를 수행하여 손실함수의 미분값을 계산</p>
 <ul>
 <li>loss.backward()</li>
 </ul>
