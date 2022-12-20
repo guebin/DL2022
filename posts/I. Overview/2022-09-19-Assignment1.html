@@ -440,6 +440,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">V. RecSys</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">Extra-2: 추천시스템</a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -473,7 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>ipynb 혹은 html 파일을 이용한 제출이 익숙하지 않은 학생은 질문할 것.</li>
 <li>이 hw은 9월13일 + 9월15일 분량임 (다른숙제 대비 배점2배)</li>
 </ul>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.collab <span class="im">import</span> <span class="op">*</span> </span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -698,10 +713,10 @@ show_image<span class="ansi-blue-fg">(</span>
 <section id="추천시스템" class="level2">
 <h2 class="anchored" data-anchor-id="추천시스템"><code>2</code>. 추천시스템</h2>
 <p>아래를 이용하여 rcmd_anal.csv 를 다운로드 받고 dls오브젝트를 만들어라.</p>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/master/_notebooks/2022-09-08-rcmd_anal.csv'</span>)</span>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DL2022/main/posts/I.%20Overview/2022-09-08-rcmd_anal.csv'</span>)</span>
 <span id="cb23-2"><a href="#cb23-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
 
