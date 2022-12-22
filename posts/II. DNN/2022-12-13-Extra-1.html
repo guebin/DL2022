@@ -448,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">Extra-2: 추천시스템</a>
+  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">Extra-1: 추천시스템</a>
   </div>
 </li>
       </ul>
@@ -989,19 +989,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code> 도깨비: 기울기가 소멸하기도 하고 터지기도 한다.</p>
 </section>
 <section id="해결책-기울기-소멸에-대한-해결책" class="level2">
-<h2 class="anchored" data-anchor-id="해결책-기울기-소멸에-대한-해결책">해결책 (기울기 소멸에 대한 해결책)</h2>
-<blockquote class="blockquote">
-<p>Note: 잘 정리되어있는것이 없어서 제 머리속에서 정리했습니다. 부정확할수도 있어요</p>
-</blockquote>
-<p><code>-</code> 개념</p>
-<ul>
-<li>데이터 <span class="math inline">\(\to\)</span> (아키텍처,손실함수,역전파,업데이트)</li>
-</ul>
+<h2 class="anchored" data-anchor-id="해결책-기울기-소멸에-대한-해결책"><a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">해결책</a> (기울기 소멸에 대한 해결책)</h2>
 <p><code>-</code> Multi-level hierarchy</p>
 <ul>
 <li>여러층을 쪼개서 학습하자 <span class="math inline">\(\to\)</span> 어떻게? 사전학습, 층벼학습</li>
 <li>기울기소실문제를 해결하여 딥러닝을 유행시킨 태초의(?) 방법임.</li>
 <li>결국 입력자료를 바꾼뒤에 학습하는 형태</li>
+</ul>
+<p><code>-</code> Gradient clipping</p>
+<ul>
+<li>너무 큰 값의 기울기는 사용하지 말자. (기울기 폭발에 대한 대비책)</li>
 </ul>
 <p><code>-</code> Faster hardware</p>
 <ul>
@@ -1009,12 +1006,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>근본적인 문제해결책은 아니라는 힌튼의 비판</li>
 <li>CPU를 쓸때보다 GPU를 쓰면 약간 더 깊은 모형을 학습할 수 있다 정도?</li>
 </ul>
-<p><code>-</code> Residual networks</p>
+<p><code>-</code> Residual Networks, LSTM</p>
 <ul>
-<li>훌륭한 접근법중 하나임</li>
-<li>아키텍처를 변경하는 방법이지만, 사실상 손실함수를 부드럽게 만드는 기법으로 이해해도 된다.</li>
-<li>솟컷이라는 아키텍처를 추가하여 이리저리 실험해보니까 손실함수가 부드러워졌다. &lt;— 이런게 아니고</li>
-<li>손실함수를 부드럽게 하기 위해서는 층별의차이(residual)를 학습하는게 유리할 것 같다. 그런데 이것을 위한 효과를 주기 위해서는 단지 아키텍처에 숏만만 추가하면 되겠다. &lt;— 이런 모티브였을 것이다.</li>
+<li>아키텍처를 변경하는 방법</li>
 </ul>
 <p><code>-</code> Other activation functions</p>
 <ul>
@@ -1026,7 +1020,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>배치정규화는 원래 공변량 쉬프트를 잡기 위한 방법임. 그런데 기울기 소멸에도 효과가 있음. 현재는 기울기소멸문제에 대한 해결책으로 빠짐없이 언급되고 있음. 2015년의 원래 논문에는 기울기소멸에 대한 언급은 없었음. (https://arxiv.org/pdf/1502.03167.pdf)</li>
 <li>심지어 배치정규화는 오버피팅을 잡는효과도 있음 (이것은 논문에 언급했음)</li>
 </ul>
-<p><code>-</code> <strong>기울기를 안구하면 안되나?</strong>`</p>
+<p><code>-</code> <strong>기울기를 안구하면 안되나?</strong></p>
 <ul>
 <li>베이지안 최적화기법: (https://arxiv.org/pdf/1807.02811.pdf) <span class="math inline">\(\to\)</span> GPU를 어떻게 쓰지? <span class="math inline">\(\to\)</span> 느리다</li>
 </ul>
