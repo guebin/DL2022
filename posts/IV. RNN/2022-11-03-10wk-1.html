@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.322">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,10 +96,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -135,335 +113,354 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">DL2022</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&amp;sort=dd&amp;shelf_id=3"><i class="bi bi-youtube" role="img">
+    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&amp;sort=dd&amp;shelf_id=3"> <i class="bi bi-youtube" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">10wk-1: 순환신경망 (2)</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/2022-09-01-1wk-1.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-11-01-9wk-2.html">IV. RNN</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-11-03-10wk-1.html">10wk-1: 순환신경망 (2)</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">10wk-1: 순환신경망 (2)</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">순환신경망</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>최규빈 </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">November 3, 2022</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-11-29-13wk-2-final.html" class="sidebar-item-text sidebar-link">final</a>
+  <a href="../../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">mid</a>
+  <a href="../../posts/2022-11-29-13wk-2-final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Appendix</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Appendix/2022-12-14-A1.html" class="sidebar-item-text sidebar-link">A1: 깊은복사와 얕은복사</a>
+  <a href="../../posts/Appendix/2022-12-14-A1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1: 깊은복사와 얕은복사</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">I. Overview</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">I. Overview</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link">01wk-2: Overview (1)</a>
+  <a href="../../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01wk-2: Overview (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (2)</a>
+  <a href="../../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (3)</a>
+  <a href="../../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (4)</a>
+  <a href="../../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">Assignment 1</a>
+  <a href="../../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">II. DNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">II. DNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">03wk-2: 딥러닝의 기초 (1)</a>
+  <a href="../../posts/II. DNN/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03wk-2: 딥러닝의 기초 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">04wk-1: 딥러닝의 기초 (2)</a>
+  <a href="../../posts/II. DNN/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk-1: 딥러닝의 기초 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">04wk-2: 딥러닝의 기초 (3)</a>
+  <a href="../../posts/II. DNN/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk-2: 딥러닝의 기초 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">05wk-1: 딥러닝의 기초 (4)</a>
+  <a href="../../posts/II. DNN/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk-1: 딥러닝의 기초 (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">05wk-2: 딥러닝의 기초 (5)</a>
+  <a href="../../posts/II. DNN/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk-2: 딥러닝의 기초 (5)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">06wk-1: 딥러닝의 기초 (6)</a>
+  <a href="../../posts/II. DNN/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk-1: 딥러닝의 기초 (6)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">06wk-2: 딥러닝의 기초 (7)</a>
+  <a href="../../posts/II. DNN/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk-2: 딥러닝의 기초 (7)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link">07wk-1: 딥러닝의 기초 (8)</a>
+  <a href="../../posts/II. DNN/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk-1: 딥러닝의 기초 (8)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">Assignment 2</a>
+  <a href="../../posts/II. DNN/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-12-13-Extra-1.html" class="sidebar-item-text sidebar-link">Extra-1: 딥러닝의 기초 (9)</a>
+  <a href="../../posts/II. DNN/2022-12-13-Extra-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-1: 딥러닝의 기초 (9)</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">III. CNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">III. CNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">07wk-2: 이미지분석 (1)</a>
+  <a href="../../posts/III. CNN/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk-2: 이미지분석 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">08wk-1: 이미지분석 (2)</a>
+  <a href="../../posts/III. CNN/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk-1: 이미지분석 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">08wk-2: 이미지분석 (3)</a>
+  <a href="../../posts/III. CNN/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk-2: 이미지분석 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">Assignment 3</a>
+  <a href="../../posts/III. CNN/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 3</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">IV. RNN</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">IV. RNN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">09wk-2: 순환신경망 (1)</a>
+  <a href="../../posts/IV. RNN/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09wk-2: 순환신경망 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link active">10wk-1: 순환신경망 (2)</a>
+  <a href="../../posts/IV. RNN/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">10wk-1: 순환신경망 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">10wk-2: 순환신경망 (3)</a>
+  <a href="../../posts/IV. RNN/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10wk-2: 순환신경망 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">11wk-1: 순환신경망 (4)</a>
+  <a href="../../posts/IV. RNN/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk-1: 순환신경망 (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">11wk-2: 순환신경망 (5)</a>
+  <a href="../../posts/IV. RNN/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk-2: 순환신경망 (5)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
+  <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk-1: 순환신경망 (6)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk-2: 순환신경망 (7)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">14wk-1: 순환신경망 (8)</a>
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14wk-1: 순환신경망 (8)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-12-01-14wk-2.html" class="sidebar-item-text sidebar-link">14wk-2: 순환신경망 (9)</a>
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14wk-2: 순환신경망 (9)</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">V. RecSys</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">V. RecSys</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">Extra-2: 추천시스템</a>
+  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-2: 추천시스템</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">VI. GAN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">VI. GAN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/VI. GAN/2022-12-21-Extra-3.html" class="sidebar-item-text sidebar-link">Extra-3: 생성모형(GAN)</a>
+  <a href="../../posts/VI. GAN/2022-12-21-Extra-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-3: 생성모형(GAN)</span></a>
   </div>
 </li>
       </ul>
@@ -473,6 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -500,13 +498,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022-11-03-10wk-1.out.ipynb" download="2022-11-03-10wk-1.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/2022-09-01-1wk-1.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-11-01-9wk-2.html">IV. RNN</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-11-03-10wk-1.html">10wk-1: 순환신경망 (2)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">10wk-1: 순환신경망 (2)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">순환신경망</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>최규빈 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 3, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 <blockquote class="blockquote">
 <p>순환신경망 intro (2)– abc예제, abdc예제, AbAcAd예제(1)</p>
@@ -519,37 +547,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="20d17b6a-904d-4a76-8173-76b5f454ad93" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="define-some-funtions" class="level1">
 <h1>Define some funtions</h1>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> f(txt,mapping):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="cf">return</span> [mapping[key] <span class="cf">for</span> key <span class="kw">in</span> txt] </span>
-<span id="cb2-3"><a href="#cb2-3"></a>soft <span class="op">=</span> torch.nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c1963805-4016-4f6c-9959-f4b59d2d1f2f" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(txt,mapping):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [mapping[key] <span class="cf">for</span> key <span class="kw">in</span> txt] </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>soft <span class="op">=</span> torch.nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exam2-abc" class="level1">
 <h1>Exam2: abc</h1>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">data</h2>
-<div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abc'</span>)<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a9f17df7-d5af-42d1-9e4c-c3185a058b34" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abc'</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c', 'a']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb5-2"><a href="#cb5-2"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="365288a8-513e-44e7-b6de-a81a6883260c" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="65fb0671-66cb-40b6-8179-e1881d77fd4c" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>(['a', 'b', 'c', 'a', 'b'], ['b', 'c', 'a', 'b', 'c'])</code></pre>
 </div>
@@ -558,57 +586,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="하나의-은닉노드를-이용한-풀이-억지로-성공" class="level2">
 <h2 class="anchored" data-anchor-id="하나의-은닉노드를-이용한-풀이-억지로-성공">하나의 은닉노드를 이용한 풀이 – 억지로 성공</h2>
 <p><code>-</code> 데이터정리</p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>}</span>
-<span id="cb8-2"><a href="#cb8-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
-<span id="cb8-3"><a href="#cb8-3"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
-<span id="cb8-4"><a href="#cb8-4"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7129cc7c-13b2-4e4d-b281-d4d4000ac6d0" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>(tensor([0, 1, 2, 0, 1]), tensor([1, 2, 0, 1, 2]))</code></pre>
 </div>
 </div>
 <p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">3</span>,embedding_dim<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    torch.nn.Tanh(),</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    <span class="co">#===#</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
-<span id="cb10-9"><a href="#cb10-9"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="566aefaf-643f-42f9-80a7-0ad84a0ef475" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">3</span>,embedding_dim<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Tanh(),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#===#</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="co">## 1</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="co">## 2 </span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>    loss <span class="op">=</span> loss_fn(net(x),y)</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="co">## 3 </span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>    loss.backward()</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="co">## 4 </span></span>
-<span id="cb11-8"><a href="#cb11-8"></a>    optimizr.step()</span>
-<span id="cb11-9"><a href="#cb11-9"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fe3e1495-605b-4948-9f66-5053367ca6c4" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(net(x),y)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 결과해석</p>
-<div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
-<span id="cb12-2"><a href="#cb12-2"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="77d5afd9-7485-428b-8a0f-8fde27a6e91b" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>plt.plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ee2ac571-5976-49d5-869b-006382a6e14e" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>plt.plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="71f8e82f-9051-4390-b529-738272c132cb" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>plt.plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6c945c2a-9639-4db3-afd4-fe5312b21a85" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
@@ -617,19 +645,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>억지로 맞추고있긴한데 파라메터가 부족해보인다.</li>
 </ul>
 <p><code>-</code> 결과시각화1</p>
-<div class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
-<span id="cb16-2"><a href="#cb16-2"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb16-4"><a href="#cb16-4"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb16-6"><a href="#cb16-6"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="221c3f7d-39ad-42dc-9f46-9aea367ebf31" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>hidden[:<span class="dv">9</span>], (net[<span class="op">-</span><span class="dv">1</span>].weight.data).T, net[<span class="op">-</span><span class="dv">1</span>].bias.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="62bdab2e-16a6-410d-9c17-605b4984ef91" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hidden[:<span class="dv">9</span>], (net[<span class="op">-</span><span class="dv">1</span>].weight.data).T, net[<span class="op">-</span><span class="dv">1</span>].bias.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>(tensor([[-0.0147],
          [ 0.9653],
@@ -644,8 +672,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  tensor([-1.5440,  0.9143, -1.3970]))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>hidden[:<span class="dv">9</span>]<span class="op">@</span>(net[<span class="op">-</span><span class="dv">1</span>].weight.data).T <span class="op">+</span> net[<span class="op">-</span><span class="dv">1</span>].bias.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="551e2bf5-3552-4a95-bf3f-116e0a3a54d7" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hidden[:<span class="dv">9</span>]<span class="op">@</span>(net[<span class="op">-</span><span class="dv">1</span>].weight.data).T <span class="op">+</span> net[<span class="op">-</span><span class="dv">1</span>].bias.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>tensor([[-1.4755,  0.9098, -1.4745],
         [-6.0618,  1.2108,  3.7086],
@@ -683,11 +711,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong><em>잠깐 딴소리!!</em></strong></p>
 <p>(예시1)</p>
-<div class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">4</span>)).reshape(<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0fd81767-299f-4618-be13-4e3b4dc0108f" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">4</span>)).reshape(<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="970dd863-0024-470a-8f43-138ac7f4da1f" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>(16, 8)</code></pre>
 </div>
@@ -697,11 +725,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>오른쪽으로 한칸 = 8칸 jump</li>
 </ul>
 <p>(예시2)</p>
-<div class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">6</span>)).reshape(<span class="dv">3</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ff3a58a0-f0dd-4938-89f7-db1a98c42a66" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">6</span>)).reshape(<span class="dv">3</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a822aa06-25aa-4400-bbfc-7254481afba9" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="69">
 <pre><code>(16, 8)</code></pre>
 </div>
@@ -711,11 +739,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>오른쪽으로 한칸 = 8칸 jump</li>
 </ul>
 <p>(예시3)</p>
-<div class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">6</span>)).reshape(<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="62f08010-7a37-4e71-b924-644793df0dfc" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">6</span>)).reshape(<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3841ffc4-dd4c-4371-9201-5e9514aa111c" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>(24, 8)</code></pre>
 </div>
@@ -725,18 +753,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>오른쪽으로 한칸 = 8칸 jump</li>
 </ul>
 <p>(예시4)</p>
-<div class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">4</span>),dtype<span class="op">=</span>np.int8).reshape(<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d0e95688-9509-4138-aaf9-5808643d65cc" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>_arr <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">4</span>),dtype<span class="op">=</span>np.int8).reshape(<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="12ae344b-0362-4fac-9e46-3b166b123995" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="73">
 <pre><code>array([[0, 1],
        [2, 3]], dtype=int8)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cfeda17c-a2f6-4b25-a7ed-019c19fb4598" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>_arr.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>(2, 1)</code></pre>
 </div>
@@ -751,16 +779,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>1바이트는 2^8=256 의 정보 표현</li>
 <li>np.int8은 8비트로 정수를 저장한다는 의미</li>
 </ul>
-<div class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bd524b10-be6d-4aa4-a989-e550bb1e1391" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>256</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="bu">print</span>(np.array(<span class="dv">55</span>,dtype<span class="op">=</span>np.int8))</span>
-<span id="cb37-2"><a href="#cb37-2"></a><span class="bu">print</span>(np.array(<span class="dv">127</span>,dtype<span class="op">=</span>np.int8))</span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="bu">print</span>(np.array(<span class="dv">300</span>,dtype<span class="op">=</span>np.int8)) <span class="co"># overflow </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0e1c7c24-f5ef-4004-80f7-1025e32436cb" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.array(<span class="dv">55</span>,dtype<span class="op">=</span>np.int8))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.array(<span class="dv">127</span>,dtype<span class="op">=</span>np.int8))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.array(<span class="dv">300</span>,dtype<span class="op">=</span>np.int8)) <span class="co"># overflow </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>55
 127
@@ -770,31 +798,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong><em>딴소리 끝!!</em></strong></p>
 <hr>
 <p><code>-</code> 결과시각화2</p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b8db1846-3e8e-4ddf-b0d6-709a64a62b06" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>torch.Size([299, 7])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
-<span id="cb41-2"><a href="#cb41-2"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb41-3"><a href="#cb41-3"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb41-4"><a href="#cb41-4"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb41-5"><a href="#cb41-5"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb41-6"><a href="#cb41-6"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e3e33e64-f06d-4567-ae9c-170c143e80b0" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">7</span>,vmax<span class="op">=</span><span class="dv">7</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
-<span id="cb42-2"><a href="#cb42-2"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">7</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$y=a?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$P(y=a)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb42-3"><a href="#cb42-3"></a>plt.colorbar()</span>
-<span id="cb42-4"><a href="#cb42-4"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
-<span id="cb42-5"><a href="#cb42-5"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
-<span id="cb42-6"><a href="#cb42-6"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9d3aa6e7-b90f-40b1-8cfa-1e51e7b50cf8" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">7</span>,vmax<span class="op">=</span><span class="dv">7</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">7</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$y=a?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$P(y=a)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>Text(0.5, 1.0, 'Vis2: $[h | net(x) | \\hat{y}]$')</code></pre>
 </div>
@@ -808,19 +836,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Exam3: abcd</h1>
 <section id="data-1" class="level2">
 <h2 class="anchored" data-anchor-id="data-1">data</h2>
-<div class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcd'</span>)<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="25914313-3e60-43e6-8678-ad4d8c73a319" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcd'</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="76">
 <pre><code>['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd', 'a', 'b']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb46-2"><a href="#cb46-2"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="867df6a7-70da-499b-a0c4-810c3209a7df" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c2ea2344-6be0-4fbd-9985-75272691a7e8" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>(['a', 'b', 'c', 'd', 'a'], ['b', 'c', 'd', 'a', 'b'])</code></pre>
 </div>
@@ -829,73 +857,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="하나의-은닉노드를-이용한-풀이-억지로-성공-1" class="level2">
 <h2 class="anchored" data-anchor-id="하나의-은닉노드를-이용한-풀이-억지로-성공-1">하나의 은닉노드를 이용한 풀이 – 억지로 성공</h2>
 <p><code>-</code> 데이터정리</p>
-<div class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
-<span id="cb49-2"><a href="#cb49-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
-<span id="cb49-3"><a href="#cb49-3"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
-<span id="cb49-4"><a href="#cb49-4"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="86014564-0218-4ab3-9e57-3d76fb079955" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="95">
 <pre><code>(tensor([0, 1, 2, 3, 0]), tensor([1, 2, 3, 0, 1]))</code></pre>
 </div>
 </div>
 <p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="105">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb51-2"><a href="#cb51-2"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">4</span>,embedding_dim<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb51-3"><a href="#cb51-3"></a>    torch.nn.Tanh(),</span>
-<span id="cb51-4"><a href="#cb51-4"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb51-5"><a href="#cb51-5"></a>)</span>
-<span id="cb51-6"><a href="#cb51-6"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
-<span id="cb51-7"><a href="#cb51-7"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dfba8c0b-5999-4852-8b1f-3d50db5df30d" class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">4</span>,embedding_dim<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Tanh(),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">1</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>net[<span class="dv">0</span>].weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">0.3333</span>],[<span class="op">-</span><span class="fl">2.5000</span>],[<span class="fl">5.0000</span>],[<span class="fl">0.3333</span>]])</span>
-<span id="cb52-2"><a href="#cb52-2"></a></span>
-<span id="cb52-3"><a href="#cb52-3"></a>net[<span class="op">-</span><span class="dv">1</span>].weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.5000</span>],[<span class="op">-</span><span class="fl">6.0000</span>],[<span class="op">-</span><span class="fl">2.0000</span>],[<span class="fl">6.0000</span>]])</span>
-<span id="cb52-4"><a href="#cb52-4"></a>net[<span class="op">-</span><span class="dv">1</span>].bias.data <span class="op">=</span> torch.tensor([<span class="fl">0.1500</span>, <span class="op">-</span><span class="fl">2.0000</span>,  <span class="fl">0.1500</span>, <span class="op">-</span><span class="fl">2.000</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="57fafda1-6dfb-49b9-ab7b-f65ab93a192b" class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>net[<span class="dv">0</span>].weight.data <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="fl">0.3333</span>],[<span class="op">-</span><span class="fl">2.5000</span>],[<span class="fl">5.0000</span>],[<span class="fl">0.3333</span>]])</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>net[<span class="op">-</span><span class="dv">1</span>].weight.data <span class="op">=</span> torch.tensor([[<span class="fl">1.5000</span>],[<span class="op">-</span><span class="fl">6.0000</span>],[<span class="op">-</span><span class="fl">2.0000</span>],[<span class="fl">6.0000</span>]])</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>net[<span class="op">-</span><span class="dv">1</span>].bias.data <span class="op">=</span> torch.tensor([<span class="fl">0.1500</span>, <span class="op">-</span><span class="fl">2.0000</span>,  <span class="fl">0.1500</span>, <span class="op">-</span><span class="fl">2.000</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb53-2"><a href="#cb53-2"></a>    <span class="co">## 1</span></span>
-<span id="cb53-3"><a href="#cb53-3"></a>    <span class="co">## 2 </span></span>
-<span id="cb53-4"><a href="#cb53-4"></a>    loss <span class="op">=</span> loss_fn(net(x),y)</span>
-<span id="cb53-5"><a href="#cb53-5"></a>    <span class="co">## 3 </span></span>
-<span id="cb53-6"><a href="#cb53-6"></a>    loss.backward()</span>
-<span id="cb53-7"><a href="#cb53-7"></a>    <span class="co">## 4 </span></span>
-<span id="cb53-8"><a href="#cb53-8"></a>    optimizr.step()</span>
-<span id="cb53-9"><a href="#cb53-9"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ec27addd-2561-4107-866e-92a044334508" class="cell" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(net(x),y)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 결과시각화1</p>
-<div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
-<span id="cb54-2"><a href="#cb54-2"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2f574f93-47b4-4e6e-82a7-08bf97da2fcd" class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
-<span id="cb55-2"><a href="#cb55-2"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb55-3"><a href="#cb55-3"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb55-4"><a href="#cb55-4"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb55-5"><a href="#cb55-5"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb55-6"><a href="#cb55-6"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c5f58e15-b415-4895-bd27-17fb80be0059" class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-39-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 결과시각화2</p>
-<div class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb56-2"><a href="#cb56-2"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c46c225a-fc36-4153-a3f0-0172e716843e" class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="110">
 <pre><code>torch.Size([399, 9])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">15</span>,vmax<span class="op">=</span><span class="dv">15</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
-<span id="cb58-2"><a href="#cb58-2"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">9</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$y=a?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$P(y=a)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb58-3"><a href="#cb58-3"></a>plt.colorbar()</span>
-<span id="cb58-4"><a href="#cb58-4"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
-<span id="cb58-5"><a href="#cb58-5"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
-<span id="cb58-6"><a href="#cb58-6"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b872a960-b1e6-4933-90bc-11a5d6167462" class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">15</span>,vmax<span class="op">=</span><span class="dv">15</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">9</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$y=a?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$P(y=a)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="111">
 <pre><code>Text(0.5, 1.0, 'Vis2: $[h | net(x) | \\hat{y}]$')</code></pre>
 </div>
@@ -907,69 +935,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="두개의-은닉노드를-이용한-풀이-깔끔한-성공" class="level2">
 <h2 class="anchored" data-anchor-id="두개의-은닉노드를-이용한-풀이-깔끔한-성공">두개의 은닉노드를 이용한 풀이 – 깔끔한 성공</h2>
 <p><code>-</code> 데이터정리</p>
-<div class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
-<span id="cb60-2"><a href="#cb60-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
-<span id="cb60-3"><a href="#cb60-3"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
-<span id="cb60-4"><a href="#cb60-4"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a23db943-2d95-4893-91ce-f3613f5cea42" class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>(tensor([0, 1, 2, 3, 0]), tensor([1, 2, 3, 0, 1]))</code></pre>
 </div>
 </div>
 <p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
-<span id="cb62-2"><a href="#cb62-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb62-3"><a href="#cb62-3"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">4</span>,embedding_dim<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb62-4"><a href="#cb62-4"></a>    torch.nn.Tanh(),</span>
-<span id="cb62-5"><a href="#cb62-5"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb62-6"><a href="#cb62-6"></a>)</span>
-<span id="cb62-7"><a href="#cb62-7"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
-<span id="cb62-8"><a href="#cb62-8"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9831d4ee-71aa-465f-86f9-4463b7044182" class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">4</span>,embedding_dim<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Tanh(),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb63-2"><a href="#cb63-2"></a>    <span class="co">## 1</span></span>
-<span id="cb63-3"><a href="#cb63-3"></a>    yhat <span class="op">=</span> net(x)</span>
-<span id="cb63-4"><a href="#cb63-4"></a>    <span class="co">## 2 </span></span>
-<span id="cb63-5"><a href="#cb63-5"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
-<span id="cb63-6"><a href="#cb63-6"></a>    <span class="co">## 3 </span></span>
-<span id="cb63-7"><a href="#cb63-7"></a>    loss.backward()</span>
-<span id="cb63-8"><a href="#cb63-8"></a>    <span class="co">## 4 </span></span>
-<span id="cb63-9"><a href="#cb63-9"></a>    optimizr.step()</span>
-<span id="cb63-10"><a href="#cb63-10"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b8a7bb71-7a3f-4750-a08c-3f3661035609" class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x)</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 결과시각화1</p>
-<div class="cell" data-execution_count="116">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
-<span id="cb64-2"><a href="#cb64-2"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f58a88f0-b4d0-4cc9-b9d0-e3f0b7d5f5a4" class="cell" data-execution_count="116">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
-<span id="cb65-2"><a href="#cb65-2"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb65-3"><a href="#cb65-3"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb65-4"><a href="#cb65-4"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb65-5"><a href="#cb65-5"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb65-6"><a href="#cb65-6"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c23d45f6-1763-490a-b2c0-282e4931b83f" class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 결과시각화2</p>
-<div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb66-2"><a href="#cb66-2"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="257b1236-79f6-4819-a5b8-6b9b76cf827f" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>torch.Size([399, 10])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">7</span>,vmax<span class="op">=</span><span class="dv">7</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
-<span id="cb68-2"><a href="#cb68-2"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">10</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,<span class="vs">r'$y=a?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$P(y=a)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb68-3"><a href="#cb68-3"></a>plt.colorbar()</span>
-<span id="cb68-4"><a href="#cb68-4"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
-<span id="cb68-5"><a href="#cb68-5"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
-<span id="cb68-6"><a href="#cb68-6"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="16ab290d-1ef9-4ef1-a9ac-91c3a429cde3" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">7</span>,vmax<span class="op">=</span><span class="dv">7</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">10</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,<span class="vs">r'$y=a?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$P(y=a)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>Text(0.5, 1.0, 'Vis2: $[h | net(x) | \\hat{y}]$')</code></pre>
 </div>
@@ -983,19 +1011,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Exam4: AbAcAd</h1>
 <section id="data-2" class="level2">
 <h2 class="anchored" data-anchor-id="data-2">data</h2>
-<div class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'AbAcAd'</span>)<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb70-2"><a href="#cb70-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7bb10e04-9583-405e-bb25-82ca0e13bf9a" class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'AbAcAd'</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="125">
 <pre><code>['A', 'b', 'A', 'c', 'A', 'd', 'A', 'b', 'A', 'c']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="126">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb72-2"><a href="#cb72-2"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="73b2af5d-ec4d-4cf8-9ad9-814edae93830" class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4f47cfd5-3fdf-43f6-a6c1-76c3165a5417" class="cell" data-execution_count="127">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="127">
 <pre><code>(['A', 'b', 'A', 'c', 'A'], ['b', 'A', 'c', 'A', 'd'])</code></pre>
 </div>
@@ -1004,69 +1032,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="두개의-은닉노드를-이용한-풀이-실패" class="level2">
 <h2 class="anchored" data-anchor-id="두개의-은닉노드를-이용한-풀이-실패">두개의 은닉노드를 이용한 풀이 – 실패</h2>
 <p><code>-</code> 데이터정리</p>
-<div class="cell" data-execution_count="128">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>mapping <span class="op">=</span> {<span class="st">'A'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
-<span id="cb75-2"><a href="#cb75-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
-<span id="cb75-3"><a href="#cb75-3"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
-<span id="cb75-4"><a href="#cb75-4"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e50a1bf6-a57a-4a67-8f23-698beb972c14" class="cell" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">'A'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>}</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>(tensor([0, 1, 0, 2, 0]), tensor([1, 0, 2, 0, 3]))</code></pre>
 </div>
 </div>
 <p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="129">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
-<span id="cb77-2"><a href="#cb77-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb77-3"><a href="#cb77-3"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">4</span>,embedding_dim<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb77-4"><a href="#cb77-4"></a>    torch.nn.Tanh(),</span>
-<span id="cb77-5"><a href="#cb77-5"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb77-6"><a href="#cb77-6"></a>)</span>
-<span id="cb77-7"><a href="#cb77-7"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
-<span id="cb77-8"><a href="#cb77-8"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d12815ca-c382-4d2e-8d02-42925794acc5" class="cell" data-execution_count="129">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">4</span>,embedding_dim<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Tanh(),</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">2</span>,out_features<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb78-2"><a href="#cb78-2"></a>    <span class="co">## 1</span></span>
-<span id="cb78-3"><a href="#cb78-3"></a>    yhat <span class="op">=</span> net(x)</span>
-<span id="cb78-4"><a href="#cb78-4"></a>    <span class="co">## 2 </span></span>
-<span id="cb78-5"><a href="#cb78-5"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
-<span id="cb78-6"><a href="#cb78-6"></a>    <span class="co">## 3 </span></span>
-<span id="cb78-7"><a href="#cb78-7"></a>    loss.backward()</span>
-<span id="cb78-8"><a href="#cb78-8"></a>    <span class="co">## 4 </span></span>
-<span id="cb78-9"><a href="#cb78-9"></a>    optimizr.step()</span>
-<span id="cb78-10"><a href="#cb78-10"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2db910d4-d31b-4202-85ad-7b9e79a228f6" class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 결과시각화1</p>
-<div class="cell" data-execution_count="131">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
-<span id="cb79-2"><a href="#cb79-2"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8dd9249b-15c9-4390-8916-5f4d02e627f2" class="cell" data-execution_count="131">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="132">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
-<span id="cb80-2"><a href="#cb80-2"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb80-3"><a href="#cb80-3"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb80-4"><a href="#cb80-4"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb80-5"><a href="#cb80-5"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb80-6"><a href="#cb80-6"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c4b28bd7-9675-45ec-a35c-470266277a5e" class="cell" data-execution_count="132">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-56-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 결과시각화2</p>
-<div class="cell" data-execution_count="133">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb81-2"><a href="#cb81-2"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b43ce6ea-6ced-4383-a4e6-19dadfdd92fc" class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="133">
 <pre><code>torch.Size([599, 10])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="134">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">5</span>,vmax<span class="op">=</span><span class="dv">5</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
-<span id="cb83-2"><a href="#cb83-2"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">10</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,<span class="vs">r'$y=A?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$P(y=A)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb83-3"><a href="#cb83-3"></a>plt.colorbar()</span>
-<span id="cb83-4"><a href="#cb83-4"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
-<span id="cb83-5"><a href="#cb83-5"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
-<span id="cb83-6"><a href="#cb83-6"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a554891e-12b8-4f5b-8bf2-bc0e78f8a326" class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">5</span>,vmax<span class="op">=</span><span class="dv">5</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">10</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,<span class="vs">r'$y=A?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$P(y=A)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>],size<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="134">
 <pre><code>Text(0.5, 1.0, 'Vis2: $[h | net(x) | \\hat{y}]$')</code></pre>
 </div>
@@ -1131,29 +1159,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="숙제" class="level1">
 <h1>숙제</h1>
 <p>주어진 자료가 다음과 같다고 하자.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcde'</span>)<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb85-2"><a href="#cb85-2"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="824e0c2b-e591-49f6-baf2-62d2f67efa22" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>txt <span class="op">=</span> <span class="bu">list</span>(<span class="st">'abcde'</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>txt[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>['a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb87-2"><a href="#cb87-2"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="33da5d6d-4677-44d2-aa70-9671c65ef2cf" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>txt_x <span class="op">=</span> txt[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>txt_y <span class="op">=</span> txt[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="48971b5e-8f6b-4986-93d6-bba21aa44924" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>txt_x[:<span class="dv">5</span>],txt_y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(['a', 'b', 'c', 'd', 'e'], ['b', 'c', 'd', 'e', 'a'])</code></pre>
 </div>
 </div>
 <p>아래 코드를 변형하여 적절한 네트워크를 설계하고 위의 자료를 학습하라. (깔끔한 성공을 위한 최소한의 은닉노드를 설정할 것)</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb90-2"><a href="#cb90-2"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span>??,embedding_dim<span class="op">=</span>??),</span>
-<span id="cb90-3"><a href="#cb90-3"></a>    torch.nn.Tanh(),</span>
-<span id="cb90-4"><a href="#cb90-4"></a>    torch.nn.Linear(in_features<span class="op">=</span>??,out_features<span class="op">=</span>??)</span>
-<span id="cb90-5"><a href="#cb90-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span>??,embedding_dim<span class="op">=</span>??),</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Tanh(),</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span>??,out_features<span class="op">=</span>??)</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(풀이)</p>
 <p>a,b,c,d,e 를 표현함에 있어서 3개의 은닉노드면 충분하다.</p>
 <ul>
@@ -1161,70 +1189,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>2개의 은닉노드 -&gt; 4개의 문자를 표현할 수 있음.</li>
 <li>3개의 은닉노드 -&gt; 8개의 문자를 표현할 수 있음.</li>
 </ul>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>,<span class="st">'e'</span>:<span class="dv">4</span>}</span>
-<span id="cb91-2"><a href="#cb91-2"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
-<span id="cb91-3"><a href="#cb91-3"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
-<span id="cb91-4"><a href="#cb91-4"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e4147ffd-5f5d-4cce-8d53-6538e1ecabca" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">'a'</span>:<span class="dv">0</span>,<span class="st">'b'</span>:<span class="dv">1</span>,<span class="st">'c'</span>:<span class="dv">2</span>,<span class="st">'d'</span>:<span class="dv">3</span>,<span class="st">'e'</span>:<span class="dv">4</span>}</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(f(txt_x,mapping))</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(f(txt_y,mapping))</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">5</span>],y[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>(tensor([0, 1, 2, 3, 4]), tensor([1, 2, 3, 4, 0]))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
-<span id="cb93-2"><a href="#cb93-2"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
-<span id="cb93-3"><a href="#cb93-3"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">5</span>,embedding_dim<span class="op">=</span><span class="dv">3</span>),</span>
-<span id="cb93-4"><a href="#cb93-4"></a>    torch.nn.Tanh(),</span>
-<span id="cb93-5"><a href="#cb93-5"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">3</span>,out_features<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb93-6"><a href="#cb93-6"></a>)</span>
-<span id="cb93-7"><a href="#cb93-7"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
-<span id="cb93-8"><a href="#cb93-8"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="21c38540-62db-46c1-9291-253d5bba3912" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">43052</span>)</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Embedding(num_embeddings<span class="op">=</span><span class="dv">5</span>,embedding_dim<span class="op">=</span><span class="dv">3</span>),</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Tanh(),</span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(in_features<span class="op">=</span><span class="dv">3</span>,out_features<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.CrossEntropyLoss()</span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>optimizr <span class="op">=</span> torch.optim.Adam(net.parameters())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
-<span id="cb94-2"><a href="#cb94-2"></a>    <span class="co">## 1</span></span>
-<span id="cb94-3"><a href="#cb94-3"></a>    yhat <span class="op">=</span> net(x)</span>
-<span id="cb94-4"><a href="#cb94-4"></a>    <span class="co">## 2 </span></span>
-<span id="cb94-5"><a href="#cb94-5"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
-<span id="cb94-6"><a href="#cb94-6"></a>    <span class="co">## 3 </span></span>
-<span id="cb94-7"><a href="#cb94-7"></a>    loss.backward()</span>
-<span id="cb94-8"><a href="#cb94-8"></a>    <span class="co">## 4 </span></span>
-<span id="cb94-9"><a href="#cb94-9"></a>    optimizr.step()</span>
-<span id="cb94-10"><a href="#cb94-10"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="80ec9bc5-315d-4468-8399-c7614d8dd42d" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoc <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 1</span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> net(x)</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 2 </span></span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(yhat,y)</span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 3 </span></span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 4 </span></span>
+<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a>    optimizr.step()</span>
+<span id="cb94-10"><a href="#cb94-10" aria-hidden="true" tabindex="-1"></a>    optimizr.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 결과시각화1</p>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
-<span id="cb95-2"><a href="#cb95-2"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fd470239-d7af-46c9-aedb-d112c5a56a8c" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> net[:<span class="op">-</span><span class="dv">1</span>](x).data</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> soft(net(x)).data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
-<span id="cb96-2"><a href="#cb96-2"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb96-3"><a href="#cb96-3"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb96-4"><a href="#cb96-4"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb96-5"><a href="#cb96-5"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb96-6"><a href="#cb96-6"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6bb88141-2882-4d10-abf7-bf322d02af73" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>))</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(hidden[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">0</span>].set_title(<span class="st">'$h:=(tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(net(x).data[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">1</span>].set_title(<span class="st">'$net(x):=(linr_2 \circ tanh \circ linr_1)(x)$'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(yhat[:<span class="dv">9</span>],<span class="st">'--o'</span>)<span class="op">;</span> ax[<span class="dv">2</span>].set_title(<span class="st">'$\hat</span><span class="sc">{y}</span><span class="st">$ = softmax$(net(x))$'</span>,size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"Vis1: $h,net(x),\hat</span><span class="sc">{y}</span><span class="vs">$"</span>,size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-11-03-10wk-1_files/figure-html/cell-66-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 결과시각화2</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb97-2"><a href="#cb97-2"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="20fa21b4-6f54-4435-8ad7-a5863ea6654d" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>combined  <span class="op">=</span> torch.concat([hidden,net(x).data,yhat],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>combined.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>torch.Size([499, 13])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">5</span>,vmax<span class="op">=</span><span class="dv">5</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
-<span id="cb99-2"><a href="#cb99-2"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">13</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,</span>
-<span id="cb99-3"><a href="#cb99-3"></a>                              <span class="vs">r'$y=A?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$y=e?$'</span>,</span>
-<span id="cb99-4"><a href="#cb99-4"></a>                              <span class="vs">r'$P(y=A)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>,<span class="vs">r'$P(y=e)$'</span>],size<span class="op">=</span><span class="dv">13</span>)</span>
-<span id="cb99-5"><a href="#cb99-5"></a>plt.colorbar()</span>
-<span id="cb99-6"><a href="#cb99-6"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
-<span id="cb99-7"><a href="#cb99-7"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
-<span id="cb99-8"><a href="#cb99-8"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="787cf2a6-a570-4843-92d4-21dd077c141d" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>plt.matshow(combined[:<span class="dv">15</span>],vmin<span class="op">=-</span><span class="dv">5</span>,vmax<span class="op">=</span><span class="dv">5</span>,cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">13</span>), labels<span class="op">=</span>[<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,<span class="vs">r'$h$'</span>,</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>                              <span class="vs">r'$y=A?$'</span>,<span class="vs">r'$y=b?$'</span>,<span class="vs">r'$y=c?$'</span>,<span class="vs">r'$y=d?$'</span>,<span class="vs">r'$y=e?$'</span>,</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>                              <span class="vs">r'$P(y=A)$'</span>,<span class="vs">r'$P(y=b)$'</span>,<span class="vs">r'$P(y=c)$'</span>,<span class="vs">r'$P(y=d)$'</span>,<span class="vs">r'$P(y=e)$'</span>],size<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figwidth(<span class="dv">15</span>)</span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>plt.gcf().set_figheight(<span class="dv">15</span>)</span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r"Vis2: $[h | net(x) | \hat</span><span class="sc">{y}</span><span class="vs">]$"</span>,size<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>Text(0.5, 1.0, 'Vis2: $[h | net(x) | \\hat{y}]$')</code></pre>
 </div>
@@ -1264,9 +1292,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1302,10 +1344,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1315,8 +1356,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1331,6 +1381,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1370,7 +1609,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://utteranc.es/client.js" repo="guebin/DL2022" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
 </div> <!-- /content -->
+
 
 
 

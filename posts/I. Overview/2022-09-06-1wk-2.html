@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.322">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,7 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -138,335 +115,354 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">DL2022</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&amp;sort=dd&amp;shelf_id=3"><i class="bi bi-youtube" role="img">
+    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&amp;sort=dd&amp;shelf_id=3"> <i class="bi bi-youtube" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">01wk-2: Overview (1)</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/2022-09-01-1wk-1.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/I. Overview/2022-09-06-1wk-2.html">I. Overview</a></li><li class="breadcrumb-item"><a href="../../posts/I. Overview/2022-09-06-1wk-2.html">01wk-2: Overview (1)</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">01wk-2: Overview (1)</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">Overview</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>최규빈 </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">September 6, 2022</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-11-29-13wk-2-final.html" class="sidebar-item-text sidebar-link">final</a>
+  <a href="../../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">mid</a>
+  <a href="../../posts/2022-11-29-13wk-2-final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Appendix</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Appendix/2022-12-14-A1.html" class="sidebar-item-text sidebar-link">A1: 깊은복사와 얕은복사</a>
+  <a href="../../posts/Appendix/2022-12-14-A1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1: 깊은복사와 얕은복사</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">I. Overview</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">I. Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link active">01wk-2: Overview (1)</a>
+  <a href="../../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">01wk-2: Overview (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (2)</a>
+  <a href="../../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (3)</a>
+  <a href="../../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (4)</a>
+  <a href="../../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">Assignment 1</a>
+  <a href="../../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">II. DNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">II. DNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">03wk-2: 딥러닝의 기초 (1)</a>
+  <a href="../../posts/II. DNN/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03wk-2: 딥러닝의 기초 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">04wk-1: 딥러닝의 기초 (2)</a>
+  <a href="../../posts/II. DNN/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk-1: 딥러닝의 기초 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">04wk-2: 딥러닝의 기초 (3)</a>
+  <a href="../../posts/II. DNN/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk-2: 딥러닝의 기초 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">05wk-1: 딥러닝의 기초 (4)</a>
+  <a href="../../posts/II. DNN/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk-1: 딥러닝의 기초 (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">05wk-2: 딥러닝의 기초 (5)</a>
+  <a href="../../posts/II. DNN/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk-2: 딥러닝의 기초 (5)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">06wk-1: 딥러닝의 기초 (6)</a>
+  <a href="../../posts/II. DNN/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk-1: 딥러닝의 기초 (6)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">06wk-2: 딥러닝의 기초 (7)</a>
+  <a href="../../posts/II. DNN/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk-2: 딥러닝의 기초 (7)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link">07wk-1: 딥러닝의 기초 (8)</a>
+  <a href="../../posts/II. DNN/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk-1: 딥러닝의 기초 (8)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">Assignment 2</a>
+  <a href="../../posts/II. DNN/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-12-13-Extra-1.html" class="sidebar-item-text sidebar-link">Extra-1: 딥러닝의 기초 (9)</a>
+  <a href="../../posts/II. DNN/2022-12-13-Extra-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-1: 딥러닝의 기초 (9)</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">III. CNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">III. CNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">07wk-2: 이미지분석 (1)</a>
+  <a href="../../posts/III. CNN/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk-2: 이미지분석 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">08wk-1: 이미지분석 (2)</a>
+  <a href="../../posts/III. CNN/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk-1: 이미지분석 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">08wk-2: 이미지분석 (3)</a>
+  <a href="../../posts/III. CNN/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk-2: 이미지분석 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">Assignment 3</a>
+  <a href="../../posts/III. CNN/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 3</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">IV. RNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">IV. RNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">09wk-2: 순환신경망 (1)</a>
+  <a href="../../posts/IV. RNN/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09wk-2: 순환신경망 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link">10wk-1: 순환신경망 (2)</a>
+  <a href="../../posts/IV. RNN/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10wk-1: 순환신경망 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">10wk-2: 순환신경망 (3)</a>
+  <a href="../../posts/IV. RNN/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10wk-2: 순환신경망 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">11wk-1: 순환신경망 (4)</a>
+  <a href="../../posts/IV. RNN/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk-1: 순환신경망 (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">11wk-2: 순환신경망 (5)</a>
+  <a href="../../posts/IV. RNN/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk-2: 순환신경망 (5)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
+  <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk-1: 순환신경망 (6)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk-2: 순환신경망 (7)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">14wk-1: 순환신경망 (8)</a>
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14wk-1: 순환신경망 (8)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-12-01-14wk-2.html" class="sidebar-item-text sidebar-link">14wk-2: 순환신경망 (9)</a>
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14wk-2: 순환신경망 (9)</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">V. RecSys</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">V. RecSys</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">Extra-2: 추천시스템</a>
+  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-2: 추천시스템</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">VI. GAN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">VI. GAN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/VI. GAN/2022-12-21-Extra-3.html" class="sidebar-item-text sidebar-link">Extra-3: 생성모형(GAN)</a>
+  <a href="../../posts/VI. GAN/2022-12-21-Extra-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-3: 생성모형(GAN)</span></a>
   </div>
 </li>
       </ul>
@@ -476,6 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -491,13 +488,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#진짜-잘되는게-맞는건가" id="toc-진짜-잘되는게-맞는건가" class="nav-link" data-scroll-target="#진짜-잘되는게-맞는건가">진짜 잘되는게 맞는건가?</a></li>
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022-09-06-1wk-2.out.ipynb" download="2022-09-06-1wk-2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/2022-09-01-1wk-1.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/I. Overview/2022-09-06-1wk-2.html">I. Overview</a></li><li class="breadcrumb-item"><a href="../../posts/I. Overview/2022-09-06-1wk-2.html">01wk-2: Overview (1)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">01wk-2: Overview (1)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Overview</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>최규빈 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 6, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 <blockquote class="blockquote">
 <p>이미지자료분석(1)– 데이터저장, 학습, 기존데이터를 잘맞추는지 확인, 오답분석, 진짜 잘 맞추는게 맞을까?</p>
@@ -510,16 +537,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="import" class="level1">
 <h1>Import</h1>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="-clvP1GN8Fwh" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="데이터저장" class="level1">
 <h1>데이터저장</h1>
-<div class="cell" data-outputid="ec2c406a-2875-4bc8-d02a-fcc9b6c710ed" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># URLs.PETS: 스트링 -&gt; 주소가 저장되어 있음.. -&gt; 주소로 들어가보니 어떠한 압축파일이 자동으로 다운 받아짐, 이게 데이터 </span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># untar_data: (1) URLs.PETS에 저장된 주소로 찾아가서 (2) 압축을 풀어서 (3) 어떠한 폴더에 저장, 그 폴더의 위치는 path 에 저장 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="rp3nMxEl8tJX" class="cell" data-outputid="ec2c406a-2875-4bc8-d02a-fcc9b6c710ed" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># URLs.PETS: 스트링 -&gt; 주소가 저장되어 있음.. -&gt; 주소로 들어가보니 어떠한 압축파일이 자동으로 다운 받아짐, 이게 데이터 </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># untar_data: (1) URLs.PETS에 저장된 주소로 찾아가서 (2) 압축을 풀어서 (3) 어떠한 폴더에 저장, 그 폴더의 위치는 path 에 저장 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -547,66 +574,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     
 </div>
 </div>
-<div class="cell" data-outputid="eaa97f94-56bb-42a8-d307-b1d3f6512cdf" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>path <span class="co"># 여기에 그림이 있다는 말이지?? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tC57C-gH90ew" class="cell" data-outputid="eaa97f94-56bb-42a8-d307-b1d3f6512cdf" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>path <span class="co"># 여기에 그림이 있다는 말이지?? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>Path('/root/.fastai/data/oxford-iiit-pet/images')</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="b39039cb-cbe3-4098-cf16-ef751a8ca879" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 탐색... 여러파일들이 있기는함.. </span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># Abyssinian_1.jpg 를 보고싶다면? </span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9xyY_i5H91O2" class="cell" data-outputid="b39039cb-cbe3-4098-cf16-ef751a8ca879" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 탐색... 여러파일들이 있기는함.. </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Abyssinian_1.jpg 를 보고싶다면? </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="b348c44c-88aa-4ef1-8ba0-58138d2dbbd4" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Abyssinian_100.jpg 를 보고싶다면? </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_100.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="o-zTNImB_JOO" class="cell" data-outputid="b348c44c-88aa-4ef1-8ba0-58138d2dbbd4" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Abyssinian_100.jpg 를 보고싶다면? </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_100.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 그림을 확인 할 수 있는건 좋은데 이렇게 확인하니까 조금 귀찮음..</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>_lst <span class="op">=</span> [<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>,<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_10.jpg'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="vidyt1FU_cIN" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>_lst <span class="op">=</span> [<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>,<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_10.jpg'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="1d650398-cbe6-4c71-ecc6-01f6025ad033" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>_lst[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="zIyyAwLf_713" class="cell" data-outputid="1d650398-cbe6-4c71-ecc6-01f6025ad033" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>_lst[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="bb837997-0ced-473b-c5db-7b2caa54fbb3" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>PILImage.create(_lst[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ZbiSKVcE_8gG" class="cell" data-outputid="bb837997-0ced-473b-c5db-7b2caa54fbb3" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(_lst[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="59b270a1-2977-40d1-86b7-0e773c3af09f" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>files<span class="op">=</span> get_image_files(path)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="59SPQOhDADe7" class="cell" data-outputid="59b270a1-2977-40d1-86b7-0e773c3af09f" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>files<span class="op">=</span> get_image_files(path)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>(#7390) [Path('/root/.fastai/data/oxford-iiit-pet/images/scottish_terrier_92.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/leonberger_173.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/shiba_inu_120.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/Persian_26.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/yorkshire_terrier_86.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/Ragdoll_56.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/german_shorthaired_2.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/japanese_chin_169.jpg'),Path('/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_192.jpg')...]</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="19ef7953-904a-4672-f112-e97ea6ed0741" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>files[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5H__zMVsAWlT" class="cell" data-outputid="19ef7953-904a-4672-f112-e97ea6ed0741" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>files[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Path('/root/.fastai/data/oxford-iiit-pet/images/scottish_terrier_92.jpg')</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="436a52a7-fee9-41b1-90eb-136e9c3f0efe" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#PILImage.create('/root/.fastai/data/oxford-iiit-pet/images/english_setter_59.jpg')</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>PILImage.create(files[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fal0DfFOAXC5" class="cell" data-outputid="436a52a7-fee9-41b1-90eb-136e9c3f0efe" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PILImage.create('/root/.fastai/data/oxford-iiit-pet/images/english_setter_59.jpg')</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="bc2a8a03-d806-4534-b87c-bdd74b8cc005" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">print</span>(files[<span class="dv">2</span>])</span>
-<span id="cb16-2"><a href="#cb16-2"></a>PILImage.create(files[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="DHbyfsVnApYQ" class="cell" data-outputid="bc2a8a03-d806-4534-b87c-bdd74b8cc005" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">2</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/shiba_inu_120.jpg</code></pre>
 </div>
@@ -614,9 +641,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="867f3658-e8fa-4234-84e9-962eacf6f373" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="bu">print</span>(files[<span class="dv">3</span>])</span>
-<span id="cb18-2"><a href="#cb18-2"></a>PILImage.create(files[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6XKwZIW5A8aj" class="cell" data-outputid="867f3658-e8fa-4234-84e9-962eacf6f373" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">3</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/Persian_26.jpg</code></pre>
 </div>
@@ -624,9 +651,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="8fa2e2ef-932c-4b4b-dc1e-a87b13928b45" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="bu">print</span>(files[<span class="dv">4</span>])</span>
-<span id="cb20-2"><a href="#cb20-2"></a>PILImage.create(files[<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="j1vesOtYBGYz" class="cell" data-outputid="8fa2e2ef-932c-4b4b-dc1e-a87b13928b45" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">4</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/yorkshire_terrier_86.jpg</code></pre>
 </div>
@@ -634,9 +661,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="b4b2eb99-056f-4d99-de35-99855e33b8a7" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="bu">print</span>(files[<span class="dv">5</span>])</span>
-<span id="cb22-2"><a href="#cb22-2"></a>PILImage.create(files[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="E9v3oKmfBKih" class="cell" data-outputid="b4b2eb99-056f-4d99-de35-99855e33b8a7" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">5</span>])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/Ragdoll_56.jpg</code></pre>
 </div>
@@ -644,9 +671,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="3c4c1426-82be-4764-fd93-e8604c82ec15" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="bu">print</span>(files[<span class="dv">6</span>])</span>
-<span id="cb24-2"><a href="#cb24-2"></a>PILImage.create(files[<span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1MqEVKdfBR5X" class="cell" data-outputid="3c4c1426-82be-4764-fd93-e8604c82ec15" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">6</span>])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/german_shorthaired_2.jpg</code></pre>
 </div>
@@ -654,9 +681,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="85b1d3c2-a213-46ab-b3bf-1a930ccb20f5" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="bu">print</span>(files[<span class="dv">7</span>])</span>
-<span id="cb26-2"><a href="#cb26-2"></a>PILImage.create(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="hbbZ20mMBVoz" class="cell" data-outputid="85b1d3c2-a213-46ab-b3bf-1a930ccb20f5" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">7</span>])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg</code></pre>
 </div>
@@ -664,9 +691,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="32b7e4c9-add0-4d96-b20f-efb2d6a934a2" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">print</span>(files[<span class="dv">8</span>])</span>
-<span id="cb28-2"><a href="#cb28-2"></a>PILImage.create(files[<span class="dv">8</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="Nv0BH5IHBdBJ" class="cell" data-outputid="32b7e4c9-add0-4d96-b20f-efb2d6a934a2" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files[<span class="dv">8</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(files[<span class="dv">8</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/japanese_chin_169.jpg</code></pre>
 </div>
@@ -674,27 +701,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># 특1: 대문자이면 고양이, 소문자이면 강아지그림이다!! (천재적인 저장방식)</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="co"># 특2: 이미지크기가 서로 다르다..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="Do91d5d4Bhkz" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 특1: 대문자이면 고양이, 소문자이면 강아지그림이다!! (천재적인 저장방식)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 특2: 이미지크기가 서로 다르다..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">def</span> label_func(fname):</span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="cf">if</span> fname[<span class="dv">0</span>].isupper():</span>
-<span id="cb31-3"><a href="#cb31-3"></a>    <span class="cf">return</span> <span class="st">'cat'</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a>  <span class="cf">else</span>:</span>
-<span id="cb31-5"><a href="#cb31-5"></a>    <span class="cf">return</span> <span class="st">'dog'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="IY8yjdQACDl4" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> label_func(fname):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> fname[<span class="dv">0</span>].isupper():</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'cat'</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'dog'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>dls <span class="op">=</span> ImageDataLoaders.from_name_func(path,files,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">224</span>))</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="co"># path 경로에서 </span></span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="co"># files 에 해당하는 파일들을 불러와서 X를 만들고 </span></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="co"># item_tfms 에 정의된 방식으로 X를 변환하여 저장한다. 그리고 </span></span>
-<span id="cb32-5"><a href="#cb32-5"></a><span class="co"># label_func: "파일이름" -&gt; "라벨", 에 저장된 함수내용을 바탕으로 y를 만들어 저장한다. </span></span>
-<span id="cb32-6"><a href="#cb32-6"></a><span class="co"># 이 모든것이 저장된 자료는 변수 dls에 저장한다. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="DeYO6oU5C3Zt" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> ImageDataLoaders.from_name_func(path,files,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">224</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># path 경로에서 </span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># files 에 해당하는 파일들을 불러와서 X를 만들고 </span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># item_tfms 에 정의된 방식으로 X를 변환하여 저장한다. 그리고 </span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># label_func: "파일이름" -&gt; "라벨", 에 저장된 함수내용을 바탕으로 y를 만들어 저장한다. </span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 이 모든것이 저장된 자료는 변수 dls에 저장한다. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="2b1d69f7-ac0f-46fc-d2e6-425f81d9c99b" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="eImxq_RRDSFl" class="cell" data-outputid="2b1d69f7-ac0f-46fc-d2e6-425f81d9c99b" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
 </div>
@@ -702,27 +729,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="학습" class="level1">
 <h1>학습</h1>
-<div class="cell" data-outputid="8c2b32b2-5bd8-4a65-c726-f6b1b99a40a9" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="co"># cnn_learner 라는 함수를 이용해서 1차목표와 2차목표를 달성할 "썸띵(Object)"을 만들것임. </span></span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="co">## 오브젝트란? 정보와 함수를 동시에 가지는 어떠한 집합체 </span></span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="co"># - 오브젝트.명사이름: 이것 통채로 하나의 변수처럼 쓸 수 있음. </span></span>
-<span id="cb34-7"><a href="#cb34-7"></a><span class="co"># - 오브젝트.동사이름: 이것 통채로 하나의 함수처럼 쓸 수 있음. (이때 함수의 첫번째 입력은 명시하지 않아도 오브젝트 그 자체가 된다)</span></span>
-<span id="cb34-8"><a href="#cb34-8"></a></span>
-<span id="cb34-9"><a href="#cb34-9"></a><span class="co">## clafr에 필요한 명사(=정보) &lt;-- 우리가 넣어줘야하는 것들이 대부분</span></span>
-<span id="cb34-10"><a href="#cb34-10"></a><span class="co"># (1) 모델정보: 클래시파이어로 누구를 뽑을것인가 (유명한 모델이 무엇인가? 잘 맞추는 모델이 무엇인가)</span></span>
-<span id="cb34-11"><a href="#cb34-11"></a><span class="co"># (2) 데이터: 데이터를 줘야함 </span></span>
-<span id="cb34-12"><a href="#cb34-12"></a><span class="co"># (3) 평가기준표: 채점을 할 지표 </span></span>
-<span id="cb34-13"><a href="#cb34-13"></a><span class="co">## clafr에 필요한 동사(=함수) &lt;-- 이미 구현이 되어있음.. </span></span>
-<span id="cb34-14"><a href="#cb34-14"></a><span class="co"># (1) 학습 </span></span>
-<span id="cb34-15"><a href="#cb34-15"></a><span class="co"># (2) 결과를 판단</span></span>
-<span id="cb34-16"><a href="#cb34-16"></a><span class="co"># (3) 예측 </span></span>
-<span id="cb34-17"><a href="#cb34-17"></a></span>
-<span id="cb34-18"><a href="#cb34-18"></a>clsfr <span class="op">=</span> cnn_learner(dls,resnet34,metrics<span class="op">=</span>error_rate)</span>
-<span id="cb34-19"><a href="#cb34-19"></a><span class="co"># clsfr 라는 오브젝트를 만들건데.. </span></span>
-<span id="cb34-20"><a href="#cb34-20"></a><span class="co"># 그 오브젝트의 재료로 dls (데이터), resnet34 (데이터를 분석할 모형이름), metrics (모형의 성능을 평가할 기준) 를 넣음. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="HcpOJAvnEkrx" class="cell" data-outputid="8c2b32b2-5bd8-4a65-c726-f6b1b99a40a9" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cnn_learner 라는 함수를 이용해서 1차목표와 2차목표를 달성할 "썸띵(Object)"을 만들것임. </span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">## 오브젝트란? 정보와 함수를 동시에 가지는 어떠한 집합체 </span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - 오브젝트.명사이름: 이것 통채로 하나의 변수처럼 쓸 수 있음. </span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - 오브젝트.동사이름: 이것 통채로 하나의 함수처럼 쓸 수 있음. (이때 함수의 첫번째 입력은 명시하지 않아도 오브젝트 그 자체가 된다)</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">## clafr에 필요한 명사(=정보) &lt;-- 우리가 넣어줘야하는 것들이 대부분</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) 모델정보: 클래시파이어로 누구를 뽑을것인가 (유명한 모델이 무엇인가? 잘 맞추는 모델이 무엇인가)</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) 데이터: 데이터를 줘야함 </span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) 평가기준표: 채점을 할 지표 </span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">## clafr에 필요한 동사(=함수) &lt;-- 이미 구현이 되어있음.. </span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) 학습 </span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) 결과를 판단</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) 예측 </span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>clsfr <span class="op">=</span> cnn_learner(dls,resnet34,metrics<span class="op">=</span>error_rate)</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># clsfr 라는 오브젝트를 만들건데.. </span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 그 오브젝트의 재료로 dls (데이터), resnet34 (데이터를 분석할 모형이름), metrics (모형의 성능을 평가할 기준) 를 넣음. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/usr/local/lib/python3.7/dist-packages/fastai/vision/learner.py:284: UserWarning: `cnn_learner` has been renamed to `vision_learner` -- please update your code
   warn("`cnn_learner` has been renamed to `vision_learner` -- please update your code")
@@ -734,12 +761,12 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"dae2195fd2344ae9834650dcda68af90","version_major":2,"version_minor":0}
+{"model_id":"dae2195fd2344ae9834650dcda68af90","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 </div>
-<div class="cell" data-outputid="a295a3b1-b29d-40ed-ea37-b08a17e79200" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>clsfr.fine_tune(<span class="dv">1</span>) <span class="co"># 학습을 하는 함수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="DEVgoOUqJTBQ" class="cell" data-outputid="a295a3b1-b29d-40ed-ea37-b08a17e79200" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>clsfr.fine_tune(<span class="dv">1</span>) <span class="co"># 학습을 하는 함수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -759,26 +786,25 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </style>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>error_rate</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0.189062</td>
-      <td>0.012517</td>
-      <td>0.006089</td>
-      <td>01:01</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.189062</td>
+<td>0.012517</td>
+<td>0.006089</td>
+<td>01:01</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="cell-output cell-output-display">
@@ -800,40 +826,39 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </style>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>error_rate</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0.051309</td>
-      <td>0.010439</td>
-      <td>0.003383</td>
-      <td>00:57</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.051309</td>
+<td>0.010439</td>
+<td>0.003383</td>
+<td>00:57</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
 </section>
 <section id="기존-데이터를-잘-맞추는지-확인" class="level1">
 <h1>기존 데이터를 잘 맞추는지 확인</h1>
-<div class="cell" data-outputid="c56fbeeb-c230-4295-8899-58f954e70baf" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>files[<span class="dv">0</span>] <span class="co"># 강아지 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="08UfEI5HMQRk" class="cell" data-outputid="c56fbeeb-c230-4295-8899-58f954e70baf" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>files[<span class="dv">0</span>] <span class="co"># 강아지 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>Path('/root/.fastai/data/oxford-iiit-pet/images/scottish_terrier_92.jpg')</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="67039edf-6652-436c-c984-e8446109dbe2" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>clsfr.predict(files[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="n44rM-UoJaP-" class="cell" data-outputid="67039edf-6652-436c-c984-e8446109dbe2" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(files[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -859,14 +884,14 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('dog', TensorBase(1), TensorBase([6.8846e-07, 1.0000e+00]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="02034bcf-3476-4c66-d479-505c6d2ca220" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>files[<span class="dv">7</span>] <span class="co"># 고양이</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5dzigjwwMUl7" class="cell" data-outputid="02034bcf-3476-4c66-d479-505c6d2ca220" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>files[<span class="dv">7</span>] <span class="co"># 고양이</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>Path('/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg')</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="685a6809-5483-4dc6-f0b3-f0b12a3cda86" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>clsfr.predict(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5edaC2oLMhtk" class="cell" data-outputid="685a6809-5483-4dc6-f0b3-f0b12a3cda86" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -892,8 +917,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('cat', TensorBase(0), TensorBase([1.0000e+00, 1.3773e-08]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="5c245eb3-4a3c-4a2d-b21a-d729096e68a4" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>clsfr.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="rSGCcCI2Mngd" class="cell" data-outputid="5c245eb3-4a3c-4a2d-b21a-d729096e68a4" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>clsfr.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -922,8 +947,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </section>
 <section id="오답분석" class="level1">
 <h1>오답분석</h1>
-<div class="cell" data-outputid="8ee6fd2f-acd8-4462-80e6-2f73ba7c2b3c" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>interpreter <span class="op">=</span> Interpretation.from_learner(clsfr) <span class="co"># 오답을 분석하는 오브젝트를 만듬.. 재료는 클래시파이어! </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3KVQVCGJNDpM" class="cell" data-outputid="8ee6fd2f-acd8-4462-80e6-2f73ba7c2b3c" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>interpreter <span class="op">=</span> Interpretation.from_learner(clsfr) <span class="co"># 오답을 분석하는 오브젝트를 만듬.. 재료는 클래시파이어! </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -946,8 +971,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 
 </div>
 </div>
-<div class="cell" data-outputid="96ec5199-9ea2-4166-c6dd-956df86dbe43" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>interpreter.plot_top_losses(<span class="dv">16</span>) <span class="co"># 오답을 분석하는 오브젝트는 가장 오류가 높은 이미지를 정렬하여 보여주는 기능이 있음..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="X-lv2GVCNny6" class="cell" data-outputid="96ec5199-9ea2-4166-c6dd-956df86dbe43" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>interpreter.plot_top_losses(<span class="dv">16</span>) <span class="co"># 오답을 분석하는 오브젝트는 가장 오류가 높은 이미지를 정렬하여 보여주는 기능이 있음..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -976,8 +1001,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </section>
 <section id="진짜-잘되는게-맞는건가" class="level1">
 <h1>진짜 잘되는게 맞는건가?</h1>
-<div class="cell" data-outputid="6a1e3089-396c-4418-fb9d-23b7bb4371ce" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>clsfr.predict(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="BLS4LJOoUyX0" class="cell" data-outputid="6a1e3089-396c-4418-fb9d-23b7bb4371ce" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(files[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1024,8 +1049,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('cat', TensorBase(0), TensorBase([1.0000e+00, 1.3773e-08]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="6649921c-5b3d-4a9a-b7bb-e4dee8dd1219" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>clsfr.predict(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2ysODLxzVMIq" class="cell" data-outputid="6649921c-5b3d-4a9a-b7bb-e4dee8dd1219" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1051,8 +1076,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('cat', TensorBase(0), TensorBase([1.0000e+00, 1.3773e-08]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="15a19ed3-bd59-4da5-cc29-887d7df1e58d" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>clsfr.predict(PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="BbVNDMDlVECu" class="cell" data-outputid="15a19ed3-bd59-4da5-cc29-887d7df1e58d" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_34.jpg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1078,14 +1103,14 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('cat', TensorBase(0), TensorBase([1.0000e+00, 1.3773e-08]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="3cf4b7f2-73e1-4c8a-8f6d-c322171e0f97" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>PILImage.create(<span class="st">'2022-09-06-cat1.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8F02_R6SVXqJ" class="cell" data-outputid="3cf4b7f2-73e1-4c8a-8f6d-c322171e0f97" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'2022-09-06-cat1.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="ca08f06e-a863-4d21-f762-f29301b2bc17" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-cat1.png'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="eRkFGWckVl7M" class="cell" data-outputid="ca08f06e-a863-4d21-f762-f29301b2bc17" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-cat1.png'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1111,14 +1136,14 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('cat', TensorBase(0), TensorBase([1.0000e+00, 1.5662e-10]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="cc8208eb-a612-44b9-e2fe-b5f71e33fa93" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>PILImage.create(<span class="st">'2022-09-06-cat2.jpeg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="jNW7hcm1VtNv" class="cell" data-outputid="cc8208eb-a612-44b9-e2fe-b5f71e33fa93" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'2022-09-06-cat2.jpeg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <p><img src="2022-09-06-1wk-2_files/figure-html/cell-38-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="fec2ed55-3767-4603-d294-2f875f55392f" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-cat2.jpeg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="Qe2ACraoV0l4" class="cell" data-outputid="fec2ed55-3767-4603-d294-2f875f55392f" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-cat2.jpeg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1144,8 +1169,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('cat', TensorBase(0), TensorBase([0.9809, 0.0191]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="8de33ec2-840a-441c-f95b-9a4c6f7b22b5" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-hani01.jpeg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="RBF5w5K8V4s1" class="cell" data-outputid="8de33ec2-840a-441c-f95b-9a4c6f7b22b5" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-hani01.jpeg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1171,8 +1196,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('dog', TensorBase(1), TensorBase([3.2573e-10, 1.0000e+00]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="3006de09-631f-42e5-f4b2-8e508d28b1e7" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-hani02.jpeg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="apgFw9qUWAu3" class="cell" data-outputid="3006de09-631f-42e5-f4b2-8e508d28b1e7" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-hani02.jpeg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1198,8 +1223,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <pre><code>('dog', TensorBase(1), TensorBase([7.0723e-07, 1.0000e+00]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="82c55da1-c361-47ea-9e6e-5ed892c16258" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-hani03.jpg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="rFLgp8IKWK2d" class="cell" data-outputid="82c55da1-c361-47ea-9e6e-5ed892c16258" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>clsfr.predict(PILImage.create(<span class="st">'2022-09-06-hani03.jpg'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1232,9 +1257,9 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 <ul>
 <li>숙제를 위한 예시코드</li>
 </ul>
-<div class="sourceCode" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg &lt;-- 인터넷의 이미지 주소</span></span>
-<span id="cb66-2"><a href="#cb66-2"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg'</span>).content)</span>
-<span id="cb66-3"><a href="#cb66-3"></a>clsfr.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg &lt;-- 인터넷의 이미지 주소</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg'</span>).content)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>clsfr.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>-</code> 숙제 못하겠으면 카톡으로 물어보세요! 답 알려드립니다.</p>
 <p><code>-</code> 숙제는 간단하게 편한 형식으로 제출하세요. (저는 스크린샷 선호해요..) pdf나 hwp로 만드실 필요 없습니다.</p>
 
@@ -1272,9 +1297,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1310,10 +1349,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1323,8 +1361,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1339,6 +1386,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1378,7 +1614,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://utteranc.es/client.js" repo="guebin/DL2022" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
 </div> <!-- /content -->
+
 
 
 

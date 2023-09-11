@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.322">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,13 +96,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -138,335 +116,354 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">DL2022</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/guebin/DL2022/tree/main/posts"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&amp;sort=dd&amp;shelf_id=3"><i class="bi bi-youtube" role="img">
+    <a class="nav-link" href="https://www.youtube.com/channel/UCQk9RyBNgXc7ORIsYlOfQrg/playlists?view=50&amp;sort=dd&amp;shelf_id=3"> <i class="bi bi-youtube" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">14wk-2: 순환신경망 (9)</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/2022-09-01-1wk-1.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-11-01-9wk-2.html">IV. RNN</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-12-01-14wk-2.html">14wk-2: 순환신경망 (9)</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">14wk-2: 순환신경망 (9)</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">순환신경망</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>최규빈 </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">December 1, 2022</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-11-29-13wk-2-final.html" class="sidebar-item-text sidebar-link">final</a>
+  <a href="../../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-09-01-1wk-1.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/2022-10-28-9wk-1-midsol.html" class="sidebar-item-text sidebar-link">mid</a>
+  <a href="../../posts/2022-11-29-13wk-2-final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Appendix</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Appendix/2022-12-14-A1.html" class="sidebar-item-text sidebar-link">A1: 깊은복사와 얕은복사</a>
+  <a href="../../posts/Appendix/2022-12-14-A1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1: 깊은복사와 얕은복사</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">I. Overview</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">I. Overview</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link">01wk-2: Overview (1)</a>
+  <a href="../../posts/I. Overview/2022-09-06-1wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01wk-2: Overview (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (2)</a>
+  <a href="../../posts/I. Overview/2022-09-08-2wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (3)</a>
+  <a href="../../posts/I. Overview/2022-09-13-2wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">02wk-1: Overview (4)</a>
+  <a href="../../posts/I. Overview/2022-09-15-3wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk-1: Overview (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">Assignment 1</a>
+  <a href="../../posts/I. Overview/2022-09-19-Assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 1</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">II. DNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">II. DNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">03wk-2: 딥러닝의 기초 (1)</a>
+  <a href="../../posts/II. DNN/2022-09-20-3wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03wk-2: 딥러닝의 기초 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">04wk-1: 딥러닝의 기초 (2)</a>
+  <a href="../../posts/II. DNN/2022-09-22-4wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk-1: 딥러닝의 기초 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">04wk-2: 딥러닝의 기초 (3)</a>
+  <a href="../../posts/II. DNN/2022-09-27-4wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk-2: 딥러닝의 기초 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">05wk-1: 딥러닝의 기초 (4)</a>
+  <a href="../../posts/II. DNN/2022-09-29-5wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk-1: 딥러닝의 기초 (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">05wk-2: 딥러닝의 기초 (5)</a>
+  <a href="../../posts/II. DNN/2022-10-04-5wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk-2: 딥러닝의 기초 (5)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">06wk-1: 딥러닝의 기초 (6)</a>
+  <a href="../../posts/II. DNN/2022-10-06-6wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk-1: 딥러닝의 기초 (6)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">06wk-2: 딥러닝의 기초 (7)</a>
+  <a href="../../posts/II. DNN/2022-10-11-6wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk-2: 딥러닝의 기초 (7)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link">07wk-1: 딥러닝의 기초 (8)</a>
+  <a href="../../posts/II. DNN/2022-10-13-7wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk-1: 딥러닝의 기초 (8)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">Assignment 2</a>
+  <a href="../../posts/II. DNN/2022-10-26-Assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/II. DNN/2022-12-13-Extra-1.html" class="sidebar-item-text sidebar-link">Extra-1: 딥러닝의 기초 (9)</a>
+  <a href="../../posts/II. DNN/2022-12-13-Extra-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-1: 딥러닝의 기초 (9)</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">III. CNN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">III. CNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">07wk-2: 이미지분석 (1)</a>
+  <a href="../../posts/III. CNN/2022-10-18-7wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk-2: 이미지분석 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">08wk-1: 이미지분석 (2)</a>
+  <a href="../../posts/III. CNN/2022-10-20-8wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk-1: 이미지분석 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">08wk-2: 이미지분석 (3)</a>
+  <a href="../../posts/III. CNN/2022-10-25-8wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk-2: 이미지분석 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/III. CNN/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">Assignment 3</a>
+  <a href="../../posts/III. CNN/2022-10-26-Assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment 3</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">IV. RNN</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">IV. RNN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">09wk-2: 순환신경망 (1)</a>
+  <a href="../../posts/IV. RNN/2022-11-01-9wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09wk-2: 순환신경망 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link">10wk-1: 순환신경망 (2)</a>
+  <a href="../../posts/IV. RNN/2022-11-03-10wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10wk-1: 순환신경망 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">10wk-2: 순환신경망 (3)</a>
+  <a href="../../posts/IV. RNN/2022-11-08-10wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10wk-2: 순환신경망 (3)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">11wk-1: 순환신경망 (4)</a>
+  <a href="../../posts/IV. RNN/2022-11-10-11wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk-1: 순환신경망 (4)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">11wk-2: 순환신경망 (5)</a>
+  <a href="../../posts/IV. RNN/2022-11-15-11wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk-2: 순환신경망 (5)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">12wk-1: 순환신경망 (6)</a>
+  <a href="../../posts/IV. RNN/2022-11-17-12wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk-1: 순환신경망 (6)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">12wk-2: 순환신경망 (7)</a>
+  <a href="../../posts/IV. RNN/2022-11-22-12wk-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk-2: 순환신경망 (7)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">14wk-1: 순환신경망 (8)</a>
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14wk-1: 순환신경망 (8)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/IV. RNN/2022-12-01-14wk-2.html" class="sidebar-item-text sidebar-link active">14wk-2: 순환신경망 (9)</a>
+  <a href="../../posts/IV. RNN/2022-12-01-14wk-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">14wk-2: 순환신경망 (9)</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">V. RecSys</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">V. RecSys</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">Extra-2: 추천시스템</a>
+  <a href="../../posts/V. RecSys/2022-12-21-Extra-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-2: 추천시스템</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">VI. GAN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">VI. GAN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/VI. GAN/2022-12-21-Extra-3.html" class="sidebar-item-text sidebar-link">Extra-3: 생성모형(GAN)</a>
+  <a href="../../posts/VI. GAN/2022-12-21-Extra-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extra-3: 생성모형(GAN)</span></a>
   </div>
 </li>
       </ul>
@@ -476,6 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -494,13 +492,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#잡담4-우린-뭘-해야-할까-학석사-레벨에서.." id="toc-잡담4-우린-뭘-해야-할까-학석사-레벨에서.." class="nav-link" data-scroll-target="#잡담4-우린-뭘-해야-할까-학석사-레벨에서..">잡담4: 우린 뭘 해야 할까 (학석사 레벨에서..)</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022-12-01-14wk-2.out.ipynb" download="2022-12-01-14wk-2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/2022-09-01-1wk-1.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-11-01-9wk-2.html">IV. RNN</a></li><li class="breadcrumb-item"><a href="../../posts/IV. RNN/2022-12-01-14wk-2.html">14wk-2: 순환신경망 (9)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">14wk-2: 순환신경망 (9)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">순환신경망</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>최규빈 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 1, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 <blockquote class="blockquote">
 <p>IMDB자료의 분석 (텍스트생성과 감성분류), 잡담</p>
@@ -513,102 +541,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a7ae18dd-155c-445f-8380-37de2f0e86e4" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="imdb-자료-to-텍스트-생성" class="level1">
 <h1>IMDB 자료 <span class="math inline">\(\to\)</span> 텍스트 생성</h1>
 <p><code>(1)</code> dls 생성</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a06788fb-af24-4981-be45-d627e54b7a47" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>files <span class="op">=</span> get_text_files(path) </span>
-<span id="cb3-2"><a href="#cb3-2"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2e1b6b06-6a13-4273-8684-95d3406b1a51" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>(#100002) [Path('/home/cgb4/.fastai/data/imdb/unsup/8002_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/18305_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/1440_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/43259_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/391_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/14091_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/49382_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/33008_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/24903_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/43058_0.txt')...]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>dls <span class="op">=</span> DataBlock(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    blocks<span class="op">=</span>TextBlock.from_folder(path,is_lm<span class="op">=</span><span class="va">True</span>), </span>
-<span id="cb5-3"><a href="#cb5-3"></a>    get_items<span class="op">=</span>get_text_files, splitter<span class="op">=</span>RandomSplitter(<span class="fl">0.1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>).dataloaders(path,seq_len<span class="op">=</span><span class="dv">128</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c846e904-af59-432d-81ae-5d66c64cea29" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>TextBlock.from_folder(path,is_lm<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_text_files, splitter<span class="op">=</span>RandomSplitter(<span class="fl">0.1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>).dataloaders(path,seq_len<span class="op">=</span><span class="dv">128</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="23789ed8-651e-4843-8172-9615d44aa557" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>text</th>
-      <th>text_</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>xxbos xxmaj that is quite an outdated movie which aims to showcase the youth 's yearning for freedom in some dehumanizing xxmaj british school . xxmaj oh yes it 's like in the army , you learn to obey and do what you 're asked to . xxmaj yes the young dream of something else but it breaks their dreams and sweeps away their optimism on the threshold of life . xxmaj great . \n\n xxmaj basically that 's how you could sum up the nice intentions in xxmaj if … xxmaj nice intentions that arouses no cinematographic challenges : the result is a declamatory movie . xxmaj do you see how boring i mean ? \n\n xxmaj at least that oldie helped xxmaj kubrick cast mcdowell in</td>
-      <td>xxmaj that is quite an outdated movie which aims to showcase the youth 's yearning for freedom in some dehumanizing xxmaj british school . xxmaj oh yes it 's like in the army , you learn to obey and do what you 're asked to . xxmaj yes the young dream of something else but it breaks their dreams and sweeps away their optimism on the threshold of life . xxmaj great . \n\n xxmaj basically that 's how you could sum up the nice intentions in xxmaj if … xxmaj nice intentions that arouses no cinematographic challenges : the result is a declamatory movie . xxmaj do you see how boring i mean ? \n\n xxmaj at least that oldie helped xxmaj kubrick cast mcdowell in a</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>true facts is more than annoying . xxmaj hitler was n't anti - semitic in his youth , he even worked for xxmaj jews before world war one . xxmaj it was however during world war one and after that he formed his views about the xxmaj jews . xxmaj his upbringing in this movie is also inaccurate , xxmaj hitler as a child was n't a disturbed little brat . xxmaj he had a more or less normal upbringing . xxmaj nothing is mentioned about his lost brothers and other important pieces that adds to the puzzle that is xxmaj hitler . \n\n xxmaj robert xxmaj carlyle is a great actor but he does n't really fit in the role as xxmaj hitler . xxmaj hitler was</td>
-      <td>facts is more than annoying . xxmaj hitler was n't anti - semitic in his youth , he even worked for xxmaj jews before world war one . xxmaj it was however during world war one and after that he formed his views about the xxmaj jews . xxmaj his upbringing in this movie is also inaccurate , xxmaj hitler as a child was n't a disturbed little brat . xxmaj he had a more or less normal upbringing . xxmaj nothing is mentioned about his lost brothers and other important pieces that adds to the puzzle that is xxmaj hitler . \n\n xxmaj robert xxmaj carlyle is a great actor but he does n't really fit in the role as xxmaj hitler . xxmaj hitler was n't</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>is really great . xxmaj one to hunt down and watch . xxmaj look out for it ! xxmaj ten out of ten . xxbos xxmaj sinatra was xxup ok , but xxmaj sterling xxmaj hayden was just _ so _ shallow and seemed to be rushing thru some of his scenes like he had something more important to get to . xxmaj my wife and i both burst out laughing at some of the scenes . xxmaj for instance , in the opening scene when the the guy asks the deputy what the name of this town is and the deputy says " suddenly . " " suddenly what ? " the guy responds , and the deputy says " no , that 's the name of</td>
-      <td>really great . xxmaj one to hunt down and watch . xxmaj look out for it ! xxmaj ten out of ten . xxbos xxmaj sinatra was xxup ok , but xxmaj sterling xxmaj hayden was just _ so _ shallow and seemed to be rushing thru some of his scenes like he had something more important to get to . xxmaj my wife and i both burst out laughing at some of the scenes . xxmaj for instance , in the opening scene when the the guy asks the deputy what the name of this town is and the deputy says " suddenly . " " suddenly what ? " the guy responds , and the deputy says " no , that 's the name of the</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>anyone watching this film . \n\n i think this is one of xxmaj keira xxmaj knightley 's better films , and i think she 's a brilliant actress , and was excellent for the role . xxmaj parminder xxmaj nagra was brilliant too . xxmaj sadly , i ca n't say this for xxmaj jonathan rhys - meyers , because i do n't think that he was that much of a good actor , and to be honest , his eyes were a little scary . \n\n xxmaj all in all , a brilliant film , and a brilliant story xxbos xxmaj in the very first episode of xxmaj friends , which aired 22 xxmaj sept 1994 " the xxmaj one xxmaj where xxmaj monica xxmaj gets a</td>
-      <td>watching this film . \n\n i think this is one of xxmaj keira xxmaj knightley 's better films , and i think she 's a brilliant actress , and was excellent for the role . xxmaj parminder xxmaj nagra was brilliant too . xxmaj sadly , i ca n't say this for xxmaj jonathan rhys - meyers , because i do n't think that he was that much of a good actor , and to be honest , his eyes were a little scary . \n\n xxmaj all in all , a brilliant film , and a brilliant story xxbos xxmaj in the very first episode of xxmaj friends , which aired 22 xxmaj sept 1994 " the xxmaj one xxmaj where xxmaj monica xxmaj gets a xxmaj</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>tag the xxmaj national xxmaj lampoon name to a bad flick that most likely needed to recoup as much of it 's low budget as possible . i guarantee there will be a lot of xxunk hoping for boobies and hi - jinx to grab it from the shelves , only to be disappointed when nothing funny or exciting happens well into the film . i sat through it , cringing and bored , hoping for a possible " hilarious " catchphrase to use one day . xxmaj all i got was lethargic , disappointed , and an ending to a movie that sucked as bad as the main character 's blue balls . xxbos xxmaj this is truly abysmal . i just got a copy of "</td>
-      <td>the xxmaj national xxmaj lampoon name to a bad flick that most likely needed to recoup as much of it 's low budget as possible . i guarantee there will be a lot of xxunk hoping for boobies and hi - jinx to grab it from the shelves , only to be disappointed when nothing funny or exciting happens well into the film . i sat through it , cringing and bored , hoping for a possible " hilarious " catchphrase to use one day . xxmaj all i got was lethargic , disappointed , and an ending to a movie that sucked as bad as the main character 's blue balls . xxbos xxmaj this is truly abysmal . i just got a copy of " disco</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>xxbos i noticed with some amusement that in the end credits , the xxmaj detroit xxup pd is thanked for their participation . xxmaj the xxmaj chief of xxmaj police even has one speaking line playing himself ( and boy , can you tell he ca n't act ) . xxmaj the reason for the amusement is that in this movie the police shoot first and ask questions later . xxmaj not the kind of xxup pr , i would think a police force would want . xxmaj other than that , this is your standard cops and robbers film dressed up for the ' 70 's with a racial angle . xxmaj alex xxmaj rocco is given a thankless role of a lifer cop that ca n't</td>
-      <td>i noticed with some amusement that in the end credits , the xxmaj detroit xxup pd is thanked for their participation . xxmaj the xxmaj chief of xxmaj police even has one speaking line playing himself ( and boy , can you tell he ca n't act ) . xxmaj the reason for the amusement is that in this movie the police shoot first and ask questions later . xxmaj not the kind of xxup pr , i would think a police force would want . xxmaj other than that , this is your standard cops and robbers film dressed up for the ' 70 's with a racial angle . xxmaj alex xxmaj rocco is given a thankless role of a lifer cop that ca n't get</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>of xxunk is sharply broken as a cow gives birth to a calf with the face of a human whom screams that something horrendous is coming before falling dead like the abomination it is ( it is quite possible that the sheer hideousness of the creature is some bizarre xxmaj xxunk homage ) . \n\n xxmaj following an incredible introduction for main baddie xxmaj kato , and his henchwoman xxmaj agi ( a surprisingly attractive xxmaj chiaki xxmaj xxunk ) , by way of an apocalyptic army raising . xxmaj the story reverts to normal for a while , but it does n't take long before any and all logic goes down the drain and the young boy teams up with a group of xxmaj miyazaki rejects to</td>
-      <td>xxunk is sharply broken as a cow gives birth to a calf with the face of a human whom screams that something horrendous is coming before falling dead like the abomination it is ( it is quite possible that the sheer hideousness of the creature is some bizarre xxmaj xxunk homage ) . \n\n xxmaj following an incredible introduction for main baddie xxmaj kato , and his henchwoman xxmaj agi ( a surprisingly attractive xxmaj chiaki xxmaj xxunk ) , by way of an apocalyptic army raising . xxmaj the story reverts to normal for a while , but it does n't take long before any and all logic goes down the drain and the young boy teams up with a group of xxmaj miyazaki rejects to take</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>power to self heal any sort of wound or illness . xxmaj desperate for his boy to live xxmaj richard agrees but the procedure has unwanted side effects like turning xxmaj eddie into a brain eating zombie which is just not a good thing … \n\n xxmaj executive produced , written &amp; directed by xxmaj steve xxmaj franke xxmaj i 'll be perfectly frank myself &amp; say xxmaj serum is awful , xxmaj serum is one of those no budget horror films which tries to rip - off other any number of other 's &amp; ends up being slightly more fun than having you fingernails pulled out with pliers . xxmaj the script is terrible , it has the whole re - animator ( 1985 ) feel to</td>
-      <td>to self heal any sort of wound or illness . xxmaj desperate for his boy to live xxmaj richard agrees but the procedure has unwanted side effects like turning xxmaj eddie into a brain eating zombie which is just not a good thing … \n\n xxmaj executive produced , written &amp; directed by xxmaj steve xxmaj franke xxmaj i 'll be perfectly frank myself &amp; say xxmaj serum is awful , xxmaj serum is one of those no budget horror films which tries to rip - off other any number of other 's &amp; ends up being slightly more fun than having you fingernails pulled out with pliers . xxmaj the script is terrible , it has the whole re - animator ( 1985 ) feel to it</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>an expert in this field . xxmaj i 'd be very interested to know your opinion . " \n\n xxmaj marco : " i think it 's unwise to use movies as a guide for reality , do n't you inspector ? " \n\n xxmaj inspector xxmaj alan xxmaj santini : " depends what you mean by reality . " \n\n xxmaj being that this is a giallo , stylish murders are a must and xxmaj dario does not disappoint ( the " bullet through the door " scene is quite possibly one of the greatest deaths ever shot , if you 'll forgive the pun ) . xxmaj the black - gloved , deep - voiced , pulsating brained ( cool shots ! ) killer is cold</td>
-      <td>expert in this field . xxmaj i 'd be very interested to know your opinion . " \n\n xxmaj marco : " i think it 's unwise to use movies as a guide for reality , do n't you inspector ? " \n\n xxmaj inspector xxmaj alan xxmaj santini : " depends what you mean by reality . " \n\n xxmaj being that this is a giallo , stylish murders are a must and xxmaj dario does not disappoint ( the " bullet through the door " scene is quite possibly one of the greatest deaths ever shot , if you 'll forgive the pun ) . xxmaj the black - gloved , deep - voiced , pulsating brained ( cool shots ! ) killer is cold and</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">text</th>
+<th data-quarto-table-cell-role="th">text_</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>xxbos xxmaj that is quite an outdated movie which aims to showcase the youth 's yearning for freedom in some dehumanizing xxmaj british school . xxmaj oh yes it 's like in the army , you learn to obey and do what you 're asked to . xxmaj yes the young dream of something else but it breaks their dreams and sweeps away their optimism on the threshold of life . xxmaj great . \n\n xxmaj basically that 's how you could sum up the nice intentions in xxmaj if … xxmaj nice intentions that arouses no cinematographic challenges : the result is a declamatory movie . xxmaj do you see how boring i mean ? \n\n xxmaj at least that oldie helped xxmaj kubrick cast mcdowell in</td>
+<td>xxmaj that is quite an outdated movie which aims to showcase the youth 's yearning for freedom in some dehumanizing xxmaj british school . xxmaj oh yes it 's like in the army , you learn to obey and do what you 're asked to . xxmaj yes the young dream of something else but it breaks their dreams and sweeps away their optimism on the threshold of life . xxmaj great . \n\n xxmaj basically that 's how you could sum up the nice intentions in xxmaj if … xxmaj nice intentions that arouses no cinematographic challenges : the result is a declamatory movie . xxmaj do you see how boring i mean ? \n\n xxmaj at least that oldie helped xxmaj kubrick cast mcdowell in a</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>true facts is more than annoying . xxmaj hitler was n't anti - semitic in his youth , he even worked for xxmaj jews before world war one . xxmaj it was however during world war one and after that he formed his views about the xxmaj jews . xxmaj his upbringing in this movie is also inaccurate , xxmaj hitler as a child was n't a disturbed little brat . xxmaj he had a more or less normal upbringing . xxmaj nothing is mentioned about his lost brothers and other important pieces that adds to the puzzle that is xxmaj hitler . \n\n xxmaj robert xxmaj carlyle is a great actor but he does n't really fit in the role as xxmaj hitler . xxmaj hitler was</td>
+<td>facts is more than annoying . xxmaj hitler was n't anti - semitic in his youth , he even worked for xxmaj jews before world war one . xxmaj it was however during world war one and after that he formed his views about the xxmaj jews . xxmaj his upbringing in this movie is also inaccurate , xxmaj hitler as a child was n't a disturbed little brat . xxmaj he had a more or less normal upbringing . xxmaj nothing is mentioned about his lost brothers and other important pieces that adds to the puzzle that is xxmaj hitler . \n\n xxmaj robert xxmaj carlyle is a great actor but he does n't really fit in the role as xxmaj hitler . xxmaj hitler was n't</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>is really great . xxmaj one to hunt down and watch . xxmaj look out for it ! xxmaj ten out of ten . xxbos xxmaj sinatra was xxup ok , but xxmaj sterling xxmaj hayden was just _ so _ shallow and seemed to be rushing thru some of his scenes like he had something more important to get to . xxmaj my wife and i both burst out laughing at some of the scenes . xxmaj for instance , in the opening scene when the the guy asks the deputy what the name of this town is and the deputy says " suddenly . " " suddenly what ? " the guy responds , and the deputy says " no , that 's the name of</td>
+<td>really great . xxmaj one to hunt down and watch . xxmaj look out for it ! xxmaj ten out of ten . xxbos xxmaj sinatra was xxup ok , but xxmaj sterling xxmaj hayden was just _ so _ shallow and seemed to be rushing thru some of his scenes like he had something more important to get to . xxmaj my wife and i both burst out laughing at some of the scenes . xxmaj for instance , in the opening scene when the the guy asks the deputy what the name of this town is and the deputy says " suddenly . " " suddenly what ? " the guy responds , and the deputy says " no , that 's the name of the</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>anyone watching this film . \n\n i think this is one of xxmaj keira xxmaj knightley 's better films , and i think she 's a brilliant actress , and was excellent for the role . xxmaj parminder xxmaj nagra was brilliant too . xxmaj sadly , i ca n't say this for xxmaj jonathan rhys - meyers , because i do n't think that he was that much of a good actor , and to be honest , his eyes were a little scary . \n\n xxmaj all in all , a brilliant film , and a brilliant story xxbos xxmaj in the very first episode of xxmaj friends , which aired 22 xxmaj sept 1994 " the xxmaj one xxmaj where xxmaj monica xxmaj gets a</td>
+<td>watching this film . \n\n i think this is one of xxmaj keira xxmaj knightley 's better films , and i think she 's a brilliant actress , and was excellent for the role . xxmaj parminder xxmaj nagra was brilliant too . xxmaj sadly , i ca n't say this for xxmaj jonathan rhys - meyers , because i do n't think that he was that much of a good actor , and to be honest , his eyes were a little scary . \n\n xxmaj all in all , a brilliant film , and a brilliant story xxbos xxmaj in the very first episode of xxmaj friends , which aired 22 xxmaj sept 1994 " the xxmaj one xxmaj where xxmaj monica xxmaj gets a xxmaj</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>tag the xxmaj national xxmaj lampoon name to a bad flick that most likely needed to recoup as much of it 's low budget as possible . i guarantee there will be a lot of xxunk hoping for boobies and hi - jinx to grab it from the shelves , only to be disappointed when nothing funny or exciting happens well into the film . i sat through it , cringing and bored , hoping for a possible " hilarious " catchphrase to use one day . xxmaj all i got was lethargic , disappointed , and an ending to a movie that sucked as bad as the main character 's blue balls . xxbos xxmaj this is truly abysmal . i just got a copy of "</td>
+<td>the xxmaj national xxmaj lampoon name to a bad flick that most likely needed to recoup as much of it 's low budget as possible . i guarantee there will be a lot of xxunk hoping for boobies and hi - jinx to grab it from the shelves , only to be disappointed when nothing funny or exciting happens well into the film . i sat through it , cringing and bored , hoping for a possible " hilarious " catchphrase to use one day . xxmaj all i got was lethargic , disappointed , and an ending to a movie that sucked as bad as the main character 's blue balls . xxbos xxmaj this is truly abysmal . i just got a copy of " disco</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>xxbos i noticed with some amusement that in the end credits , the xxmaj detroit xxup pd is thanked for their participation . xxmaj the xxmaj chief of xxmaj police even has one speaking line playing himself ( and boy , can you tell he ca n't act ) . xxmaj the reason for the amusement is that in this movie the police shoot first and ask questions later . xxmaj not the kind of xxup pr , i would think a police force would want . xxmaj other than that , this is your standard cops and robbers film dressed up for the ' 70 's with a racial angle . xxmaj alex xxmaj rocco is given a thankless role of a lifer cop that ca n't</td>
+<td>i noticed with some amusement that in the end credits , the xxmaj detroit xxup pd is thanked for their participation . xxmaj the xxmaj chief of xxmaj police even has one speaking line playing himself ( and boy , can you tell he ca n't act ) . xxmaj the reason for the amusement is that in this movie the police shoot first and ask questions later . xxmaj not the kind of xxup pr , i would think a police force would want . xxmaj other than that , this is your standard cops and robbers film dressed up for the ' 70 's with a racial angle . xxmaj alex xxmaj rocco is given a thankless role of a lifer cop that ca n't get</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>of xxunk is sharply broken as a cow gives birth to a calf with the face of a human whom screams that something horrendous is coming before falling dead like the abomination it is ( it is quite possible that the sheer hideousness of the creature is some bizarre xxmaj xxunk homage ) . \n\n xxmaj following an incredible introduction for main baddie xxmaj kato , and his henchwoman xxmaj agi ( a surprisingly attractive xxmaj chiaki xxmaj xxunk ) , by way of an apocalyptic army raising . xxmaj the story reverts to normal for a while , but it does n't take long before any and all logic goes down the drain and the young boy teams up with a group of xxmaj miyazaki rejects to</td>
+<td>xxunk is sharply broken as a cow gives birth to a calf with the face of a human whom screams that something horrendous is coming before falling dead like the abomination it is ( it is quite possible that the sheer hideousness of the creature is some bizarre xxmaj xxunk homage ) . \n\n xxmaj following an incredible introduction for main baddie xxmaj kato , and his henchwoman xxmaj agi ( a surprisingly attractive xxmaj chiaki xxmaj xxunk ) , by way of an apocalyptic army raising . xxmaj the story reverts to normal for a while , but it does n't take long before any and all logic goes down the drain and the young boy teams up with a group of xxmaj miyazaki rejects to take</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>power to self heal any sort of wound or illness . xxmaj desperate for his boy to live xxmaj richard agrees but the procedure has unwanted side effects like turning xxmaj eddie into a brain eating zombie which is just not a good thing … \n\n xxmaj executive produced , written &amp; directed by xxmaj steve xxmaj franke xxmaj i 'll be perfectly frank myself &amp; say xxmaj serum is awful , xxmaj serum is one of those no budget horror films which tries to rip - off other any number of other 's &amp; ends up being slightly more fun than having you fingernails pulled out with pliers . xxmaj the script is terrible , it has the whole re - animator ( 1985 ) feel to</td>
+<td>to self heal any sort of wound or illness . xxmaj desperate for his boy to live xxmaj richard agrees but the procedure has unwanted side effects like turning xxmaj eddie into a brain eating zombie which is just not a good thing … \n\n xxmaj executive produced , written &amp; directed by xxmaj steve xxmaj franke xxmaj i 'll be perfectly frank myself &amp; say xxmaj serum is awful , xxmaj serum is one of those no budget horror films which tries to rip - off other any number of other 's &amp; ends up being slightly more fun than having you fingernails pulled out with pliers . xxmaj the script is terrible , it has the whole re - animator ( 1985 ) feel to it</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>an expert in this field . xxmaj i 'd be very interested to know your opinion . " \n\n xxmaj marco : " i think it 's unwise to use movies as a guide for reality , do n't you inspector ? " \n\n xxmaj inspector xxmaj alan xxmaj santini : " depends what you mean by reality . " \n\n xxmaj being that this is a giallo , stylish murders are a must and xxmaj dario does not disappoint ( the " bullet through the door " scene is quite possibly one of the greatest deaths ever shot , if you 'll forgive the pun ) . xxmaj the black - gloved , deep - voiced , pulsating brained ( cool shots ! ) killer is cold</td>
+<td>expert in this field . xxmaj i 'd be very interested to know your opinion . " \n\n xxmaj marco : " i think it 's unwise to use movies as a guide for reality , do n't you inspector ? " \n\n xxmaj inspector xxmaj alan xxmaj santini : " depends what you mean by reality . " \n\n xxmaj being that this is a giallo , stylish murders are a must and xxmaj dario does not disappoint ( the " bullet through the door " scene is quite possibly one of the greatest deaths ever shot , if you 'll forgive the pun ) . xxmaj the black - gloved , deep - voiced , pulsating brained ( cool shots ! ) killer is cold and</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
 <p><code>(2)</code> lrnr 오브젝트 생성</p>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>lrnr <span class="op">=</span> language_model_learner(dls,AWD_LSTM,metrics<span class="op">=</span>[accuracy,Perplexity()]).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fa97a55f-034b-42f5-ba98-5d451908b063" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> language_model_learner(dls,AWD_LSTM,metrics<span class="op">=</span>[accuracy,Perplexity()]).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>.to_fp16()</code>은 <code>torch.float16</code>으로 숫자들을 저장하겠다는 의미 (GPU의 메모리를 아낄 수 있음)</li>
 </ul>
 <p><code>(3)</code> 학습</p>
-<div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>lrnr.fine_tune(<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="48516471-866e-4dc6-8108-183003898f66" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lrnr.fine_tune(<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -628,28 +655,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>accuracy</th>
-      <th>perplexity</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>4.372098</td>
-      <td>4.055620</td>
-      <td>0.288855</td>
-      <td>57.720924</td>
-      <td>12:10</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">perplexity</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>4.372098</td>
+<td>4.055620</td>
+<td>0.288855</td>
+<td>57.720924</td>
+<td>12:10</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="cell-output cell-output-display">
@@ -671,44 +697,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>accuracy</th>
-      <th>perplexity</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>4.167530</td>
-      <td>3.924835</td>
-      <td>0.300119</td>
-      <td>50.644745</td>
-      <td>12:43</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>4.085549</td>
-      <td>3.857475</td>
-      <td>0.305903</td>
-      <td>47.345631</td>
-      <td>12:52</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>4.057736</td>
-      <td>3.843057</td>
-      <td>0.307237</td>
-      <td>46.667915</td>
-      <td>13:01</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">perplexity</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>4.167530</td>
+<td>3.924835</td>
+<td>0.300119</td>
+<td>50.644745</td>
+<td>12:43</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>4.085549</td>
+<td>3.857475</td>
+<td>0.305903</td>
+<td>47.345631</td>
+<td>12:52</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>4.057736</td>
+<td>3.843057</td>
+<td>0.307237</td>
+<td>46.667915</td>
+<td>13:01</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -716,8 +741,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>perplexity: 낮을수록 좋음.</li>
 </ul>
 <p><code>(4)</code> 예측</p>
-<div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>lrnr.predict(<span class="st">'I liked this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="47df5257-2ab0-44a6-8344-21fc1154df72" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">'I liked this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -743,8 +768,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>"i liked this movie . Where i stopped in the early 80 's end with repairs and technology and it could have been edited much younger than i had ever seen , the whole story from National Geographic was the inspiration"</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>lrnr.predict(<span class="st">'I hate this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="801dfe5a-1de0-4939-83d8-a5e271aa9c96" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">'I hate this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -775,79 +800,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="imdb-자료-to-분류" class="level1">
 <h1>IMDB 자료 <span class="math inline">\(\to\)</span> 분류</h1>
 <p><code>(1)</code> dls 생성</p>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5483b771-4ee7-49b2-90e6-e5e67bd9472d" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Path('/home/cgb4/.fastai/data/imdb')</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="op">!</span>ls <span class="st">'/home/cgb4/.fastai/data/imdb'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="826d9e82-9c7c-4ca0-9a56-ee28f653576a" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="st">'/home/cgb4/.fastai/data/imdb'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>README  imdb.vocab  test  tmp_clas  tmp_lm  train  unsup</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>dls <span class="op">=</span> TextDataLoaders.from_folder(path, valid<span class="op">=</span><span class="st">'test'</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1ee63e3b-132c-4d28-9856-7f4073d04bd0" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> TextDataLoaders.from_folder(path, valid<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>text</th>
-      <th>category</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>xxbos xxmaj match 1 : xxmaj tag xxmaj team xxmaj table xxmaj match xxmaj bubba xxmaj ray and xxmaj spike xxmaj dudley vs xxmaj eddie xxmaj guerrero and xxmaj chris xxmaj benoit xxmaj bubba xxmaj ray and xxmaj spike xxmaj dudley started things off with a xxmaj tag xxmaj team xxmaj table xxmaj match against xxmaj eddie xxmaj guerrero and xxmaj chris xxmaj benoit . xxmaj according to the rules of the match , both opponents have to go through tables in order to get the win . xxmaj benoit and xxmaj guerrero heated up early on by taking turns hammering first xxmaj spike and then xxmaj bubba xxmaj ray . a xxmaj german xxunk by xxmaj benoit to xxmaj bubba took the wind out of the xxmaj dudley brother . xxmaj spike tried to help his brother , but the referee restrained him while xxmaj benoit and xxmaj guerrero</td>
-      <td>pos</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>xxbos xxmaj titanic directed by xxmaj james xxmaj cameron presents a fictional love story on the historical setting of the xxmaj titanic . xxmaj the plot is simple , xxunk , or not for those who love plots that twist and turn and keep you in suspense . xxmaj the end of the movie can be figured out within minutes of the start of the film , but the love story is an interesting one , however . xxmaj kate xxmaj winslett is wonderful as xxmaj rose , an aristocratic young lady betrothed by xxmaj cal ( billy xxmaj zane ) . xxmaj early on the voyage xxmaj rose meets xxmaj jack ( leonardo dicaprio ) , a lower class artist on his way to xxmaj america after winning his ticket aboard xxmaj titanic in a poker game . xxmaj if he wants something , he goes and gets it</td>
-      <td>pos</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>xxbos xxmaj warning : xxmaj does contain spoilers . \n\n xxmaj open xxmaj your xxmaj eyes \n\n xxmaj if you have not seen this film and plan on doing so , just stop reading here and take my word for it . xxmaj you have to see this film . i have seen it four times so far and i still have n't made up my mind as to what exactly happened in the film . xxmaj that is all i am going to say because if you have not seen this film , then stop reading right now . \n\n xxmaj if you are still reading then i am going to pose some questions to you and maybe if anyone has any answers you can email me and let me know what you think . \n\n i remember my xxmaj grade 11 xxmaj english teacher quite well . xxmaj</td>
-      <td>pos</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>xxbos xxmaj this movie was recently released on xxup dvd in the xxup us and i finally got the chance to see this hard - to - find gem . xxmaj it even came with original theatrical previews of other xxmaj italian horror classics like " xxunk " and " beyond xxup the xxup darkness " . xxmaj unfortunately , the previews were the best thing about this movie . \n\n " zombi 3 " in a bizarre way is actually linked to the infamous xxmaj lucio xxmaj fulci " zombie " franchise which began in 1979 . xxmaj similarly compared to " zombie " , " zombi 3 " consists of a threadbare plot and a handful of extremely bad actors that keeps this ' horror ' trash barely afloat . xxmaj the gore is nearly non - existent ( unless one is frightened of people running around with</td>
-      <td>neg</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>xxbos xxmaj raising xxmaj victor xxmaj vargas : a xxmaj review \n\n xxmaj you know , xxmaj raising xxmaj victor xxmaj vargas is like sticking your hands into a big , steaming bowl of oatmeal . xxmaj it 's warm and gooey , but you 're not sure if it feels right . xxmaj try as i might , no matter how warm and gooey xxmaj raising xxmaj victor xxmaj vargas became i was always aware that something did n't quite feel right . xxmaj victor xxmaj vargas suffers from a certain overconfidence on the director 's part . xxmaj apparently , the director thought that the ethnic backdrop of a xxmaj latino family on the lower east side , and an idyllic storyline would make the film critic proof . xxmaj he was right , but it did n't fool me . xxmaj raising xxmaj victor xxmaj vargas is</td>
-      <td>neg</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>xxbos xxmaj polish film maker xxmaj walerian xxmaj borowczyk 's xxmaj la xxmaj bête ( french , 1975 , aka xxmaj the xxmaj beast ) is among the most controversial and brave films ever made and a very excellent one too . xxmaj this film tells everything that 's generally been hidden and denied about our nature and our sexual nature in particular with the symbolism and silence of its images . xxmaj the images may look wild , perverse , " sick " or exciting , but they are all in relation with the lastly mentioned . xxmaj sex , desire and death are very strong and primary things and dominate all the flesh that has a human soul inside it . xxmaj they interest and xxunk us so powerfully ( and by our nature ) that they are considered scary , unacceptable and something too wild to be</td>
-      <td>pos</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>xxbos xxup anchors xxup aweigh sees two eager young sailors , xxmaj joe xxmaj brady ( gene xxmaj kelly ) and xxmaj clarence xxmaj doolittle / xxmaj brooklyn ( frank xxmaj sinatra ) , get a special four - day shore leave . xxmaj eager to get to the girls , particularly xxmaj joe 's xxmaj lola , neither xxmaj joe nor xxmaj brooklyn figure on the interruption of little xxmaj navy - mad xxmaj donald ( dean xxmaj stockwell ) and his xxmaj aunt xxmaj susie ( kathryn xxmaj grayson ) . xxmaj unexperienced in the ways of females and courting , xxmaj brooklyn quickly enlists xxmaj joe to help him win xxmaj aunt xxmaj susie over . xxmaj along the way , however , xxmaj joe finds himself falling for the gal he thinks belongs to his best friend . xxmaj how is xxmaj brooklyn going to take</td>
-      <td>pos</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>xxbos xxmaj the premise of this movie has been tickling my imagination for quite some time now . xxmaj we 've all heard or read about it in some kind of con - text . xxmaj what would you do if you were all alone in the world ? xxmaj what would you do if the entire world suddenly disappeared in front of your eyes ? xxmaj in fact , the last part is actually what happens to xxmaj dave and xxmaj andrew , two room - mates living in a run - down house in the middle of a freeway system . xxmaj andrew is a nervous wreck to say the least and xxmaj dave is considered being one of the biggest losers of society . xxmaj that alone is the main reason to why these two guys get so well along , because they simply only have each</td>
-      <td>pos</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>xxbos xxmaj i 've rented and watched this movie for the 1st time on xxup dvd without reading any reviews about it . xxmaj so , after 15 minutes of watching xxmaj i 've noticed that something is wrong with this movie ; it 's xxup terrible ! i mean , in the trailers it looked scary and serious ! \n\n i think that xxmaj eli xxmaj roth ( mr . xxmaj director ) thought that if all the characters in this film were stupid , the movie would be funny … ( so stupid , it 's funny … ? xxup wrong ! ) xxmaj he should watch and learn from better horror - comedies such xxunk xxmaj night " , " the xxmaj lost xxmaj boys " and " the xxmaj return xxmaj of the xxmaj living xxmaj dead " ! xxmaj those are funny ! \n\n "</td>
-      <td>neg</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">text</th>
+<th data-quarto-table-cell-role="th">category</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>xxbos xxmaj match 1 : xxmaj tag xxmaj team xxmaj table xxmaj match xxmaj bubba xxmaj ray and xxmaj spike xxmaj dudley vs xxmaj eddie xxmaj guerrero and xxmaj chris xxmaj benoit xxmaj bubba xxmaj ray and xxmaj spike xxmaj dudley started things off with a xxmaj tag xxmaj team xxmaj table xxmaj match against xxmaj eddie xxmaj guerrero and xxmaj chris xxmaj benoit . xxmaj according to the rules of the match , both opponents have to go through tables in order to get the win . xxmaj benoit and xxmaj guerrero heated up early on by taking turns hammering first xxmaj spike and then xxmaj bubba xxmaj ray . a xxmaj german xxunk by xxmaj benoit to xxmaj bubba took the wind out of the xxmaj dudley brother . xxmaj spike tried to help his brother , but the referee restrained him while xxmaj benoit and xxmaj guerrero</td>
+<td>pos</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>xxbos xxmaj titanic directed by xxmaj james xxmaj cameron presents a fictional love story on the historical setting of the xxmaj titanic . xxmaj the plot is simple , xxunk , or not for those who love plots that twist and turn and keep you in suspense . xxmaj the end of the movie can be figured out within minutes of the start of the film , but the love story is an interesting one , however . xxmaj kate xxmaj winslett is wonderful as xxmaj rose , an aristocratic young lady betrothed by xxmaj cal ( billy xxmaj zane ) . xxmaj early on the voyage xxmaj rose meets xxmaj jack ( leonardo dicaprio ) , a lower class artist on his way to xxmaj america after winning his ticket aboard xxmaj titanic in a poker game . xxmaj if he wants something , he goes and gets it</td>
+<td>pos</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>xxbos xxmaj warning : xxmaj does contain spoilers . \n\n xxmaj open xxmaj your xxmaj eyes \n\n xxmaj if you have not seen this film and plan on doing so , just stop reading here and take my word for it . xxmaj you have to see this film . i have seen it four times so far and i still have n't made up my mind as to what exactly happened in the film . xxmaj that is all i am going to say because if you have not seen this film , then stop reading right now . \n\n xxmaj if you are still reading then i am going to pose some questions to you and maybe if anyone has any answers you can email me and let me know what you think . \n\n i remember my xxmaj grade 11 xxmaj english teacher quite well . xxmaj</td>
+<td>pos</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>xxbos xxmaj this movie was recently released on xxup dvd in the xxup us and i finally got the chance to see this hard - to - find gem . xxmaj it even came with original theatrical previews of other xxmaj italian horror classics like " xxunk " and " beyond xxup the xxup darkness " . xxmaj unfortunately , the previews were the best thing about this movie . \n\n " zombi 3 " in a bizarre way is actually linked to the infamous xxmaj lucio xxmaj fulci " zombie " franchise which began in 1979 . xxmaj similarly compared to " zombie " , " zombi 3 " consists of a threadbare plot and a handful of extremely bad actors that keeps this ' horror ' trash barely afloat . xxmaj the gore is nearly non - existent ( unless one is frightened of people running around with</td>
+<td>neg</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>xxbos xxmaj raising xxmaj victor xxmaj vargas : a xxmaj review \n\n xxmaj you know , xxmaj raising xxmaj victor xxmaj vargas is like sticking your hands into a big , steaming bowl of oatmeal . xxmaj it 's warm and gooey , but you 're not sure if it feels right . xxmaj try as i might , no matter how warm and gooey xxmaj raising xxmaj victor xxmaj vargas became i was always aware that something did n't quite feel right . xxmaj victor xxmaj vargas suffers from a certain overconfidence on the director 's part . xxmaj apparently , the director thought that the ethnic backdrop of a xxmaj latino family on the lower east side , and an idyllic storyline would make the film critic proof . xxmaj he was right , but it did n't fool me . xxmaj raising xxmaj victor xxmaj vargas is</td>
+<td>neg</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>xxbos xxmaj polish film maker xxmaj walerian xxmaj borowczyk 's xxmaj la xxmaj bête ( french , 1975 , aka xxmaj the xxmaj beast ) is among the most controversial and brave films ever made and a very excellent one too . xxmaj this film tells everything that 's generally been hidden and denied about our nature and our sexual nature in particular with the symbolism and silence of its images . xxmaj the images may look wild , perverse , " sick " or exciting , but they are all in relation with the lastly mentioned . xxmaj sex , desire and death are very strong and primary things and dominate all the flesh that has a human soul inside it . xxmaj they interest and xxunk us so powerfully ( and by our nature ) that they are considered scary , unacceptable and something too wild to be</td>
+<td>pos</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>xxbos xxup anchors xxup aweigh sees two eager young sailors , xxmaj joe xxmaj brady ( gene xxmaj kelly ) and xxmaj clarence xxmaj doolittle / xxmaj brooklyn ( frank xxmaj sinatra ) , get a special four - day shore leave . xxmaj eager to get to the girls , particularly xxmaj joe 's xxmaj lola , neither xxmaj joe nor xxmaj brooklyn figure on the interruption of little xxmaj navy - mad xxmaj donald ( dean xxmaj stockwell ) and his xxmaj aunt xxmaj susie ( kathryn xxmaj grayson ) . xxmaj unexperienced in the ways of females and courting , xxmaj brooklyn quickly enlists xxmaj joe to help him win xxmaj aunt xxmaj susie over . xxmaj along the way , however , xxmaj joe finds himself falling for the gal he thinks belongs to his best friend . xxmaj how is xxmaj brooklyn going to take</td>
+<td>pos</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>xxbos xxmaj the premise of this movie has been tickling my imagination for quite some time now . xxmaj we 've all heard or read about it in some kind of con - text . xxmaj what would you do if you were all alone in the world ? xxmaj what would you do if the entire world suddenly disappeared in front of your eyes ? xxmaj in fact , the last part is actually what happens to xxmaj dave and xxmaj andrew , two room - mates living in a run - down house in the middle of a freeway system . xxmaj andrew is a nervous wreck to say the least and xxmaj dave is considered being one of the biggest losers of society . xxmaj that alone is the main reason to why these two guys get so well along , because they simply only have each</td>
+<td>pos</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>xxbos xxmaj i 've rented and watched this movie for the 1st time on xxup dvd without reading any reviews about it . xxmaj so , after 15 minutes of watching xxmaj i 've noticed that something is wrong with this movie ; it 's xxup terrible ! i mean , in the trailers it looked scary and serious ! \n\n i think that xxmaj eli xxmaj roth ( mr . xxmaj director ) thought that if all the characters in this film were stupid , the movie would be funny … ( so stupid , it 's funny … ? xxup wrong ! ) xxmaj he should watch and learn from better horror - comedies such xxunk xxmaj night " , " the xxmaj lost xxmaj boys " and " the xxmaj return xxmaj of the xxmaj living xxmaj dead " ! xxmaj those are funny ! \n\n "</td>
+<td>neg</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -855,12 +879,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>X는 text, y는 긍정/부정</li>
 </ul>
 <p><code>(2)</code> lrnr 오브젝트 생성</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>lrnr <span class="op">=</span> text_classifier_learner(dls,AWD_LSTM,metrics<span class="op">=</span>accuracy).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8c4deb04-d3d8-499b-83c3-d9ecf9a569eb" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> text_classifier_learner(dls,AWD_LSTM,metrics<span class="op">=</span>accuracy).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>(3)</code> 학습</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>lrnr.fine_tune(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="43323e00-7780-4c6d-8145-10981a4e9fed" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lrnr.fine_tune(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -880,26 +904,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>accuracy</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0.459112</td>
-      <td>0.393681</td>
-      <td>0.825080</td>
-      <td>00:25</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.459112</td>
+<td>0.393681</td>
+<td>0.825080</td>
+<td>00:25</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="cell-output cell-output-display">
@@ -921,32 +944,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>accuracy</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0.347508</td>
-      <td>0.283278</td>
-      <td>0.881720</td>
-      <td>00:45</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.347508</td>
+<td>0.283278</td>
+<td>0.881720</td>
+<td>00:45</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
 <p><code>(4)</code> 예측</p>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>lrnr.predict(<span class="st">"this film shows incredibly bad writing and is a complete disaster"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5b51aa79-00e0-4d57-820b-be7e66d8a1f4" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">"this film shows incredibly bad writing and is a complete disaster"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -972,8 +994,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>('neg', tensor(0), tensor([0.8853, 0.1147]))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>lrnr.predict(<span class="st">"this film shows incredible talent and is a complete triumph"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b4288108-2ff7-4508-804e-66cf3a36dc60" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">"this film shows incredible talent and is a complete triumph"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1084,9 +1106,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1122,10 +1158,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1135,8 +1170,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1151,6 +1195,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1190,7 +1423,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://utteranc.es/client.js" repo="guebin/DL2022" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
 </div> <!-- /content -->
+
 
 
 
